@@ -9,3 +9,5 @@ npm install
 cd ../server
 npm install
 ```
+
+Remember to only commit changes to your own branch and create pull requests to main when completed with a task.
