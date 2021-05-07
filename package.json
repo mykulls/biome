@@ -1,0 +1,18 @@
+{
+  "name": "cs35l-project",
+  "version": "1.0.0",
+  "description": "CS 35L Final Project",
+  "scripts": {
+    "dev": "concurrently \"cd server && npm run start-watch\" \"cd client && npm start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mykulls/cs35l-project.git"
+  },
+  "author": "Michael Shi",
+  "license": "ISC",
+  "homepage": "https://github.com/mykulls/cs35l-project#readme",
+  "devDependencies": {
+    "concurrently": "^6.0.2"
+  }
+}
