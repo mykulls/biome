@@ -10,4 +10,4 @@ cd ../server
 npm install
 ```
 
-Remember to only commit changes to the proper branch (server or client) and create pull requests to main when completed with a task.
+Remember to only commit changes to dev and create pull requests to main when completed with a task.
