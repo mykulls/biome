@@ -1,6 +1,6 @@
 # cs35l-project
 
-To setup your environment, you need 3 initial `npm install`s: once within the root directory, once within client, and once within server.
+Clone the repository to your local device. Then, to setup your environment, you need 3 initial `npm install`s: once within the root directory, once within client, and once within server.
 
 ```
 npm install
