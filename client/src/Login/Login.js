@@ -45,21 +45,28 @@ export class Login extends React.Component{
 
   render() {
     return(
-      <form onSubmit={this.login}>
-        <h2>Login:</h2>
-        <label>
-          Username:
-          <input type="text" name="Username" onChange={this.enterAccount} />
+      <div className="Login">
+        <div className="rectangle3">
+          <text>CS35L Project Login Page</text>
+        </div>
+        <div className="rectangle">
+          <form onSubmit={this.login}>
+           <h2>Login:</h2>
+            <label>
+             Username:
+             <input type="text" name="Username" onChange={this.enterAccount} />
+            </label>
+            <br></br>
+            <label>
+          Password:          <input type="text" name="Password" onChange={this.enterAccount} />
         </label>
         <br></br>
-        <label>
-          Password:
-          <input type="text" name="Password" onChange={this.enterAccount} />
-        </label>
-        <br></br>
-        <input type="submit" value="login"/>
-        <h2>Don't have an account?</h2>
-        <h2>Sign up:</h2>
+        <input type="submit" value="Login"/>
+        </form>
+      </div>
+      <div className="rectangle2">
+        <h2>Don't have an account? Sign up:</h2>
+        <form onSubmit={this.login}>
         <label>
           Username:
           <input type="text" name="newUsername" onChange={this.createAccount} />
@@ -70,8 +77,10 @@ export class Login extends React.Component{
           <input type="text" name="newPassword" onChange={this.createAccount} />
         </label>
         <br></br>
-        <input type="submit" value="signup"/>
-      </form>
+        <input type="submit" value="Sign up"/>
+        </form>
+    </div>
+      </div>
     );
   }
 }
