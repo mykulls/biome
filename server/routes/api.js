@@ -1,21 +1,21 @@
-const express = require ('express');
+const express = require('express');
+
 const router = express.Router();
 const Listing = require('../models/listing');
 
 router.get('/listings', (req, res, next) => {
   Listing.find({})
-    .then(data => res.json(data))
+    .then((data) => res.json(data))
     .catch(next);
 });
 
 router.post('/listings', (req, res, next) => {
-  const body = req.body;
-  if (body.name && body.address && body.city && body.zip){
+  const { body } = req;
+  if (body.name && body.address && body.city && body.zip) {
     Listing.create(req.body)
-      .then(data => res.json(data))
+      .then((data) => res.json(data))
       .catch(next);
-  }
-  else {
+  } else {
     Object.keys(Listing.schema.obj).forEach((key) => {
       if (!(key in body)) {
         res.json({
@@ -27,8 +27,8 @@ router.post('/listings', (req, res, next) => {
 });
 
 router.delete('/listings/:id', (req, res, next) => {
-  Listing.findOneAndDelete({"_id": req.params.id})
-    .then(data => res.json(data))
+  Listing.findOneAndDelete({ _id: req.params.id })
+    .then((data) => res.json(data))
     .catch(next);
 });
 
