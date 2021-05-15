@@ -1,0 +1,40 @@
+.rectangle{
+
+    margin-right: auto;
+    margin-left: auto;
+    width: 550px;
+    height: 250px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    text-align: center;
+  }
+.rectangle2{
+    margin-right: auto;
+    margin-left: auto;
+    margin-top:auto;
+    width: 550px;
+    height: 250px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    text-align: center;
+}
+.rectangle3{
+    width: 1920px;
+    height: 60px;
+    top: 0px;
+    background-color: rgba(39, 116, 174, 1);
+    ;
+    fill: solid;
+    color: white;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+}
+
+.label{
+    text-align: center;
+}
