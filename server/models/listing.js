@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-//create schema for listings
+const { Schema } = mongoose;
+
+// create schema for listings
 const ListingSchema = new Schema({
   name: {
     type: String,
@@ -19,9 +20,9 @@ const ListingSchema = new Schema({
     type: Number,
     required: 'The zip code field is required',
   },
-})
+});
 
-//create model for todo
+// create model for todo
 const Listing = mongoose.model('listing', ListingSchema);
 
 module.exports = Listing;
