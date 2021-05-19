@@ -1,0 +1,73 @@
+h1 {
+  font-size: 40px;
+  padding-top: 40px;
+  padding-right: 30px;
+  text-align: center;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+label, input {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #2774ae;
+}
+  
+li {
+  float: left;
+}
+  
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #3dabff;
+}
+
+.postmaker {
+  font-size: 20px;
+  /*
+  width: 500px;
+  border: 5px solid rgb(177, 177, 177);
+  padding: 20px;
+  margin: auto;
+  */
+  margin: auto;
+  width: 756px;
+  left: 35px;
+  top: 53px;
+  padding: 20px;
+
+  background: #FFFFFF;
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+}
+
+.navbar {
+  background: #2774ae;
+  border-bottom: 1px solid #2774ae;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(39, 116, 175);
+  padding: 0 17px;
+  height: 50px;
+  margin-bottom: 10px;
+  position: absolute;
+  width: 1920px;
+  left: 0px;
+  top: 0px;
+
+}
