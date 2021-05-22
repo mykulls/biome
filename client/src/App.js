@@ -5,9 +5,10 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  /* Link, */
 } from 'react-router-dom';
-import Home from './Home/Home';
+// import Home from './Home/Home';
+import NavBar from './components/navbar';
+import Posts from './Home/posts';
 
 export default function App() {
   return (
@@ -26,9 +27,10 @@ export default function App() {
             <Link to="/dashboard">Dashboard</Link>
           </li>
         </ul> */}
+        <NavBar />
         <Switch>
           <Route exact path="/">
-            <Home />
+            <Posts />
           </Route>
         </Switch>
       </Router>
