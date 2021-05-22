@@ -1,0 +1,18 @@
+.navbar {
+    position: fixed;
+    box-shadow: 0 0 10px #CCCCCC;
+    width: 100%;
+    height: 64px;
+    background-color: #2774AE;
+}
+
+.navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+    max-width: 1248px;
+    height: 100%;
+    padding: 0 1.5em;
+    color: white;
+}

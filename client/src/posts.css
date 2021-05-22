@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+}
+
+:root {
+    font-family: 'Lato', sans-serif;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                    Post                                    */
+/* -------------------------------------------------------------------------- */
+
+.card {
+    display: flex;
+    flex-direction: column;
+    margin: 16px;
+    box-shadow: 0 0 10px #CCCCCC;
+    border-radius: 16px;
+    box-sizing: border-box;
+    width: 288px;
+    height: 384px;
+    padding: 16px;
+}
+
+.photo {
+    border-radius: 8px;
+    width: 256px;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 15px;
+    height: 100%;
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.fav {
+    border: 0;
+    border-radius: 50%;
+    height: 1.5rem;
+    width: 1.5rem;
+    padding: 0;
+    font-size: 1.25rem;
+    line-height: 0;
+    text-align: center;
+    color: gray;
+}
+
+.fav:active {
+    color: #F2CD00;
+}
+
+.card ul {
+    padding-left: 16px;
+    font-size: 0.875rem;
+    line-height: 160%;
+}
+
+.bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.date {
+    font-size: 0.875rem;
+    color: gray;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                    Grid                                    */
+/* -------------------------------------------------------------------------- */
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+    max-width: 1280px;
+}
+
