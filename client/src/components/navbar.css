@@ -16,3 +16,8 @@
     padding: 0 1.5em;
     color: white;
 }
+
+.nav-link {
+    text-decoration: none;
+    color: inherit;
+}
