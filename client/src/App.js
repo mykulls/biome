@@ -1,34 +1,42 @@
-/* eslint-disable no-underscore-dangle */
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import axios from 'axios';
-
-const origin = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:5000';
-// replace production with the deploy link later
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom';
+import NavBar from './components/navbar';
+import Home from './Home/Home';
+import NewPost from './NewPost/NewPost';
 
 export default function App() {
-  const [listings, setListings] = useState([]);
-
-  useEffect(() => {
-    axios.get(`${origin}/listings`)
-      .then((res) => {
-        setListings(res.data);
-      })
-      .catch((e) => {
-        console.log(e.message);
-      });
-  }, []);
-
   return (
-    <div className="App">
-      <header className="App-header" />
-      <main>
-        {listings.map((l) => (
-          <div key={l._id}>{l.name}</div>
-        ))}
-      </main>
-    </div>
+    <Router>
+      {/* header goes here */}
+      {/* header links should look something like this:
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
+        </ul> */}
+      <NavBar />
+      <div className="route-container">
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/new-post">
+            <NewPost />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
-    }
 }
