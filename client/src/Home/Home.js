@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 // import logo from './logo.svg';
 import './Home.css';
 import axios from 'axios';
+import NewPost from '../NewPost/NewPost';
 
 const origin = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:5000';
 // replace production with the deploy link later
@@ -23,8 +24,9 @@ export default function Home() {
   return (
     <div className="home">
       {listings.map((l) => (
-        <div key={l._id}>{l.address}</div>
+        <div className="post" key={l._id}>{l.address}</div>
       ))}
+      <NewPost />
     </div>
   );
 }

@@ -4,10 +4,6 @@ const { Schema } = mongoose;
 
 // create schema for listings
 const ListingSchema = new Schema({
-  name: {
-    type: String,
-    required: 'The name field is required',
-  },
   address: {
     type: String,
     required: 'The address field is required',
@@ -20,6 +16,9 @@ const ListingSchema = new Schema({
     type: Number,
     required: 'The zip code field is required',
   },
+},
+{
+  timestamps: true,
 });
 
 // create model for todo
