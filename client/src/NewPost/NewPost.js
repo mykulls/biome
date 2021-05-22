@@ -10,6 +10,7 @@ export default function Home() {
   //  const [user, setUser] = useState(); // for linking the user's id to a listing in mongo
   const [newListing, setListing] = useState({});
   const [error, setError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
 
   function handleSubmit(event) {
     event.preventDefault(); // prevents reloading after every submit
@@ -18,13 +19,17 @@ export default function Home() {
     } else if (newListing.zip && (newListing.zip.length !== 5 || !/^\d+$/.test(newListing.zip))) {
       setError('Please input a valid zip code!');
     } else {
+      setError('');
+      setSubmitting(true);
       axios.post(`${origin}/listings`, newListing)
+        .then(() => {
+          setSubmitting(false);
+
+          // route this to the post details page later
+        })
         .catch((e) => {
           console.log(e.message);
         });
-
-      setError('');
-      // route to the post details screen for the new post in a .then
     }
   }
 
@@ -55,9 +60,10 @@ export default function Home() {
         {/* for images later:
         https://www.geeksforgeeks.org/upload-and-retrieve-image-on-mongodb-using-mongoose/ */}
         <button type="submit">
-          Submit
+          {/* possibly don't need this because it submits so fast anyways  */}
+          {submitting ? <span>Submitting...</span> : <span>Submit</span>}
         </button>
-        {error && <p>{error}</p>}
+        {error && <span>{error}</span>}
       </form>
     </div>
   );
