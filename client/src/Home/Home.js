@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from 'react';
 // import logo from './logo.svg';
 import './Home.css';

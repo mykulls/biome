@@ -24,5 +24,6 @@ module.exports = {
     'no-console': 'off',
     'linebreak-style': 'off',
     'react/forbid-prop-types': 'off',
+    'no-underscore-dangle': 'off',
   },
 };
