@@ -32,6 +32,5 @@ export default function Post({ listing }) {
 }
 
 Post.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
   listing: PropTypes.object.isRequired,
 };
