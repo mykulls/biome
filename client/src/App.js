@@ -5,16 +5,16 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  /* Link, */
 } from 'react-router-dom';
+import NavBar from './components/navbar';
 import Home from './Home/Home';
+import NewPost from './NewPost/NewPost';
 
 export default function App() {
   return (
-    <div className="App">
-      <Router>
-        {/* header goes here */}
-        {/* header links should look something like this:
+    <Router>
+      {/* header goes here */}
+      {/* header links should look something like this:
         <ul>
           <li>
             <Link to="/">Home</Link>
@@ -26,12 +26,17 @@ export default function App() {
             <Link to="/dashboard">Dashboard</Link>
           </li>
         </ul> */}
+      <NavBar />
+      <div className="route-container">
         <Switch>
           <Route exact path="/">
             <Home />
           </Route>
+          <Route exact path="/new-post">
+            <NewPost />
+          </Route>
         </Switch>
-      </Router>
-    </div>
+      </div>
+    </Router>
   );
 }
