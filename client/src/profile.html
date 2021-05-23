@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title> Profile Page </title>
+        <link rel="stylesheet" href="./profile.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body> 
+        <div class="container">
+            <div class="profile-header">
+                <div class="profile-img">
+                    <img src="https://sahabatperubahan.com/wp-content/uploads/2021/03/placeholder-profile-sq.jpg" width="200" alt="">
+                </div>
+                <div class="profile-nav-info">
+                    <h3 class="user-name"> John Doe </h3>
+                    <div class="address">
+                        <p class="state"> Los Angeles, </p>
+                        <span class="city">California</span>
+                    </div>
+                </div>
+            </div>
+            <div class="main-bd">
+                <div class="left-side">
+                    <div class="profile-side">
+                        <p class="mobile-no">
+                            <i class="fa fa-phone"></i>
+                            +0912341234
+                        </p>
+                        <p class="user-mail">
+                            <i class="fa fa-envelope"></i>
+                            JohnDoe@gmail.com
+                        </p>
+                        <div class="user-bio"> 
+                            <p class="bio"> Placeholder Profile </p>
+                        </div>
+                        <div class="user-rating">
+                            <h3 class="rating"> 4.5 </h3>
+                            <div class="rate">
+                                <div class="stars">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <span class="no-user">
+                                    <span> 1234 </span>
+                                    &nbsp;&nbsp; 
+                                    reviews
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="right-side">
+                        <div class="nav"> 
+                            <ul> 
+                                <li onclick="tabs(0)" class="user-post active"> 
+                                    Posts
+                                </li>
+                                <li onclick="tabs(1)" class="user-review"> 
+                                    Reviews
+                                </li>
+                                <li onclick="tabs(2)" class="user-setting"> 
+                                    Settings
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="profile-body">
+                            <div class="profile-posts tab"> 
+                                <h1> Your Posts </h1>
+                                <p> Lorem ipsum </p>
+                            </div>
+                            <div class="profile-review tab">
+                                <h1> User Reviews </h1>
+                                <p> Lorem ipsum </p>
+                            </div>
+                            <div class="profile-setting tab">
+                                <h1> Account Setting </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="./App.js"> </script>
+    </body>
+</html>
