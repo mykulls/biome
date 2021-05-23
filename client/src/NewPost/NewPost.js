@@ -52,6 +52,10 @@ export default function Home() {
           Zip Code:
           <input type="text" id="lname" onChange={(e) => handleChange('zip', e.target.value)} />
         </label>
+        <label htmlFor="description">
+          Description:
+          <textarea id="description" name="description" rows="4" cols="50" onChange={(e) => handleChange('description', e.target.value)} />
+        </label>
         {/* <label htmlFor="lname">
           Choose Pictures:
           <input type="file" id="myFile" name="filename" />

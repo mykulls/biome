@@ -16,6 +16,10 @@ const ListingSchema = new Schema({
     type: Number,
     required: 'The zip code field is required',
   },
+  description: {
+    type: String,
+    required: 'A description is required'
+  },
 },
 {
   timestamps: true,
