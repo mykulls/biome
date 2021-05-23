@@ -1,0 +1,14 @@
+.filter-form {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    max-width: 1248px;
+    padding: 80px 1.5em 0;
+}
+
+input[type=number] {
+    width: 80px;
+    border: 1px solid;
+    border-radius: 50vh;
+    outline: 0;
+}

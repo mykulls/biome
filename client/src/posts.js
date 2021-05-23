@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './posts.css';
+import Filter from './components/filter.js'
 
 function Post(props) {
     return (
@@ -39,6 +40,7 @@ class Posts extends React.Component {
     render() {
         return (
             <div>
+                <Filter />
                 <div className="container">
                     {this.renderPost("10996 Roebling")}
                     {this.renderPost(1)}
