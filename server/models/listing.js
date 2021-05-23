@@ -12,6 +12,10 @@ const ListingSchema = new Schema({
     type: String,
     required: 'The city field is required',
   },
+  state: {
+    type: String,
+    required: 'The state field is required',
+  },
   zip: {
     type: Number,
     required: 'The zip code field is required',
