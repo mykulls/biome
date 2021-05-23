@@ -3,7 +3,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const routes = require('./routes/api');
-const database = require('./models');
 require('dotenv').config();
 
 const app = express();
@@ -17,32 +16,7 @@ mongoose.connect(process.env.DB, {
 })
   .then(() => console.log('Database connected successfully'))
   .catch((err) => console.log(err));
-// Will put function here to intialize new users of different types
-function initialize() {
-  database.role.estimatedDocumentCount((error, count) => {
-    if (!error && count === 0) // if it's a new user with no error
-    {
-      // eslint-disable-next-line new-cap
-      new database.role({
-        type: 'regUser',
-      }).save((error2) => {
-        if (error2) {
-          console.log('error', error2);
-        }
-        console.log('added regUser');
-      });
-      // new database.role({
-      //   type:"admin"
-      // }).save(error=>{
-      //   if(error)
-      //   {
-      //     console.log("error",error)
-      //   }
-      //   console.log("added admin");
-      // });
-    }
-  });
-}
+
 // since mongoose promise is depreciated, we overide it with node's promise
 mongoose.Promise = global.Promise;
 

@@ -3,12 +3,15 @@
 // For now we decide to only have one type of user
 const mongoose = require('mongoose');
 
-const User = mongoose.model('User',
-  new mongoose.Schema({
-    username: String,
-    password: String,
-    posts: Array,
-    comments: Array,
-    savedPosts: Array,
-  }));
+const { Schema } = mongoose;
+
+const UserSchema = new Schema({
+  username: { type: String },
+  password: { type: String },
+  // posts: { type: Array },
+  // comments: { type: Array },
+  // savedPosts: { type: Array },
+});
+const User = mongoose.model('user', UserSchema);
+
 module.exports = User;

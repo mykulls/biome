@@ -2,6 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 const Listing = require('../models/listing');
+const User = require('../models/user');
 
 router.get('/listings', (req, res) => {
   Listing.find({})
@@ -38,4 +39,36 @@ router.delete('/listings/:id', (req, res) => {
     });
 });
 
+router.get('/users', (req, res) => {
+  User.find({})
+    .then((data) => res.json(data))
+    .catch((e) => {
+      console.log(e.message);
+    });
+});
+router.post('/users', (req, res) => {
+  const { user } = req;
+  if (user.username && user.password) {
+    User.create(req.user)
+      .then((data) => res.json(data))
+      .catch((e) => {
+        console.log(e.message);
+      });
+  } else {
+    Object.keys(User.schema.obj).forEach((key) => {
+      if (!(key in user)) {
+        res.json({
+          error: `The ${key} field is empty`,
+        });
+      }
+    });
+  }
+});
+router.delete('/users/:id', (req, res) => {
+  User.findOneAndDelete({ _id: req.params.id })
+    .then((data) => res.json(data))
+    .catch((e) => {
+      console.log(e.message);
+    });
+});
 module.exports = router;

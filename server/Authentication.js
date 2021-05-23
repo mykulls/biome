@@ -1,12 +1,10 @@
 /* eslint-disable */
 //How users will signUp and signIn
-const db = require("./models");
-const User = db.user;
-const Role = db.role;
+const User = require('./models/user')
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
-exports.SignUp = (username, password, result)=>
+SignUp = (username, password, result)=>
 {
     const user = new User({
         username:username,
@@ -20,7 +18,8 @@ exports.SignUp = (username, password, result)=>
         result.send({message: "User registered"});
     });
 }
-exports.SignIn = (username,password,result) =>
+
+SignIn = (username,password,result) =>
 {
     User.findOne({
         username: username
@@ -49,3 +48,7 @@ exports.SignIn = (username,password,result) =>
             accessToken: token
           });
 }
+const SignUp = mongoose.model('signUp', SignUp);
+const SignIn = mongoose.model('signIn', SignIn);
+module.exports = SignUp;
+module.exports = SignIn;

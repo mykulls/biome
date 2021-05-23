@@ -1,8 +1,8 @@
 // This file will validate the sign up information
 // Because we only have one type of user, we don't need to validate that
-const database = require('./models');
+const mongoose = require('mongoose');
+const User = require('./models/user');
 
-const User = database.user;
 function checkDuplicateUsername(givenUserName, result) {
   User.findOne({
     userName: givenUserName,
@@ -18,4 +18,5 @@ function checkDuplicateUsername(givenUserName, result) {
     return true;
   });
 }
-module.export = checkDuplicateUsername;
+const checkDuplicate = mongoose.model('checkDuplicateUsername', checkDuplicateUsername);
+module.exports = checkDuplicate;
