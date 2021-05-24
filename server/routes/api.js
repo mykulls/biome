@@ -31,7 +31,15 @@ router.post('/listings', (req, res) => {
 });
 
 router.delete('/listings/:id', (req, res) => {
-  Listing.findOneAndDelete({ _id: req.params.id })
+  Listing.findByIdAndDelete(req.params.id)
+    .then((data) => res.json(data))
+    .catch((e) => {
+      console.log(e.message);
+    });
+});
+
+router.get('/listing/:id', (req, res) => {
+  Listing.findById(req.params.id)
     .then((data) => res.json(data))
     .catch((e) => {
       console.log(e.message);

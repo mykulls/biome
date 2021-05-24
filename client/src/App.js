@@ -9,6 +9,7 @@ import {
 import NavBar from './components/navbar';
 import Home from './Home/Home';
 import NewPost from './NewPost/NewPost';
+import PostDetails from './PostDetails/PostDetails';
 
 export default function App() {
   return (
@@ -32,8 +33,11 @@ export default function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route exact path="/new-post">
+          <Route path="/new-post">
             <NewPost />
+          </Route>
+          <Route path="/post/:id">
+            <PostDetails />
           </Route>
         </Switch>
       </div>

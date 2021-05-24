@@ -2,6 +2,7 @@
 import React from 'react';
 import './Post.css';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 export default function Post({ listing }) {
   return (
@@ -21,7 +22,16 @@ export default function Post({ listing }) {
         </ul>
         <div className="bottom">
           <p>$1250 / month</p>
-          <button type="button">Details</button>
+          <button type="button">
+            <Link
+              to={{
+                pathname: `/post/${listing._id}`,
+                listing,
+              }}
+            >
+              Details
+            </Link>
+          </button>
           {/* <div className="date">
                         <p>Posted May 15</p>
                     </div> */}

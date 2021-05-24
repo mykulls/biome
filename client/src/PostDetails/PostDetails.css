@@ -1,0 +1,12 @@
+.details-container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-width: 1280px;
+}
+
+.details-top {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}

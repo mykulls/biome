@@ -22,7 +22,7 @@ const ListingSchema = new Schema({
   },
   description: {
     type: String,
-    required: 'A description is required'
+    required: 'A description is required',
   },
 },
 {
