@@ -47,16 +47,16 @@ router.get('/users', (req, res) => {
     });
 });
 router.post('/users', (req, res) => {
-  const { user } = req;
-  if (user.username && user.password) {
-    User.create(req.user)
+  const { body } = req;
+  if (body.username && body.password) {
+    User.create(req.body)
       .then((data) => res.json(data))
       .catch((e) => {
         console.log(e.message);
       });
   } else {
     Object.keys(User.schema.obj).forEach((key) => {
-      if (!(key in user)) {
+      if (!(key in body)) {
         res.json({
           error: `The ${key} field is empty`,
         });

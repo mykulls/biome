@@ -40,9 +40,9 @@ export class Login extends React.Component{
       }
       else
       {
-        newUser = {username: this.state.newUsername, password: this.state.newPassword};
-        axios.post2(`${origin}/users`, newUser)
-        .then(() => {
+        let newUser = {username: this.state.newUsername, password: this.state.newPassword};
+        axios.post(`${origin}/users`, newUser)
+        .then(() => { alert("signing in");
         })
         .catch((e) => {
           console.log(e.message);
@@ -59,15 +59,18 @@ export class Login extends React.Component{
         <div className="rectangle">
           <form onSubmit={this.login}>
            <h2>Login:</h2>
+           <br></br>
             <label>
              Username:
              <input type="text" name="Username" onChange={this.enterAccount} />
             </label>
             <br></br>
+            <br></br>
             <label>
           Password:          
           <input type="text" name="Password" onChange={this.enterAccount} />
         </label>
+        <br></br>
         <br></br>
         <input type="submit" value="Login"/>
         </form>
@@ -75,16 +78,19 @@ export class Login extends React.Component{
       <br></br>
       <div className="rectangle2">
         <h2>Don't have an account? Sign up:</h2>
+        <br></br>
         <form onSubmit={this.signUp}>
         <label>
           Username:
           <input type="text" name="newUsername" onChange={this.createAccount} />
         </label>
         <br></br>
+        <br></br>
         <label>
           Password:
           <input type="text" name="newPassword" onChange={this.createAccount} />
         </label>
+        <br></br>
         <br></br>
         <input type="submit" value="Sign up"/>
         </form>
