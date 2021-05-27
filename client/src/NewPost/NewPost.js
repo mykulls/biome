@@ -13,10 +13,16 @@ export default function Home() {
 
   function handleSubmit(event) {
     event.preventDefault(); // prevents reloading after every submit
-    if (!newListing.address || !newListing.city || !newListing.zip) {
+    if (!newListing.address || !newListing.city || !newListing.state
+      || !newListing.zip || !newListing.distance || !newListing.school
+      // || !newListing.kitchen || !newListing.laundry || !newListing.parking
+      || !newListing.people || !newListing.bedrooms || !newListing.bathrooms
+      || !newListing.description) {
       setError('Please fill in all required fields');
     } else if (newListing.zip && (newListing.zip.length !== 5 || !/^\d+$/.test(newListing.zip))) {
       setError('Please input a valid zip code!');
+    } else if (newListing.rent && (!/^\d+$/.test(newListing.rent))) {
+      setError('Please input a valid rent price!');
     } else {
       setError('');
       setSubmitting(true);
@@ -34,23 +40,31 @@ export default function Home() {
 
   function handleChange(key, value) {
     setError('');
-    setListing({ ...newListing, [key]: value });
+    if (key === 'kitchen' || key === 'parking' || key === 'laundry') {
+      if (document.getElementById(key).checked) {
+        setListing({ ...newListing, [key]: true });
+      } else {
+        setListing({ ...newListing, [key]: false });
+      }
+    } else {
+      setListing({ ...newListing, [key]: value });
+    }
   }
 
   return (
     <div className="new-post">
       <form className="postmaker" onSubmit={handleSubmit}>
-        <label htmlFor="fname">
+        <label htmlFor="address">
           Street Address:&nbsp;
-          <input type="text" id="fname" onChange={(e) => handleChange('address', e.target.value)} />
+          <input type="text" id="address" onChange={(e) => handleChange('address', e.target.value)} />
         </label>
-        <label htmlFor="lname">
+        <label htmlFor="city">
           City:&nbsp;
-          <input type="text" id="lname" onChange={(e) => handleChange('city', e.target.value)} />
+          <input type="text" id="city" onChange={(e) => handleChange('city', e.target.value)} />
         </label>
         <label htmlFor="state">
           State:&nbsp;
-          <select id="state" name="state" onChange={(e) => handleChange('state', e.target.value)}>
+          <select id="state" onChange={(e) => handleChange('state', e.target.value)}>
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
             <option value="AZ">Arizona</option>
@@ -104,13 +118,86 @@ export default function Home() {
             <option value="WY">Wyoming</option>
           </select>
         </label>
-        <label htmlFor="lname">
+        <label htmlFor="zipcode">
           Zip Code:&nbsp;
-          <input type="text" id="lname" onChange={(e) => handleChange('zip', e.target.value)} />
+          <input type="text" id="zipcode" onChange={(e) => handleChange('zip', e.target.value)} />
+        </label>
+        <label htmlFor="distance">
+          Distance: &nbsp;
+          <input type="text" id="rent" onChange={(e) => handleChange('distance', e.target.value)} />
+        </label>
+        <label htmlFor="details">
+          School:&nbsp;
+          <select id="school" onChange={(e) => handleChange('school', e.target.value)}>
+            <option value="UCLA">UCLA</option>
+            <option value="USC">USC</option>
+          </select>
+        </label>
+        <label htmlFor="kitchen">
+          <input type="checkbox" id="kitchen" onChange={(e) => handleChange('kitchen', e.target.value)} />
+          Kitchen
+        </label>
+        <label htmlFor="laundry">
+          <input type="checkbox" id="laundry" onChange={(e) => handleChange('laundry', e.target.value)} />
+          Laundry
+        </label>
+        <label htmlFor="parking">
+          <input type="checkbox" id="parking" onChange={(e) => handleChange('parking', e.target.value)} />
+          Parking
+        </label>
+        <label htmlFor="rent">
+          Rent: $&nbsp;
+          <input type="text" id="rent" onChange={(e) => handleChange('rent', e.target.value)} />
+        </label>
+        <label htmlFor="details">
+          People:&nbsp;
+          <select id="people" onChange={(e) => handleChange('people', e.target.value)}>
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
+            <option value={4}>4</option>
+            <option value={5}>5</option>
+            <option value={6}>6</option>
+            <option value={7}>7</option>
+            <option value={8}>8</option>
+            <option value={9}>9</option>
+          </select>
+          &emsp;Bedrooms:&nbsp;
+          <select id="bedrooms" onChange={(e) => handleChange('bedrooms', e.target.value)}>
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
+            <option value={4}>4</option>
+            <option value={5}>5</option>
+            <option value={6}>6</option>
+            <option value={7}>7</option>
+            <option value={8}>8</option>
+            <option value={9}>9</option>
+          </select>
+          &emsp;Bathrooms:&nbsp;
+          <select id="bathrooms" name="bathrooms" onChange={(e) => handleChange('bathrooms', e.target.value)}>
+            <option value={1}>1</option>
+            <option value={1.5}>1.5</option>
+            <option value={2}>2</option>
+            <option value={2.5}>2.5</option>
+            <option value={3}>3</option>
+            <option value={3.5}>3.5</option>
+            <option value={4}>4</option>
+            <option value={4.5}>4.5</option>
+            <option value={5}>5</option>
+            <option value={5.5}>5.5</option>
+            <option value={6}>6</option>
+            <option value={6.5}>6.5</option>
+            <option value={7}>7</option>
+            <option value={7.5}>7.5</option>
+            <option value={8}>8</option>
+            <option value={8.5}>8.5</option>
+            <option value={9}>9</option>
+          </select>
         </label>
         <label htmlFor="description">
           Description:&nbsp;
-          <textarea id="description" name="description" rows="4" cols="50" onChange={(e) => handleChange('description', e.target.value)} />
+          <textarea id="description" rows="4" cols="50" onChange={(e) => handleChange('description', e.target.value)} />
         </label>
         {/* <label htmlFor="lname">
           Choose Pictures:

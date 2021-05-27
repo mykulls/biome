@@ -20,6 +20,42 @@ const ListingSchema = new Schema({
     type: Number,
     required: 'The zip code field is required',
   },
+  distance: {
+    type: Number,
+    required: 'The distance field is required',
+  },
+  school: {
+    type: String,
+    required: 'The school field is required',
+  },
+  kitchen: {
+    type: Boolean,
+    default: false,
+  },
+  laundry: {
+    type: Boolean,
+    default: false,
+  },
+  parking: {
+    type: Boolean,
+    default: false,
+  },
+  rent: {
+    type: Number,
+    required: 'The rent field is required',
+  },
+  people: {
+    type: Number,
+    required: 'The number of people is required',
+  },
+  bedrooms: {
+    type: Number,
+    required: 'The number of bedrooms is required',
+  },
+  bathrooms: {
+    type: Number,
+    required: 'The number of bathrooms is required',
+  },
   description: {
     type: String,
     required: 'A description is required',
