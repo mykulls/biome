@@ -27,7 +27,11 @@ export default function PostDetails() {
   }, [comment]);
 
   function onSubmit() {
-
+    // TODO: get the current user (app.currentUser), save in state variable
+    // if no user don't allow them to submit (textarea attribute disabled={user ? false : true})
+    // maybe change the placeholder if user isn't logged in too
+    // onSubmit, post the comment to the listing document
+    // as an object containg the comment and the user info
   }
 
   return (

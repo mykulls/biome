@@ -23,7 +23,6 @@ const UserSchema = new Schema({
     required: 'Last name required',
   },
   posts: { type: Array },
-  comments: { type: Array },
   savedPosts: { type: Array },
 });
 const User = mongoose.model('user', UserSchema);
