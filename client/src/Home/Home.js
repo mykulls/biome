@@ -14,7 +14,18 @@ export default function Home() {
   useEffect(() => {
     axios.get(`${origin}/listings`)
       .then((res) => {
-        setListings(res.data);
+        setListings(res.data.sort((a, b) => {
+          // sort alphabetically by school, A-Z
+          if (a.school < b.school) {
+            return -1;
+          }
+          if (a.school > b.school) {
+            return 1;
+          }
+
+          // names must be equal
+          return 0;
+        }));
       })
       .catch((e) => {
         console.log(e.message);

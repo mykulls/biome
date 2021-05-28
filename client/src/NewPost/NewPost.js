@@ -123,10 +123,10 @@ export default function Home() {
           <input type="text" id="zipcode" onChange={(e) => handleChange('zip', e.target.value)} />
         </label>
         <label htmlFor="distance">
-          Distance: &nbsp;
-          <input type="text" id="rent" onChange={(e) => handleChange('distance', e.target.value)} />
+          Distance from campus: &nbsp;
+          <input type="text" id="distance" onChange={(e) => handleChange('distance', e.target.value)} />
         </label>
-        <label htmlFor="details">
+        <label htmlFor="school">
           School:&nbsp;
           <select id="school" onChange={(e) => handleChange('school', e.target.value)}>
             <option value="UCLA">UCLA</option>
@@ -146,7 +146,7 @@ export default function Home() {
           Parking
         </label>
         <label htmlFor="rent">
-          Rent: $&nbsp;
+          Rent ($ per month): $&nbsp;
           <input type="text" id="rent" onChange={(e) => handleChange('rent', e.target.value)} />
         </label>
         <label htmlFor="details">
