@@ -9,6 +9,7 @@ import {
 import NavBar from './components/navbar';
 import Home from './Home/Home';
 import NewPost from './NewPost/NewPost';
+import Profile from './ProfilePage/Profile';
 
 export default function App() {
   return (
@@ -34,6 +35,9 @@ export default function App() {
           </Route>
           <Route exact path="/new-post">
             <NewPost />
+          </Route>
+          <Route exact path="/profile">
+            <Profile />
           </Route>
         </Switch>
       </div>
