@@ -1,5 +1,4 @@
-/* eslint-disable */
-import React from 'react';
+import React, { useState } from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import {
@@ -12,8 +11,11 @@ import Home from './Home/Home';
 import NewPost from './NewPost/NewPost';
 import Login from './Login/Login';
 import PostDetails from './PostDetails/PostDetails';
+import { app } from './Realm';
 
 export default function App() {
+  const [user, setUser] = useState(app.currentUser);
+
   return (
     <Router>
       {/* header goes here */}
@@ -29,7 +31,7 @@ export default function App() {
             <Link to="/dashboard">Dashboard</Link>
           </li>
         </ul> */}
-      <NavBar />
+      <NavBar user={user} />
       <div className="route-container">
         <Switch>
           <Route exact path="/">
@@ -39,7 +41,7 @@ export default function App() {
             <NewPost />
           </Route>
           <Route path="/login">
-            <Login />
+            <Login setUser={setUser} />
           </Route>
           <Route path="/post/:id">
             <PostDetails />

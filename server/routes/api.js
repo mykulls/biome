@@ -15,7 +15,7 @@ router.get('/listings', (req, res) => {
 router.post('/listings', (req, res) => {
   const { body } = req;
   if (body.address && body.city && body.zip) {
-    Listing.create(req.body)
+    Listing.create(body)
       .then((data) => res.json(data))
       .catch((e) => {
         console.log(e.message);
@@ -39,7 +39,7 @@ router.delete('/listings/:id', (req, res) => {
     });
 });
 
-router.get('/listing/:id', (req, res) => {
+router.get('/listings/:id', (req, res) => {
   Listing.findById(req.params.id)
     .then((data) => res.json(data))
     .catch((e) => {
@@ -54,10 +54,19 @@ router.get('/users', (req, res) => {
       console.log(e.message);
     });
 });
+
+router.get('/users/:id', (req, res) => {
+  User.findById(req.params.id)
+    .then((data) => res.json(data))
+    .catch((e) => {
+      console.log(e.message);
+    });
+});
+
 router.post('/users', (req, res) => {
   const { body } = req;
-  if (body.username && body.password) {
-    User.create(req.body)
+  if (body._id && body.email && body.firstName && body.lastName) {
+    User.create(body)
       .then((data) => res.json(data))
       .catch((e) => {
         console.log(e.message);
@@ -72,6 +81,7 @@ router.post('/users', (req, res) => {
     });
   }
 });
+
 router.delete('/users/:id', (req, res) => {
   User.findOneAndDelete({ _id: req.params.id })
     .then((data) => res.json(data))

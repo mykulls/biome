@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './PostDetails.css';
@@ -9,9 +10,10 @@ const origin = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:50
 export default function PostDetails() {
   const { id } = useParams();
   const [listing, setListing] = useState({});
+  const [comment, setComment] = useState('');
 
   useEffect(() => {
-    axios.get(`${origin}/listing/${id}`)
+    axios.get(`${origin}/listings/${id}`)
       .then((res) => {
         setListing(res.data);
       })
@@ -19,6 +21,14 @@ export default function PostDetails() {
         console.log(e.message);
       });
   }, [id]);
+
+  useEffect(() => {
+    console.log(comment);
+  }, [comment]);
+
+  function onSubmit() {
+
+  }
 
   return (
     <div className="details-container">
@@ -34,7 +44,14 @@ export default function PostDetails() {
       <div className="description">
         <p>{listing.description}</p>
       </div>
-      <div className="comments" />
+      <div className="comments">
+        <h2>Comments</h2>
+        <label htmlFor="comment">
+          <span>Add comment:</span>
+          <textarea id="comment" rows="4" cols="50" placeholder="Type your comment here" onChange={(e) => setComment(e.target.value)} />
+        </label>
+        {comment && <button type="submit">Post</button>}
+      </div>
     </div>
   );
 }

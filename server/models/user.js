@@ -6,11 +6,25 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const UserSchema = new Schema({
-  username: { type: String },
-  password: { type: String },
-  // posts: { type: Array },
-  // comments: { type: Array },
-  // savedPosts: { type: Array },
+  _id: {
+    type: String,
+    required: 'ID required',
+  },
+  email: {
+    type: String,
+    required: 'Email required',
+  },
+  firstName: {
+    type: String,
+    required: 'First name required',
+  },
+  lastName: {
+    type: String,
+    required: 'Last name required',
+  },
+  posts: { type: Array },
+  comments: { type: Array },
+  savedPosts: { type: Array },
 });
 const User = mongoose.model('user', UserSchema);
 
