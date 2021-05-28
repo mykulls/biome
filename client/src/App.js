@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
@@ -9,6 +10,7 @@ import {
 import NavBar from './components/navbar';
 import Home from './Home/Home';
 import NewPost from './NewPost/NewPost';
+import Login from './Login/Login';
 import PostDetails from './PostDetails/PostDetails';
 
 export default function App() {
@@ -35,6 +37,9 @@ export default function App() {
           </Route>
           <Route path="/new-post">
             <NewPost />
+          </Route>
+          <Route path="/login">
+            <Login />
           </Route>
           <Route path="/post/:id">
             <PostDetails />
