@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "CS 35L Final Project",
   "scripts": {
-    "dev": "concurrently \"cd server && npm run start-watch\" \"cd client && npm start\""
+    "dev": "concurrently \"cd server && npm run start-watch\" \"cd client && npm start\"",
+    "update": "npm install && cd client && npm install && cd ../server && npm install"
   },
   "repository": {
     "type": "git",
