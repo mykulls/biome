@@ -29,53 +29,71 @@ class Filter extends React.Component {
   render() {
     return (
       <form className="filter-form" onSubmit={this.handleSubmit}>
-        <p>Filter by</p>
-        <label htmlFor="people">
-          People:&nbsp;
-          <input
-            name="people"
-            type="number"
-            value={this.state.people}
-            onChange={this.handleChange}
-          />
-        </label>
-        <label htmlFor="bedrooms">
-          Bedrooms:&nbsp;
-          <input
-            name="bedrooms"
-            type="number"
-            value={this.state.bedrooms}
-            onChange={this.handleChange}
-          />
-        </label>
-        <label htmlFor="bathrooms">
-          Bathrooms:&nbsp;
-          <input
-            name="bathrooms"
-            type="number"
-            value={this.state.bathrooms}
-            onChange={this.handleChange}
-          />
-        </label>
-        <label htmlFor="distance">
-          Distance:&nbsp;
-          <input
-            name="distance"
-            type="number"
-            value={this.state.distance}
-            onChange={this.handleChange}
-          />
-        </label>
-        <label htmlFor="price">
-          Price:&nbsp;
-          <input
-            name="price"
-            type="number"
-            value={this.state.price}
-            onChange={this.handleChange}
-          />
-        </label>
-        <input type="submit" value="Apply" />
+        <div className="filter-input">
+          <label htmlFor="people">
+            Filter by&emsp;People:&ensp;
+            <input
+              name="people"
+              type="number"
+              value={this.state.people}
+              onChange={this.handleChange}
+              className="input-s"
+              min="1"
+              max="9"
+            />
+          </label>
+          <label htmlFor="bedrooms">
+            Bedrooms:&ensp;
+            <input
+              name="bedrooms"
+              type="number"
+              value={this.state.bedrooms}
+              onChange={this.handleChange}
+              className="input-s"
+              min="1"
+              max="9"
+            />
+          </label>
+          <label htmlFor="bathrooms">
+            Bathrooms:&ensp;
+            <input
+              name="bathrooms"
+              type="number"
+              value={this.state.bathrooms}
+              onChange={this.handleChange}
+              className="input-s"
+              min="1"
+              max="9"
+            />
+          </label>
+          <label htmlFor="distance">
+            Max Distance (Miles):&ensp;
+            <input
+              name="distance"
+              type="number"
+              value={this.state.distance}
+              onChange={this.handleChange}
+              className="input-m"
+              min="1"
+              max="99"
+            />
+          </label>
+          <label htmlFor="price">
+            Max Price ($):&ensp;
+            <input
+              name="price"
+              type="number"
+              value={this.state.price}
+              onChange={this.handleChange}
+              className="input-l"
+              min="100"
+              step="100"
+            />
+          </label>
+        </div>
+        <div className="filter-submit">
+          <input type="submit" value="Apply" />
+        </div>
       </form>
     );
   }
