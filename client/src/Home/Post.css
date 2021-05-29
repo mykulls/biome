@@ -18,7 +18,7 @@ body {
     border-radius: 16px;
     box-sizing: border-box;
     width: 288px;
-    height: 384px;
+    height: 408px;
     padding: 16px;
 }
 
@@ -37,7 +37,7 @@ body {
 
 .top {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     width: 100%;
 }
@@ -74,4 +74,9 @@ body {
 .date {
     font-size: 0.875rem;
     color: gray;
+}
+
+.top h4 {
+    margin: 4px 0;
+    font-size: 14px;
 }

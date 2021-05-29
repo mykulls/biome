@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import {
@@ -10,8 +10,13 @@ import NavBar from './components/navbar';
 import Home from './Home/Home';
 import NewPost from './NewPost/NewPost';
 import Profile from './ProfilePage/Profile';
+import Login from './Login/Login';
+import PostDetails from './PostDetails/PostDetails';
+import { app } from './Realm';
 
 export default function App() {
+  const [user, setUser] = useState(app.currentUser);
+
   return (
     <Router>
       {/* header goes here */}
@@ -27,17 +32,23 @@ export default function App() {
             <Link to="/dashboard">Dashboard</Link>
           </li>
         </ul> */}
-      <NavBar />
+      <NavBar user={user} />
       <div className="route-container">
         <Switch>
           <Route exact path="/">
             <Home />
           </Route>
-          <Route exact path="/new-post">
+          <Route path="/new-post">
             <NewPost />
           </Route>
-          <Route exact path="/profile">
+          <Route path="/profile">
             <Profile />
+          </Route>
+          <Route path="/login">
+            <Login setUser={setUser} />
+          </Route>
+          <Route path="/post/:id">
+            <PostDetails />
           </Route>
         </Switch>
       </div>

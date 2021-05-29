@@ -23,5 +23,7 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn',
     'no-console': 'off',
     'linebreak-style': 'off',
+    'react/forbid-prop-types': 'off',
+    'no-underscore-dangle': 'off',
   },
 };
