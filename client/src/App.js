@@ -12,7 +12,7 @@ import NewPost from './NewPost/NewPost';
 import Profile from './ProfilePage/Profile';
 import Login from './Login/Login';
 import PostDetails from './PostDetails/PostDetails';
-import { app } from './Realm';
+import { app } from './exports';
 
 export default function App() {
   const [user, setUser] = useState(app.currentUser);

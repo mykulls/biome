@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import './NewPost.css';
 import axios from 'axios';
-
-const origin = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:5000';
-// replace production with the deploy link later
+import { origin } from '../exports';
 
 export default function Home() {
   //  const [user, setUser] = useState(); // for linking the user's id to a listing in mongo
-  const [newListing, setListing] = useState({});
+  const [newListing, setListing] = useState({
+    state: 'CA',
+    school: 'UCLA',
+    people: 1,
+    bedrooms: 1,
+    bathrooms: 1,
+  });
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
@@ -69,7 +73,7 @@ export default function Home() {
             <option value="AK">Alaska</option>
             <option value="AZ">Arizona</option>
             <option value="AR">Arkansas</option>
-            <option value="CA">California</option>
+            <option value="CA" selected>California</option>
             <option value="CO">Colorado</option>
             <option value="CT">Connecticut</option>
             <option value="DE">Delaware</option>
