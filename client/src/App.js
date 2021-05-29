@@ -9,6 +9,7 @@ import {
 import NavBar from './components/navbar';
 import Home from './Home/Home';
 import NewPost from './NewPost/NewPost';
+import Profile from './ProfilePage/Profile';
 import Login from './Login/Login';
 import PostDetails from './PostDetails/PostDetails';
 import { app } from './Realm';
@@ -39,6 +40,9 @@ export default function App() {
           </Route>
           <Route path="/new-post">
             <NewPost />
+          </Route>
+          <Route path="/profile">
+            <Profile />
           </Route>
           <Route path="/login">
             <Login setUser={setUser} />
