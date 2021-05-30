@@ -4,9 +4,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { app, Realm } from '../Realm';
-
-const origin = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:5000';
+import { app, Realm, origin } from '../exports';
 
 class Login extends Component {
   constructor(props) {
