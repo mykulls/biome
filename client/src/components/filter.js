@@ -6,11 +6,11 @@ class Filter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      people: null,
-      bedrooms: null,
-      bathrooms: null,
-      distance: null,
-      price: null,
+      people: '',
+      bedrooms: '',
+      bathrooms: '',
+      distance: '',
+      price: '',
     };
 
     this.handleChange = this.handleChange.bind(this);

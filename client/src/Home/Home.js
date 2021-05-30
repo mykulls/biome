@@ -8,6 +8,14 @@ import { origin } from '../exports';
 
 export default function Home() {
   const [listings, setListings] = useState([]);
+  const filter = {
+    people: '',
+    bedrooms: '',
+    bathrooms: '',
+    distance: '',
+    price: '',
+    school: '',
+  };
 
   useEffect(() => {
     axios.get(`${origin}/listings`)
@@ -34,8 +42,13 @@ export default function Home() {
     <div className="home">
       <Filter />
       <div className="container">
-        {listings.map((l) => (
-          <Post key={l._id} listing={l} />
+        {listings.filter((listing) => (filter.people === '' || listing.people === filter.people)
+                                   && (filter.bedrooms === '' || listing.bedrooms === filter.bedrooms)
+                                   && (filter.bathrooms === '' || listing.bathrooms === filter.bathrooms)
+                                   && (filter.distance === '' || listing.distance <= filter.distance)
+                                   && (filter.price === '' || listing.rent <= filter.price)
+                                   && (filter.school === '' || listing.school === filter.school)).map((l) => (
+                                     <Post key={l._id} listing={l} />
         ))}
       </div>
     </div>
