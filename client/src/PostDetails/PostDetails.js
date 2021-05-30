@@ -3,9 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './PostDetails.css';
 import axios from 'axios';
-
-const origin = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:5000';
-// replace production with the deploy link later
+import { origin } from '../exports';
 
 export default function PostDetails() {
   const { id } = useParams();
