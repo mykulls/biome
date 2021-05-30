@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import mongoose from 'mongoose';
 import { app, Realm, origin } from '../exports';
 
 class Login extends Component {
@@ -69,7 +70,7 @@ class Login extends Component {
             .then((res) => {
               this.props.setUser(res);
               const currUser = {
-                _id: res.id,
+                _id: new mongoose.Types.ObjectId(res.id),
                 email: user.email,
                 firstName: user.firstName,
                 lastName: user.lastName,

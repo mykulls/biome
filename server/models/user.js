@@ -3,11 +3,11 @@
 // For now we decide to only have one type of user
 const mongoose = require('mongoose');
 
-const { Schema } = mongoose;
+const { Schema, ObjectId } = mongoose;
 
 const UserSchema = new Schema({
   _id: {
-    type: String,
+    type: ObjectId,
     required: 'ID required',
   },
   email: {
