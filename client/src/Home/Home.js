@@ -8,14 +8,14 @@ import { origin } from '../exports';
 
 export default function Home() {
   const [listings, setListings] = useState([]);
-  const filter = {
+  const [filter, setFilter] = useState({
     people: '',
     bedrooms: '',
     bathrooms: '',
     distance: '',
     price: '',
     school: '',
-  };
+  });
 
   useEffect(() => {
     axios.get(`${origin}/listings`)
@@ -40,7 +40,7 @@ export default function Home() {
 
   return (
     <div className="home">
-      <Filter />
+      <Filter setFilter={setFilter} />
       <div className="container">
         {listings.filter((listing) => (filter.people === '' || listing.people === filter.people)
                                    && (filter.bedrooms === '' || listing.bedrooms === filter.bedrooms)

@@ -1,6 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import './filter.css';
+import PropTypes from 'prop-types';
 
 class Filter extends React.Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class Filter extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.setFilter = this.props.setFilter;
   }
 
   handleChange(event) {
@@ -112,5 +114,9 @@ class Filter extends React.Component {
     );
   }
 }
+
+Filter.propTypes = {
+  setFilter: PropTypes.func.isRequired,
+};
 
 export default Filter;
