@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React, { useState, useEffect } from 'react';
 // import logo from './logo.svg';
 import './Home.css';
@@ -8,14 +9,14 @@ import { origin } from '../exports';
 
 export default function Home() {
   const [listings, setListings] = useState([]);
-  const filter = {
+  const [filter, setFilter] = useState({
     people: '',
     bedrooms: '',
     bathrooms: '',
     distance: '',
     price: '',
     school: '',
-  };
+  });
 
   useEffect(() => {
     axios.get(`${origin}/listings`)
@@ -40,11 +41,11 @@ export default function Home() {
 
   return (
     <div className="home">
-      <Filter />
+      <Filter setFilter={setFilter} />
       <div className="container">
-        {listings.filter((listing) => (filter.people === '' || listing.people === filter.people)
-                                   && (filter.bedrooms === '' || listing.bedrooms === filter.bedrooms)
-                                   && (filter.bathrooms === '' || listing.bathrooms === filter.bathrooms)
+        {listings.filter((listing) => (filter.people === '' || listing.people == filter.people)
+                                   && (filter.bedrooms === '' || listing.bedrooms == filter.bedrooms)
+                                   && (filter.bathrooms === '' || listing.bathrooms == filter.bathrooms)
                                    && (filter.distance === '' || listing.distance <= filter.distance)
                                    && (filter.price === '' || listing.rent <= filter.price)
                                    && (filter.school === '' || listing.school === filter.school)).map((l) => (

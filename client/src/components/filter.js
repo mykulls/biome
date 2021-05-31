@@ -1,6 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import './filter.css';
+import PropTypes from 'prop-types';
 
 class Filter extends React.Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class Filter extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.setFilter = this.props.setFilter;
   }
 
   handleChange(event) {
@@ -23,7 +25,7 @@ class Filter extends React.Component {
   }
 
   handleSubmit(event) {
-    alert(`Filter by\nPeople: ${this.state.people}\nBedrooms: ${this.state.bedrooms}\nBathrooms: ${this.state.bathrooms}\nDistance: ${this.state.distance}\nPrice: ${this.state.price}\nSchool: ${this.state.school}`);
+    this.setFilter(this.state);
     event.preventDefault();
   }
 
@@ -40,7 +42,7 @@ class Filter extends React.Component {
               onChange={this.handleChange}
               className="input-s"
               min="1"
-              max="9"
+              // max="9"
             />
           </label>
           <label htmlFor="bedrooms">
@@ -52,7 +54,7 @@ class Filter extends React.Component {
               onChange={this.handleChange}
               className="input-s"
               min="1"
-              max="9"
+              // max="9"
             />
           </label>
           <label htmlFor="bathrooms">
@@ -64,7 +66,7 @@ class Filter extends React.Component {
               onChange={this.handleChange}
               className="input-s"
               min="1"
-              max="9"
+              // max="9"
             />
           </label>
           <label htmlFor="distance">
@@ -76,7 +78,6 @@ class Filter extends React.Component {
               onChange={this.handleChange}
               className="input-m"
               min="1"
-              max="99"
             />
           </label>
           <label htmlFor="price">
@@ -87,8 +88,7 @@ class Filter extends React.Component {
               value={this.state.price}
               onChange={this.handleChange}
               className="input-l"
-              min="100"
-              step="100"
+              min="1"
             />
           </label>
           <label htmlFor="school">
@@ -112,5 +112,9 @@ class Filter extends React.Component {
     );
   }
 }
+
+Filter.propTypes = {
+  setFilter: PropTypes.func.isRequired,
+};
 
 export default Filter;
