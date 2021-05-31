@@ -5,7 +5,7 @@ import { origin, app } from '../exports';
 
 const user = app.currentUser;
 
-export default function Home() {
+export default function NewPost() {
   //  const [user, setUser] = useState(); // for linking the user's id to a listing in mongo
   const [newListing, setListing] = useState({
     state: 'CA',
