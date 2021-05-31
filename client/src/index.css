@@ -11,6 +11,7 @@ body {
 
 *, *:before, *:after {
   box-sizing: border-box;
+  font-family: 'Lato'
 }
 
 a {
@@ -24,4 +25,8 @@ button {
 
 button:hover {
   color: #74A4C8;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat';
 }

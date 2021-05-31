@@ -17,6 +17,16 @@
   color: white;
 }
 
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  margin-right: .5em;
+  height: 48px;
+}
+
 button {
   margin-left: .75em;
   border: 0;
@@ -24,6 +34,6 @@ button {
   padding: .5em 1em;
   background-color: white;
   font-size: 1em;
-  font-weight: 700;
+  font-weight: bold;
   color: #2774AE;
 }
