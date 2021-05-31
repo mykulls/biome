@@ -47,6 +47,15 @@ router.get('/listings/:id', (req, res) => {
     });
 });
 
+router.patch('/updateListing/:id', (req, res) => {
+  const options = { new: true, upsert: true };
+  Listing.findByIdAndUpdate(req.params.id, req.body, options)
+    .then((data) => res.json(data))
+    .catch((e) => {
+      console.log(e.message);
+    });
+});
+
 router.get('/users', (req, res) => {
   User.find({})
     .then((data) => res.json(data))
