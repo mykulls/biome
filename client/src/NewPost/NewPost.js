@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './NewPost.css';
 import axios from 'axios';
-import { origin } from '../exports';
+import { origin, app } from '../exports';
+
+const user = app.currentUser;
 
 export default function Home() {
   //  const [user, setUser] = useState(); // for linking the user's id to a listing in mongo
@@ -14,9 +16,24 @@ export default function Home() {
   });
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const [userCred, setUser] = useState({});
+  useEffect(() => {
+    axios.get(`${origin}/users/${user.id}`)
+      .then((res) => {
+        setUser(res.data);
+      })
+      .catch((e) => {
+        alert(e);
+      });
+  }, [user.id]);
 
   function handleSubmit(event) {
+    if (!user) {
+      alert('You must be signed in to post!');
+      return;
+    }
     event.preventDefault(); // prevents reloading after every submit
+
     if (!newListing.address || !newListing.city || !newListing.state
       || !newListing.zip || !newListing.distance || !newListing.school
       // || !newListing.kitchen || !newListing.laundry || !newListing.parking
@@ -43,6 +60,7 @@ export default function Home() {
   }
 
   function handleChange(key, value) {
+    newListing.user = (`${userCred.firstName} ${userCred.lastName}`);
     setError('');
     if (key === 'kitchen' || key === 'parking' || key === 'laundry') {
       if (document.getElementById(key).checked) {

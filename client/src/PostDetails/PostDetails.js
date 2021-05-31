@@ -3,13 +3,14 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './PostDetails.css';
 import axios from 'axios';
-import { origin } from '../exports';
+import { origin, app } from '../exports';
+
+const user = app.currentUser;
 
 export default function PostDetails() {
   const { id } = useParams();
   const [listing, setListing] = useState({});
   const [comment, setComment] = useState('');
-
   useEffect(() => {
     axios.get(`${origin}/listings/${id}`)
       .then((res) => {
@@ -19,12 +20,34 @@ export default function PostDetails() {
         console.log(e.message);
       });
   }, [id]);
-
+  const [userCred, setUser] = useState({});
+  useEffect(() => {
+    axios.get(`${origin}/users/${user.id}`)
+      .then((res) => {
+        setUser(res.data);
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
+  }, []);
   useEffect(() => {
     console.log(comment);
   }, [comment]);
-
   function onSubmit() {
+    if (!user) {
+      alert('You must be logged in to post a comment');
+      return;
+    }
+    const name = `${userCred.firstName} ${userCred.lastName}`;
+    // eslint-disable-next-line quote-props
+    const commentObj = { $push: { comments: { comment, name } } };
+    axios.patch(`${origin}/updateListing/${id}`, commentObj)
+      .then((res) => {
+        window.document.reload();
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
     // TODO: get the current user (app.currentUser), save in state variable
     // if no user don't allow them to submit (textarea attribute disabled={user ? false : true})
     // maybe change the placeholder if user isn't logged in too
@@ -38,6 +61,7 @@ export default function PostDetails() {
         <div className="listing-info">
           <h1>{listing.address}</h1>
           <div className="posted-by" />
+          <p>{listing.user}</p>
           <div className="price" />
           <div className="facts" />
         </div>
@@ -48,11 +72,12 @@ export default function PostDetails() {
       </div>
       <div className="comments">
         <h2>Comments</h2>
+        {listing.comments.map((c) => (<p>{c.comment}</p>))}
         <label htmlFor="comment">
           <span>Add comment:</span>
           <textarea id="comment" rows="4" cols="50" placeholder="Type your comment here" onChange={(e) => setComment(e.target.value)} />
         </label>
-        {comment && <button type="submit">Post</button>}
+        {comment && <button type="submit" onClick={() => { onSubmit(); }}>Post</button>}
       </div>
     </div>
   );

@@ -61,6 +61,7 @@ const ListingSchema = new Schema({
     required: 'A description is required',
   },
   comments: { type: Array },
+  user: { type: String },
 },
 {
   timestamps: true,
