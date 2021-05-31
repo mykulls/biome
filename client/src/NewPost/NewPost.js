@@ -17,15 +17,16 @@ export default function Home() {
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [userCred, setUser] = useState({});
+
   useEffect(() => {
     axios.get(`${origin}/users/${user.id}`)
       .then((res) => {
         setUser(res.data);
       })
       .catch((e) => {
-        alert(e);
+        console.log(e.message);
       });
-  }, [user.id]);
+  }, []);
 
   function handleSubmit(event) {
     if (!user) {
