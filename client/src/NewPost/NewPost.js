@@ -5,7 +5,7 @@ import { origin, app } from '../exports';
 
 const user = app.currentUser;
 
-export default function Home() {
+export default function NewPost() {
   //  const [user, setUser] = useState(); // for linking the user's id to a listing in mongo
   const [newListing, setListing] = useState({
     state: 'CA',
@@ -17,15 +17,16 @@ export default function Home() {
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [userCred, setUser] = useState({});
+
   useEffect(() => {
     axios.get(`${origin}/users/${user.id}`)
       .then((res) => {
         setUser(res.data);
       })
       .catch((e) => {
-        alert(e);
+        console.log(e.message);
       });
-  }, [user.id]);
+  }, []);
 
   function handleSubmit(event) {
     if (!user) {
