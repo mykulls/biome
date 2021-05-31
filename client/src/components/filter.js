@@ -42,7 +42,7 @@ class Filter extends React.Component {
               onChange={this.handleChange}
               className="input-s"
               min="1"
-              max="9"
+              // max="9"
             />
           </label>
           <label htmlFor="bedrooms">
@@ -54,7 +54,7 @@ class Filter extends React.Component {
               onChange={this.handleChange}
               className="input-s"
               min="1"
-              max="9"
+              // max="9"
             />
           </label>
           <label htmlFor="bathrooms">
@@ -66,7 +66,7 @@ class Filter extends React.Component {
               onChange={this.handleChange}
               className="input-s"
               min="1"
-              max="9"
+              // max="9"
             />
           </label>
           <label htmlFor="distance">
@@ -78,7 +78,6 @@ class Filter extends React.Component {
               onChange={this.handleChange}
               className="input-m"
               min="1"
-              max="9999"
             />
           </label>
           <label htmlFor="price">
@@ -89,8 +88,7 @@ class Filter extends React.Component {
               value={this.state.price}
               onChange={this.handleChange}
               className="input-l"
-              min="100"
-              step="100"
+              min="1"
             />
           </label>
           <label htmlFor="school">
