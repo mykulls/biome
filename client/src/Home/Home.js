@@ -38,14 +38,15 @@ export default function Home() {
       .catch((e) => {
         console.log(e.message);
       });
-
-    axios.get(`${origin}/users/${app.currentUser.id}`)
-      .then((res) => {
-        setSaved(res.data.savedPosts);
-      })
-      .catch((e) => {
-        console.log(e.message);
-      });
+    if (app.currentUser) {
+      axios.get(`${origin}/users/${app.currentUser.id}`)
+        .then((res) => {
+          setSaved(res.data.savedPosts);
+        })
+        .catch((e) => {
+          console.log(e.message);
+        });
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
