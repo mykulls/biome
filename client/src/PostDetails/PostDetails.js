@@ -72,7 +72,7 @@ export default function PostDetails() {
       </div>
       <div className="comments">
         <h2>Comments</h2>
-        {listing.comments.map((c) => (<p>{c.comment}</p>))}
+        {listing.comments && listing.comments.map((c) => (<p>{c.comment}</p>))}
         <label htmlFor="comment">
           <span>Add comment:</span>
           <textarea id="comment" rows="4" cols="50" placeholder="Type your comment here" onChange={(e) => setComment(e.target.value)} />

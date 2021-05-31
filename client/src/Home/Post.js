@@ -3,8 +3,26 @@ import React from 'react';
 import './Post.css';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { app, origin } from '../exports';
 
-export default function Post({ listing }) {
+export default function Post({ listing, saved, setSaved }) {
+  function setSave() {
+    let newSavedPost;
+    if (saved) {
+      newSavedPost = { $pull: { savedPosts: listing._id } };
+    } else {
+      newSavedPost = { $push: { savedPosts: listing._id } };
+    }
+    axios.patch(`${origin}/updateUser/${app.currentUser.id}`, newSavedPost)
+      .then((res) => {
+        setSaved(res.data.savedPosts);
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
+  }
+
   return (
     <div className="card">
       <img className="photo" src="https://i.imgur.com/dVXUsOg.jpg" alt="Post" />
@@ -14,7 +32,15 @@ export default function Post({ listing }) {
             <h3>{listing.address}</h3>
             <h4>{`${listing.city}, ${listing.state}`}</h4>
           </div>
-          <button type="button" className="fav">★</button>
+          {app.currentUser && setSaved && (
+          <button
+            type="button"
+            className={saved ? 'fav saved' : 'fav'}
+            onClick={() => { setSave(); }}
+          >
+            ★
+          </button>
+          )}
         </div>
         <ul>
           <li>{`${listing.people} people`}</li>
@@ -56,4 +82,11 @@ export default function Post({ listing }) {
 
 Post.propTypes = {
   listing: PropTypes.object.isRequired,
+  saved: PropTypes.bool,
+  setSaved: PropTypes.func,
+};
+
+Post.defaultProps = {
+  saved: false,
+  setSaved: null,
 };

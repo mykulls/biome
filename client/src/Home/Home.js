@@ -5,7 +5,7 @@ import './Home.css';
 import axios from 'axios';
 import Filter from '../components/filter';
 import Post from './Post';
-import { origin } from '../exports';
+import { app, origin } from '../exports';
 
 export default function Home() {
   const [listings, setListings] = useState([]);
@@ -17,6 +17,7 @@ export default function Home() {
     price: '',
     school: '',
   });
+  const [savedPosts, setSaved] = useState([]);
 
   useEffect(() => {
     axios.get(`${origin}/listings`)
@@ -37,6 +38,15 @@ export default function Home() {
       .catch((e) => {
         console.log(e.message);
       });
+
+    axios.get(`${origin}/users/${app.currentUser.id}`)
+      .then((res) => {
+        setSaved(res.data.savedPosts);
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -49,7 +59,8 @@ export default function Home() {
                                    && (filter.distance === '' || listing.distance <= filter.distance)
                                    && (filter.price === '' || listing.rent <= filter.price)
                                    && (filter.school === '' || listing.school === filter.school)).map((l) => (
-                                     <Post key={l._id} listing={l} />
+                                     // eslint-disable-next-line max-len
+                                     <Post key={l._id} listing={l} saved={savedPosts.includes(l._id)} setSaved={setSaved} />
         ))}
       </div>
     </div>

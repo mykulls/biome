@@ -4,6 +4,8 @@ const router = express.Router();
 const Listing = require('../models/listing');
 const User = require('../models/user');
 
+const patchOptions = { new: true, upsert: true };
+
 router.get('/listings', (req, res) => {
   Listing.find({})
     .then((data) => res.json(data))
@@ -48,8 +50,7 @@ router.get('/listings/:id', (req, res) => {
 });
 
 router.patch('/updateListing/:id', (req, res) => {
-  const options = { new: true, upsert: true };
-  Listing.findByIdAndUpdate(req.params.id, req.body, options)
+  Listing.findByIdAndUpdate(req.params.id, req.body, patchOptions)
     .then((data) => res.json(data))
     .catch((e) => {
       console.log(e.message);
@@ -98,4 +99,13 @@ router.delete('/users/:id', (req, res) => {
       console.log(e.message);
     });
 });
+
+router.patch('/updateUser/:id', (req, res) => {
+  User.findByIdAndUpdate(req.params.id, req.body, patchOptions)
+    .then((data) => res.json(data))
+    .catch((e) => {
+      console.log(e.message);
+    });
+});
+
 module.exports = router;
