@@ -5,8 +5,8 @@ import './PostDetails.css';
 import axios from 'axios';
 import { origin, app } from '../exports';
 
-// replace production with the deploy link later
 const user = app.currentUser;
+
 export default function PostDetails() {
   const { id } = useParams();
   const [listing, setListing] = useState({});
