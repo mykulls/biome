@@ -11,6 +11,7 @@ class Filter extends React.Component {
       bathrooms: '',
       distance: '',
       price: '',
+      school: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -22,7 +23,7 @@ class Filter extends React.Component {
   }
 
   handleSubmit(event) {
-    alert(`Filter by\nPeople: ${this.state.people}\nBedrooms: ${this.state.bedrooms}\nBathrooms: ${this.state.bathrooms}\nDistance: ${this.state.distance}\nPrice: ${this.state.price}`);
+    alert(`Filter by\nPeople: ${this.state.people}\nBedrooms: ${this.state.bedrooms}\nBathrooms: ${this.state.bathrooms}\nDistance: ${this.state.distance}\nPrice: ${this.state.price}\nSchool: ${this.state.school}`);
     event.preventDefault();
   }
 
@@ -89,6 +90,19 @@ class Filter extends React.Component {
               min="100"
               step="100"
             />
+          </label>
+          <label htmlFor="school">
+            School:&ensp;
+            <select
+              id="school"
+              name="school"
+              value={this.state.school}
+              onChange={this.handleChange}
+            >
+              <option value=""> </option>
+              <option value="UCLA">UCLA</option>
+              <option value="USC">USC</option>
+            </select>
           </label>
         </div>
         <div className="filter-submit">
