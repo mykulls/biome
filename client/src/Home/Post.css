@@ -2,10 +2,6 @@
     margin: 0;
 }
 
-body {
-    font-family: 'Lato', sans-serif;
-}
-
 /* -------------------------------------------------------------------------- */
 /*                                    Post                                    */
 /* -------------------------------------------------------------------------- */
@@ -18,7 +14,7 @@ body {
     border-radius: 16px;
     box-sizing: border-box;
     width: 288px;
-    height: 384px;
+    height: 420px;
     padding: 16px;
 }
 
@@ -33,29 +29,41 @@ body {
     justify-content: space-between;
     margin-top: 15px;
     height: 100%;
+    font-size: 1.25rem;
 }
 
 .top {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     width: 100%;
+}
+
+.top h4 {
+    margin: 4px 0;
+    font-size: 14px;
 }
 
 .fav {
     border: 0;
     border-radius: 50%;
-    height: 1.5rem;
-    width: 1.5rem;
     padding: 0;
-    font-size: 1.25rem;
-    line-height: 0;
+    font-size: 1.75rem;
+    line-height: 1.75rem;
     text-align: center;
-    color: gray;
+    color: grey;
 }
 
-.fav:active {
-    color: #F2CD00;
+.fav.saved {
+    color:#F2CD00;
+}
+
+.fav:hover {
+    color: rgb(180, 180, 180);
+}
+
+.fav.saved:hover {
+    color: #c4a000;
 }
 
 .card ul {
@@ -65,10 +73,15 @@ body {
 }
 
 .bottom {
+    padding-top: 6px;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
     width: 100%;
+}
+
+.bottom button:hover {
+    color: #74A4C8;
 }
 
 .date {
