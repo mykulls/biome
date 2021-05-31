@@ -60,15 +60,26 @@ export default function PostDetails() {
       <div className="details-top">
         <div className="listing-info">
           <h1>{listing.address}</h1>
+          <br />
           <div className="posted-by" />
-          <p>{listing.user}</p>
+          <h2>Posted by:</h2>
+          <p>
+            {' '}
+            {listing.user}
+          </p>
+          <br />
           <div className="price" />
           <div className="facts" />
         </div>
         <img alt="Listing" />
       </div>
       <div className="description">
-        <p>{listing.description}</p>
+        <p>
+          Description:
+          {' '}
+          {listing.description}
+        </p>
+        <br />
       </div>
       <div className="comments">
         <h2>Comments</h2>
