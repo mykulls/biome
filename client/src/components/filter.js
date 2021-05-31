@@ -25,7 +25,7 @@ class Filter extends React.Component {
   }
 
   handleSubmit(event) {
-    alert(`Filter by\nPeople: ${this.state.people}\nBedrooms: ${this.state.bedrooms}\nBathrooms: ${this.state.bathrooms}\nDistance: ${this.state.distance}\nPrice: ${this.state.price}\nSchool: ${this.state.school}`);
+    this.setFilter(this.state);
     event.preventDefault();
   }
 
@@ -78,7 +78,7 @@ class Filter extends React.Component {
               onChange={this.handleChange}
               className="input-m"
               min="1"
-              max="99"
+              max="9999"
             />
           </label>
           <label htmlFor="price">

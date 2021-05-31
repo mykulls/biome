@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React, { useState, useEffect } from 'react';
 // import logo from './logo.svg';
 import './Home.css';
@@ -42,9 +43,9 @@ export default function Home() {
     <div className="home">
       <Filter setFilter={setFilter} />
       <div className="container">
-        {listings.filter((listing) => (filter.people === '' || listing.people === filter.people)
-                                   && (filter.bedrooms === '' || listing.bedrooms === filter.bedrooms)
-                                   && (filter.bathrooms === '' || listing.bathrooms === filter.bathrooms)
+        {listings.filter((listing) => (filter.people === '' || listing.people == filter.people)
+                                   && (filter.bedrooms === '' || listing.bedrooms == filter.bedrooms)
+                                   && (filter.bathrooms === '' || listing.bathrooms == filter.bathrooms)
                                    && (filter.distance === '' || listing.distance <= filter.distance)
                                    && (filter.price === '' || listing.rent <= filter.price)
                                    && (filter.school === '' || listing.school === filter.school)).map((l) => (
