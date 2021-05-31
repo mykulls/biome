@@ -33,8 +33,21 @@ class Filter extends React.Component {
     return (
       <form className="filter-form" onSubmit={this.handleSubmit}>
         <div className="filter-input">
+          <label htmlFor="school">
+            Filter by&emsp;School:&ensp;
+            <select
+              id="school"
+              name="school"
+              value={this.state.school}
+              onChange={this.handleChange}
+            >
+              <option value=""> </option>
+              <option value="UCLA">UCLA</option>
+              <option value="USC">USC</option>
+            </select>
+          </label>
           <label htmlFor="people">
-            Filter by&emsp;People:&ensp;
+            People:&ensp;
             <input
               name="people"
               type="number"
@@ -90,19 +103,6 @@ class Filter extends React.Component {
               className="input-l"
               min="1"
             />
-          </label>
-          <label htmlFor="school">
-            School:&ensp;
-            <select
-              id="school"
-              name="school"
-              value={this.state.school}
-              onChange={this.handleChange}
-            >
-              <option value=""> </option>
-              <option value="UCLA">UCLA</option>
-              <option value="USC">USC</option>
-            </select>
           </label>
         </div>
         <div className="filter-submit">

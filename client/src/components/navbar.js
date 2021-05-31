@@ -11,7 +11,7 @@ function Navbar({ user /* setUser */ }) {
       <div className="navbar-container">
         <div className="navbar-logo">
           <img src="../logo.svg" alt="logo" className="logo" />
-          <Link to="/"><h2>BruinHomes</h2></Link>
+          <Link to="/"><h2>biome</h2></Link>
         </div>
         <div>
           <button type="button">
