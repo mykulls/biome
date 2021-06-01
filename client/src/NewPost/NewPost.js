@@ -19,13 +19,15 @@ export default function NewPost() {
   const [userCred, setUser] = useState({});
 
   useEffect(() => {
-    axios.get(`${origin}/users/${user.id}`)
-      .then((res) => {
-        setUser(res.data);
-      })
-      .catch((e) => {
-        console.log(e.message);
-      });
+    if (user) {
+      axios.get(`${origin}/users/${user.id}`)
+        .then((res) => {
+          setUser(res.data);
+        })
+        .catch((e) => {
+          console.log(e.message);
+        });
+    }
   }, []);
 
   function handleSubmit(event) {

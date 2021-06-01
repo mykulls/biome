@@ -12,23 +12,27 @@ export default function PostDetails() {
   const [listing, setListing] = useState({});
   const [comment, setComment] = useState('');
   useEffect(() => {
-    axios.get(`${origin}/listings/${id}`)
-      .then((res) => {
-        setListing(res.data);
-      })
-      .catch((e) => {
-        console.log(e.message);
-      });
+    if (user) {
+      axios.get(`${origin}/listings/${id}`)
+        .then((res) => {
+          setListing(res.data);
+        })
+        .catch((e) => {
+          console.log(e.message);
+        });
+    }
   }, [id]);
   const [userCred, setUser] = useState({});
   useEffect(() => {
-    axios.get(`${origin}/users/${user.id}`)
-      .then((res) => {
-        setUser(res.data);
-      })
-      .catch((e) => {
-        console.log(e.message);
-      });
+    if (user) {
+      axios.get(`${origin}/users/${user.id}`)
+        .then((res) => {
+          setUser(res.data);
+        })
+        .catch((e) => {
+          console.log(e.message);
+        });
+    }
   }, []);
   useEffect(() => {
     console.log(comment);
@@ -62,8 +66,8 @@ export default function PostDetails() {
           <h1>{listing.address}</h1>
           <br />
           <div className="posted-by" />
-          <h2>Posted by:</h2>
           <p>
+            Posted by:
             {' '}
             {listing.user}
           </p>
