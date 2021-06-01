@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import './PostDetails.css';
 import axios from 'axios';
 import { origin, app } from '../exports';
@@ -43,7 +43,7 @@ export default function PostDetails() {
     const commentObj = { $push: { comments: { comment, name } } };
     axios.patch(`${origin}/updateListing/${id}`, commentObj)
       .then((res) => {
-        window.document.reload();
+        window.location.reload();
       })
       .catch((e) => {
         console.log(e.message);
@@ -60,19 +60,38 @@ export default function PostDetails() {
       <div className="details-top">
         <div className="listing-info">
           <h1>{listing.address}</h1>
+          <br />
           <div className="posted-by" />
-          <p>{listing.user}</p>
+          <h2>Posted by:</h2>
+          <p>
+            {' '}
+            {listing.user}
+          </p>
+          <br />
           <div className="price" />
           <div className="facts" />
         </div>
         <img alt="Listing" />
       </div>
       <div className="description">
-        <p>{listing.description}</p>
+        <p>
+          Description:
+          {' '}
+          {listing.description}
+        </p>
+        <br />
       </div>
       <div className="comments">
         <h2>Comments</h2>
-        {listing.comments && listing.comments.map((c) => (<p>{c.comment}</p>))}
+        {listing.comments && listing.comments.map((c) => (
+          <p>
+            {c.comment}
+            {' '}
+            commented by
+            {' '}
+            {c.name}
+          </p>
+        ))}
         <label htmlFor="comment">
           <span>Add comment:</span>
           <textarea id="comment" rows="4" cols="50" placeholder="Type your comment here" onChange={(e) => setComment(e.target.value)} />
