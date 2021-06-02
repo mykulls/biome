@@ -19,7 +19,7 @@ function Navbar({ user /* setUser */ }) {
           </button>
           {user ? (
             <button type="button">
-              <Link to="/account">Account</Link>
+              <Link to="/profile">Account</Link>
             </button>
           ) : null}
           {user ? (
