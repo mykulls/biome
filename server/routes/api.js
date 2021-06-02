@@ -1,8 +1,48 @@
 const express = require('express');
+const multer = require('multer');
+const GridFsStorage = require('multer-gridfs-storage');
+const crypto = require('crypto');
+const path = require('path');
+const mongoose = require('mongoose');
 
 const router = express.Router();
 const Listing = require('../models/listing');
 const User = require('../models/user');
+require('dotenv').config();
+
+const url = process.env.DB;
+
+// create storage engine
+const storage = new GridFsStorage({
+  url,
+  file: (req, file) => new Promise((resolve, reject) => {
+    crypto.randomBytes(16, (err, buf) => {
+      if (err) {
+        return reject(err);
+      }
+      const filename = buf.toString('hex') + path.extname(file.originalname);
+      const fileInfo = {
+        filename,
+        bucketName: 'uploads',
+      };
+      return resolve(fileInfo);
+    });
+  }),
+});
+
+const upload = multer({ storage });
+
+const connect = mongoose.createConnection(url, { useNewUrlParser: true, useUnifiedTopology: true });
+
+// eslint-disable-next-line no-unused-vars
+let gfs;
+
+connect.once('open', () => {
+  // initialize stream
+  gfs = new mongoose.mongo.GridFSBucket(connect.db, {
+    bucketName: 'uploads',
+  });
+});
 
 const patchOptions = { new: true, upsert: true };
 
@@ -31,6 +71,15 @@ router.post('/listings', (req, res) => {
       }
     });
   }
+});
+
+router.patch('/listingPhoto/:id', upload.array('files'), (req, res) => {
+  const imagesObj = { $push: { images: req.files } };
+  Listing.findByIdAndUpdate(req.params.id, imagesObj, patchOptions)
+    .then((data) => res.json(data))
+    .catch((e) => {
+      console.log(e.message);
+    });
 });
 
 router.delete('/listings/:id', (req, res) => {

@@ -16,6 +16,7 @@ export default function NewPost() {
   });
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const [images, setImages] = useState([]);
   const [userCred, setUser] = useState({});
 
   useEffect(() => {
@@ -50,10 +51,21 @@ export default function NewPost() {
     } else {
       setError('');
       setSubmitting(true);
+
       axios.post(`${origin}/listings`, newListing)
-        .then(() => {
+        .then((res) => {
           setSubmitting(false);
 
+          const formData = new FormData();
+          images.forEach((img) => {
+            formData.append('files', img);
+          });
+          console.log(images);
+
+          axios.patch(`${origin}/listingPhoto/${res.data._id}`, formData)
+            .catch((e) => {
+              console.log(e.message);
+            });
           // route this to the post details page later
         })
         .catch((e) => {
@@ -71,6 +83,8 @@ export default function NewPost() {
       } else {
         setListing({ ...newListing, [key]: false });
       }
+    } else if (key === 'images') {
+      setImages((i) => [...i, value[0]]);
     } else {
       setListing({ ...newListing, [key]: value });
     }
@@ -230,6 +244,7 @@ export default function NewPost() {
         </label> */}
         {/* for images later:
         https://www.geeksforgeeks.org/upload-and-retrieve-image-on-mongodb-using-mongoose/ */}
+        <input type="file" name="images" id="images" accept="image/*" onChange={(e) => handleChange('images', e.target.files)} />
         <button type="submit">
           {/* possibly don't need this because it submits so fast anyways  */}
           {submitting ? <span>Submitting...</span> : <span>Submit</span>}

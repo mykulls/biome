@@ -62,6 +62,9 @@ const ListingSchema = new Schema({
   },
   comments: { type: Array },
   user: { type: String },
+  images: {
+    type: Array,
+  },
 },
 {
   timestamps: true,
