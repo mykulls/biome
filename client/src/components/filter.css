@@ -1,15 +1,24 @@
-.filter-form {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: auto;
-  max-width: 1280px;
-  padding: 0 16px;
+@media screen and (min-width: 1280px) {
+  .filter-form {
+    width: 1280px;
+  }
 }
 
-.filter-input {
+.filter-form {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
+  max-width: 1280px;
+  padding: 0 16px;
+  margin: auto;
+}
+
+.filter-form > p {
+}
+
+.filter-form > * {
+  margin: 2px .5em;
 }
 
 .input-s {
@@ -24,8 +33,7 @@
   width: 75px;
 }
 
-input[type=number] {
-  margin-right: 1em;
+input, select {
   border: 1px solid #8C8C8C;
   border-radius: 10px;
   padding: 6px;
@@ -38,17 +46,6 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 input[type=submit] {
-  border: 1px solid #8C8C8C;
-  border-radius: 10px;
+  flex: 1;
   padding: 6px .75em;
-  font-size: 1em;
-}
-
-select {
-  margin-right: 1em;
-  border: 1px solid #8C8C8C;
-  border-radius: 10px;
-  padding: 6px;
-  font-size: 1em;
-  outline: 0;
 }
