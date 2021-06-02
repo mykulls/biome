@@ -49,6 +49,8 @@ export default function NewPost() {
       setError('Please fill in all required fields');
     } else if (newListing.zip && (newListing.zip.length !== 5 || !/^\d+$/.test(newListing.zip))) {
       setError('Please input a valid zip code!');
+    } else if (newListing.distance && (!/^\d+$/.test(newListing.distance))) {
+      setError('Please input a valid distance!');
     } else if (newListing.rent && (!/^\d+$/.test(newListing.rent))) {
       setError('Please input a valid rent price!');
     } else if (!imgAmount) {
