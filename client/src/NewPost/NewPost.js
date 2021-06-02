@@ -231,10 +231,6 @@ export default function NewPost() {
                 <option value={9}>9</option>
               </select>
             </label>
-            {/* <label htmlFor="lname">
-              Choose Pictures:
-              <input type="file" id="myFile" name="filename" />
-            </label> */}
             <input type="file" name="images" id="images" accept="image/*" onChange={(e) => handleChange('images', e.target.files)} />
           </div>
           <div className="column">

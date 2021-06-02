@@ -97,9 +97,7 @@ export default function PostDetails() {
         <br />
       </div>
       <p>
-        Posted by:
-        {' '}
-        {listing.user}
+        {`Posted by: ${listing.user}`}
       </p>
       <div className="comments">
         <h2>Comments</h2>

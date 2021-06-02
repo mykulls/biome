@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 import React from 'react';
 import './Post.css';
 import PropTypes from 'prop-types';
@@ -62,14 +61,7 @@ export default function Post({ listing, saved, setSaved }) {
         <div className="bottom">
           <p>{`$${listing.rent} / month`}</p>
           <button type="button">
-            <Link
-              to={{
-                pathname: `/post/${listing._id}`,
-                listing,
-              }}
-            >
-              Details
-            </Link>
+            <Link to={`/post/${listing._id}`}>Details</Link>
           </button>
           {/* <div className="date">
                         <p>Posted May 15</p>
