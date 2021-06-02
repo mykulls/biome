@@ -10,26 +10,32 @@ function Navbar({ user /* setUser */ }) {
     <div className="navbar">
       <div className="navbar-container">
         <div className="navbar-logo">
-          <img src="../logo.svg" alt="logo" className="logo" />
+          {/* <img src="../logo.svg" alt="logo" className="logo" /> */}
           <Link to="/"><h2>biome</h2></Link>
         </div>
-        <div>
-          <button type="button">
+        <div className="navbar-buttons">
+          <button className="navbar-button" type="button">
             <Link to="/new-post">New Post</Link>
           </button>
           {user ? (
-            <button
-              type="button"
-              onClick={() => {
-                user.logOut();
-                window.location.reload();
-                // setUser(null);
-              }}
-            >
-              Sign Out
-            </button>
+            <div>
+              <button className="navbar-button" type="button">
+                <Link to="/account">Account</Link>
+              </button>
+              <button
+                className="navbar-button"
+                type="button"
+                onClick={() => {
+                  user.logOut();
+                  window.location.reload();
+                  // setUser(null);
+                }}
+              >
+                Sign Out
+              </button>
+            </div>
           ) : (
-            <button type="button">
+            <button className="navbar-button" type="button">
               <Link to="/login">Login</Link>
             </button>
           )}
