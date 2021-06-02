@@ -83,6 +83,7 @@ export default function NewPost() {
 
   function handleChange(key, value) {
     newListing.user = (`${userCred.firstName} ${userCred.lastName}`);
+    newListing.userHash = (`${app.currentUser.id}`);
     setError('');
     if (key === 'kitchen' || key === 'parking' || key === 'laundry') {
       if (document.getElementById(key).checked) {

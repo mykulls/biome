@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import './Profile.css';
 import axios from 'axios';
@@ -32,7 +33,7 @@ function Profile() {
       });
     }
 
-    if (app.currentUser.id === user._id && user.savedPosts) {
+    if (app.currentUser && app.currentUser.id === user._id && user.savedPosts.length) {
       user.savedPosts.forEach((p) => {
         axios.get(`${origin}/listings/${p}`)
           .then((res) => {
@@ -87,8 +88,8 @@ function Profile() {
             </ul>
           </div>
           <div className="profile-body">
-            {listings.map((l) => (<Post listing={l} />))}
-            {app.currentUser.id === user && savedListings.map((l) => (<Post listing={l} />))}
+            {app.currentUser && listings.map((l) => (<Post listing={l} />))}
+            {app.currentUser && app.currentUser.id === user && savedListings.map((l) => (<Post listing={l} />))}
           </div>
         </div>
       </div>
