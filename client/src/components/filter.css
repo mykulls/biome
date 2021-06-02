@@ -40,7 +40,7 @@
   text-align: right;
 }
 
-.filter-form>select, .filter-form>label>input, .submit>input {
+.filter-form>label>select, .filter-form>label>input, .submit>input {
   border: 0;
   border-radius: 50vh;
   padding: 6px;

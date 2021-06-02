@@ -63,12 +63,10 @@ export default function PostDetails() {
 
   return (
     <div className="details-container">
-      <div>
-        <div>
-          <h1>{listing.address}</h1>
-          <h3>{`${listing.city}, ${listing.state}`}</h3>
-        </div>
-        <img className="photo" src="https://i.imgur.com/dVXUsOg.jpg" alt="listing" />
+      <div className="details-listing">
+        <h1>{listing.address}</h1>
+        <h3>{`${listing.city}, ${listing.state}`}</h3>
+        <img className="details-photo" src="https://i.imgur.com/dVXUsOg.jpg" alt="listing" />
         <ul>
           <li>{`${listing.people} people`}</li>
           <li>
@@ -76,53 +74,49 @@ export default function PostDetails() {
             {listing.bathrooms === 1 ? '1 bathroom' : `${listing.bathrooms} bathrooms`}
           </li>
           {(listing.kitchen || listing.laundry || listing.parking) && (
-            <li>
-              {listing.kitchen && 'kitchen'}
-              {listing.kitchen && (listing.laundry || listing.parking) && ', '}
-              {listing.laundry && 'laundry'}
-              {listing.laundry && listing.parking && ', '}
-              {listing.parking && 'onsite parking'}
-            </li>
+          <li>
+            {listing.kitchen && 'kitchen'}
+            {listing.kitchen && (listing.laundry || listing.parking) && ', '}
+            {listing.laundry && 'laundry'}
+            {listing.laundry && listing.parking && ', '}
+            {listing.parking && 'onsite parking'}
+          </li>
           )}
           <li>{listing.distance > 0 ? `${listing.distance} mi from ${listing.school}` : `less than 1 mi from ${listing.school}`}</li>
         </ul>
-        <div className="bottom">
-          <p>{`$${listing.rent} / month`}</p>
-        </div>
-      </div>
-      <div className="description">
         <p>
-          {`Description: ${listing.description}`}
+          <b>Description:&nbsp;</b>
+          {`${listing.description}`}
         </p>
-        <br />
+        <p className="details-rent">{`$${listing.rent} / month`}</p>
+        <p className="details-op">{`Posted by ${listing.user}`}</p>
       </div>
-      <p>
-        {`Posted by: ${listing.user}`}
-      </p>
       <div className="comments">
         <h2>Comments</h2>
+        {listing.comments && listing.comments.map((c) => (
+          <div key={c.id}>
+            <div className="comment">
+              <p className="name">
+                {`${c.name} on 
+            ${new Date(c.createdAt).toLocaleDateString('en-us')} at 
+            ${new Date(c.createdAt).toLocaleTimeString('en-us', { hour: '2-digit', minute: '2-digit' })}:`}
+              </p>
+              <p>{c.comment}</p>
+            </div>
+          </div>
+        ))}
+        <div className="name">Post comment:</div>
         <label htmlFor="comment">
-          <span>Add comment:</span>
           <textarea
             id="comment"
             rows="4"
             cols="50"
-            placeholder={user ? 'Type your comment here' : 'Sign in to post a comment!'}
+            placeholder={user ? 'Type your comment here' : 'Login to comment'}
             onChange={(e) => setComment(e.target.value)}
             disabled={!user}
           />
         </label>
         {comment && <button type="submit" onClick={() => { onSubmit(); }}>Post</button>}
-        {listing.comments && listing.comments.map((c) => (
-          <div key={c.id}>
-            <div className="name">
-              {`${c.name} on 
-            ${new Date(c.createdAt).toLocaleDateString('en-us')} at 
-            ${new Date(c.createdAt).toLocaleTimeString('en-us', { hour: '2-digit', minute: '2-digit' })}`}
-            </div>
-            <p className="comment">{c.comment}</p>
-          </div>
-        ))}
       </div>
     </div>
   );
