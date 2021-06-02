@@ -124,7 +124,7 @@ router.get('/users/:id', (req, res) => {
 
 router.post('/users', (req, res) => {
   const { body } = req;
-  if (body._id && body.email && body.firstName && body.lastName) {
+  if (body._id && body.email && body.firstName && body.lastName && body.phoneNumber) {
     User.create(body)
       .then((data) => res.json(data))
       .catch((e) => {
