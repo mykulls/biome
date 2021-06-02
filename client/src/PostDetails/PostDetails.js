@@ -103,13 +103,6 @@ export default function PostDetails() {
       </p>
       <div className="comments">
         <h2>Comments</h2>
-        {listing.comments && listing.comments.map((c) => (
-          <div>
-            <div className="comment">{c.comment}</div>
-            <div className="name">{c.name}</div>
-            <br />
-          </div>
-        ))}
         <label htmlFor="comment">
           <span>Add comment:</span>
           <textarea
