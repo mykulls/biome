@@ -1,9 +1,9 @@
-/* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import './Profile.css';
-import axios from 'axios'; 
+import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { app, origin } from '../exports';
+import Post from '../components/Post';
 
 function Profile() {
   const { id } = useParams();
@@ -14,22 +14,22 @@ function Profile() {
   useEffect(() => {
     user.posts.forEach((p) => {
       axios.get(`${origin}/listings/${p}`)
-      .then((res) => {
-        setListings((old) => [...old, res.data]);
-      })
-      .catch((e) => {
-        console.log(e.message);
-      });
+        .then((res) => {
+          setListings((old) => [...old, res.data]);
+        })
+        .catch((e) => {
+          console.log(e.message);
+        });
     });
 
     user.savedPosts.forEach((p) => {
       axios.get(`${origin}/listings/${p}`)
-      .then((res) => {
-        setSaved((old) => [...old, res.data]);
-      })
-      .catch((e) => {
-        console.log(e.message);
-      });
+        .then((res) => {
+          setSaved((old) => [...old, res.data]);
+        })
+        .catch((e) => {
+          console.log(e.message);
+        });
     });
   }, [user]);
 
@@ -85,8 +85,8 @@ function Profile() {
             </ul>
           </div>
           <div className="profile-body">
-            {listings.map((l) => ( <Post listing={l} /> ))}
-            {app.currentUser.id === user && savedListings.map((l) => ( <Post listing={l} /> ))}
+            {listings.map((l) => (<Post listing={l} />))}
+            {app.currentUser.id === user && savedListings.map((l) => (<Post listing={l} />))}
           </div>
         </div>
       </div>
