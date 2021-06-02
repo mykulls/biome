@@ -4,7 +4,8 @@
   "description": "CS 35L Final Project",
   "scripts": {
     "dev": "concurrently \"cd server && npm run start-watch\" \"cd client && npm start\"",
-    "update": "npm install && cd client && npm install && cd ../server && npm install"
+    "install-all": "npm install && cd client && npm install && cd ../server && npm install",
+    "update": "npm update && cd client && npm update && cd ../server && npm update"
   },
   "repository": {
     "type": "git",
@@ -14,12 +15,12 @@
   "license": "ISC",
   "homepage": "https://github.com/mykulls/cs35l-project#readme",
   "devDependencies": {
-    "concurrently": "^6.0.2",
-    "eslint": "^7.26.0",
+    "concurrently": "^6.2.0",
+    "eslint": "^7.27.0",
     "eslint-config-airbnb": "^18.0.1",
-    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^1.7.0"
   }
 }

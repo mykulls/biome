@@ -8,6 +8,15 @@ import PropTypes from 'prop-types';
 import mongoose from 'mongoose';
 import { app, Realm, origin } from '../exports';
 
+function validatePN(phoneNumber) {
+  const PN = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+  if (phoneNumber.match(PN)) {
+    return true;
+  }
+
+  return false;
+}
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +26,7 @@ class Login extends Component {
         lastName: '',
         email: '',
         password: '',
+        phoneNumber: '',
       },
       signUp: false,
     };
@@ -59,8 +69,10 @@ class Login extends Component {
     event.preventDefault();
     const { user } = this.state;
     if (!user.email.length || !user.password.length
-       || !user.firstName.length || !user.lastName.length) {
-      alert('You must have at least 1 character in your first name, last name, email, and password.');
+       || !user.firstName.length || !user.lastName.length || !user.phoneNumber.length) {
+      alert('You must have at least 1 character in your first name, last name, email, password, and phone number.');
+    } else if (!validatePN(user.phoneNumber)) {
+      alert('You must have a valid phone number.');
     } else {
       // registers user
       app.emailPasswordAuth.registerUser(user.email, user.password)
@@ -75,12 +87,14 @@ class Login extends Component {
                 email: user.email,
                 firstName: user.firstName,
                 lastName: user.lastName,
+                phoneNumber: user.phoneNumber,
               };
               axios.post(`${origin}/users`, currUser)
                 .then(() => {
                   this.history.push('/');
                 })
                 .catch((e) => {
+                  alert("Couldn't sign up!");
                   console.log(e.message);
                 });
             })
@@ -90,6 +104,7 @@ class Login extends Component {
             });
         })
         .catch((e) => {
+          alert("Couldn't sign up!");
           console.log(e.message);
         });
     }
@@ -152,6 +167,11 @@ class Login extends Component {
                 <label htmlFor="password">
                   <span>Password:</span>
                   <input type="password" name="password" id="password" onChange={this.enterAccount} />
+                </label>
+                <br />
+                <label htmlFor="phoneNumber">
+                  <span>Phone Number:</span>
+                  <input type="phoneNumber" name="phoneNumber" id="phoneNumber" onChange={this.enterAccount} />
                 </label>
                 <br />
                 <br />

@@ -1,82 +1,88 @@
 * {
-    margin: 0;
+  margin: 0;
 }
-
-body {
-    font-family: 'Lato', sans-serif;
-}
-
-/* -------------------------------------------------------------------------- */
-/*                                    Post                                    */
-/* -------------------------------------------------------------------------- */
 
 .card {
-    display: flex;
-    flex-direction: column;
-    margin: 16px;
-    box-shadow: 0 0 10px #CCCCCC;
-    border-radius: 16px;
-    box-sizing: border-box;
-    width: 288px;
-    height: 408px;
-    padding: 16px;
+  display: flex;
+  flex-direction: column;
+  margin: 12px;
+  /* box-shadow: 0 0 10px #CCCCCC; */
+  border-radius: 16px;
+  box-sizing: border-box;
+  width: 294px;
+  height: 420px;
+  padding: 16px;
+  background: white;
 }
 
 .photo {
-    border-radius: 8px;
-    width: 256px;
+  border-radius: 8px;
+  width: 262px;
 }
 
 .text {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-top: 15px;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 12px;
+  height: 100%;
+  font-size: 1.25rem;
 }
 
 .top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.fav {
-    border: 0;
-    border-radius: 50%;
-    height: 1.5rem;
-    width: 1.5rem;
-    padding: 0;
-    font-size: 1.25rem;
-    line-height: 0;
-    text-align: center;
-    color: gray;
-}
-
-.fav:active {
-    color: #F2CD00;
-}
-
-.card ul {
-    padding-left: 16px;
-    font-size: 0.875rem;
-    line-height: 160%;
-}
-
-.bottom {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.date {
-    font-size: 0.875rem;
-    color: gray;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .top h4 {
-    margin: 4px 0;
-    font-size: 14px;
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+.fav {
+  border: 0;
+  border-radius: 50%;
+  width: 1.75rem;
+  padding: 0;
+  font-size: 1.75rem;
+  line-height: 1.75rem;
+  text-align: center;
+  color: grey;
+}
+
+.fav:hover {
+  color: rgb(180, 180, 180);
+}
+
+.fav.saved {
+  color: #F2CD00;
+}
+
+.fav.saved:hover {
+  color: #c4a000;
+}
+
+.card ul {
+  padding-left: 22px;
+  font-size: 0.875rem;
+  line-height: 160%;
+}
+
+.bottom {
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.bottom button:hover {
+  color: #74A4C8;
+}
+
+.date {
+  font-size: 0.875rem;
+  color: gray;
 }

@@ -1,9 +1,9 @@
 .navbar {
   position: fixed;
-  box-shadow: 0 0 10px #CCCCCC;
+  /* box-shadow: 0 0 10px #CCCCCC; */
   width: 100%;
   height: 64px;
-  background-color: #2774AE;
+  background: #40916C;
 }
 
 .navbar-container {
@@ -11,19 +11,39 @@
   align-items: center;
   justify-content: space-between;
   margin: auto;
-  max-width: 1248px;
+  max-width: 1280px;
   height: 100%;
-  padding: 0 1.5em;
+  padding: 0 16px;
   color: white;
 }
 
-button {
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  margin-right: .5em;
+  height: 48px;
+}
+
+.navbar-buttons {
+  display: flex;
+}
+
+.navbar-buttons>button {
   margin-left: .75em;
-  border: 0;
+  border: 2px solid white;
   border-radius: 50vh;
   padding: .5em 1em;
-  background-color: white;
+  background: #40916C;
   font-size: 1em;
-  font-weight: 700;
-  color: #2774AE;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  color: white;
+}
+
+.navbar-buttons>button:hover {
+  background: white;
+  color: #40916C;
 }
