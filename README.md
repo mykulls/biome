@@ -1,6 +1,8 @@
 # cs35l-project
 
-Clone the repository to your local device. Then, to setup your environment, you can use `npm run update`.
+Clone the repository to your local device. Then, to install all necessary dependencies/any new dependencies since the last commit, you can use `npm run install-all`.
+
+To update all dependencies, you can use `npm run update`.
 
 Run on a local server with `npm run dev`.
 
