@@ -14,28 +14,27 @@ function Navbar({ user /* setUser */ }) {
           <Link to="/"><h2>biome</h2></Link>
         </div>
         <div className="navbar-buttons">
-          <button className="navbar-button" type="button">
+          <button type="button">
             <Link to="/new-post">New Post</Link>
           </button>
           {user ? (
-            <div>
-              <button className="navbar-button" type="button">
-                <Link to="/account">Account</Link>
-              </button>
-              <button
-                className="navbar-button"
-                type="button"
-                onClick={() => {
-                  user.logOut();
-                  window.location.reload();
-                  // setUser(null);
-                }}
-              >
-                Sign Out
-              </button>
-            </div>
+            <button type="button">
+              <Link to="/account">Account</Link>
+            </button>
+          ) : null}
+          {user ? (
+            <button
+              type="button"
+              onClick={() => {
+                user.logOut();
+                window.location.reload();
+                // setUser(null);
+              }}
+            >
+              Sign Out
+            </button>
           ) : (
-            <button className="navbar-button" type="button">
+            <button type="button">
               <Link to="/login">Login</Link>
             </button>
           )}
