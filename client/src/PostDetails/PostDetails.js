@@ -1,13 +1,12 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import './PostDetails.css';
 import axios from 'axios';
+import mongoose from 'mongoose';
 import { origin, app } from '../exports';
 
-const user = app.currentUser;
-
 export default function PostDetails() {
+  const user = app.currentUser;
   const { id } = useParams();
   const [listing, setListing] = useState({});
   const [comment, setComment] = useState('');
@@ -33,7 +32,7 @@ export default function PostDetails() {
           console.log(e.message);
         });
     }
-  }, []);
+  }, [user]);
 
   function onSubmit() {
     if (!user) {
@@ -41,10 +40,20 @@ export default function PostDetails() {
       return;
     }
     const name = `${userCred.firstName} ${userCred.lastName}`;
-    // eslint-disable-next-line quote-props
-    const commentObj = { $push: { comments: { comment, name } } };
+
+    const commentObj = {
+      $push: {
+        comments: {
+          id: new mongoose.Types.ObjectId(),
+          comment,
+          name,
+          createdAt: new Date(),
+        },
+      },
+    };
+
     axios.patch(`${origin}/updateListing/${id}`, commentObj)
-      .then((res) => {
+      .then(() => {
         window.location.reload();
       })
       .catch((e) => {
@@ -76,16 +85,25 @@ export default function PostDetails() {
       </div>
       <div className="comments">
         <h2>Comments</h2>
-        {listing.comments && listing.comments.map((c) => (
-          <p>
-            {`${c.comment} commented by ${c.name}`}
-          </p>
-        ))}
         <label htmlFor="comment">
           <span>Add comment:</span>
-          <textarea id="comment" rows="4" cols="50" placeholder="Type your comment here" onChange={(e) => setComment(e.target.value)} disabled={!user} />
+          <textarea
+            id="comment"
+            rows="4"
+            cols="50"
+            placeholder={user ? 'Type your comment here' : 'Sign in to post a comment!'}
+            onChange={(e) => setComment(e.target.value)}
+            disabled={!user}
+          />
         </label>
         {comment && <button type="submit" onClick={() => { onSubmit(); }}>Post</button>}
+        {listing.comments && listing.comments.map((c) => (
+          <p key={c.id}>
+            {`${c.comment} commented by ${c.name} on 
+            ${new Date(c.createdAt).toLocaleDateString('en-us')} at 
+            ${new Date(c.createdAt).toLocaleTimeString('en-us', { hour: '2-digit', minute: '2-digit' })}`}
+          </p>
+        ))}
       </div>
     </div>
   );
