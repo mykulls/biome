@@ -12,25 +12,29 @@ function Profile() {
   const [savedListings, setSaved] = useState([]);
 
   useEffect(() => {
-    user.posts.forEach((p) => {
-      axios.get(`${origin}/listings/${p}`)
-        .then((res) => {
-          setListings((old) => [...old, res.data]);
-        })
-        .catch((e) => {
-          console.log(e.message);
-        });
-    });
+    if (user.posts) {
+      user.posts.forEach((p) => {
+        axios.get(`${origin}/listings/${p}`)
+          .then((res) => {
+            setListings((old) => [...old, res.data]);
+          })
+          .catch((e) => {
+            console.log(e.message);
+          });
+      });
+    }
 
-    user.savedPosts.forEach((p) => {
-      axios.get(`${origin}/listings/${p}`)
-        .then((res) => {
-          setSaved((old) => [...old, res.data]);
-        })
-        .catch((e) => {
-          console.log(e.message);
-        });
-    });
+    if (app.currentUser.id === user._id && user.savedPosts) {
+      user.savedPosts.forEach((p) => {
+        axios.get(`${origin}/listings/${p}`)
+          .then((res) => {
+            setSaved((old) => [...old, res.data]);
+          })
+          .catch((e) => {
+            console.log(e.message);
+          });
+      });
+    }
   }, [user]);
 
   useEffect(() => {
@@ -61,10 +65,10 @@ function Profile() {
         <div className="left-side">
           <div className="profile-side">
             <p className="mobile-no">
-              +0912341234
+              +12345
             </p>
             <p className="user-mail">
-              {user.email}
+              {`${user.email}`}
             </p>
             <div className="user-bio">
               <h3> Bio </h3>
