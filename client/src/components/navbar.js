@@ -45,8 +45,12 @@ function Navbar({ user /* setUser */ }) {
 }
 
 Navbar.propTypes = {
-  user: PropTypes.object.isRequired,
+  user: PropTypes.object,
   // setUser: PropTypes.func.isRequired,
+};
+
+Navbar.defaultProps = {
+  user: null,
 };
 
 export default Navbar;

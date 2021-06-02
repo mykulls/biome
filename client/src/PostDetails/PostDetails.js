@@ -11,18 +11,18 @@ export default function PostDetails() {
   const { id } = useParams();
   const [listing, setListing] = useState({});
   const [comment, setComment] = useState('');
-  useEffect(() => {
-    if (user) {
-      axios.get(`${origin}/listings/${id}`)
-        .then((res) => {
-          setListing(res.data);
-        })
-        .catch((e) => {
-          console.log(e.message);
-        });
-    }
-  }, [id]);
   const [userCred, setUser] = useState({});
+
+  useEffect(() => {
+    axios.get(`${origin}/listings/${id}`)
+      .then((res) => {
+        setListing(res.data);
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
+  }, [id]);
+
   useEffect(() => {
     if (user) {
       axios.get(`${origin}/users/${user.id}`)
@@ -34,9 +34,7 @@ export default function PostDetails() {
         });
     }
   }, []);
-  useEffect(() => {
-    console.log(comment);
-  }, [comment]);
+
   function onSubmit() {
     if (!user) {
       alert('You must be logged in to post a comment');
@@ -52,11 +50,6 @@ export default function PostDetails() {
       .catch((e) => {
         console.log(e.message);
       });
-    // TODO: get the current user (app.currentUser), save in state variable
-    // if no user don't allow them to submit (textarea attribute disabled={user ? false : true})
-    // maybe change the placeholder if user isn't logged in too
-    // onSubmit, post the comment to the listing document
-    // as an object containg the comment and the user info
   }
 
   return (
@@ -67,9 +60,7 @@ export default function PostDetails() {
           <br />
           <div className="posted-by" />
           <p>
-            Posted by:
-            {' '}
-            {listing.user}
+            {`Posted by: ${listing.user}`}
           </p>
           <br />
           <div className="price" />
@@ -79,9 +70,7 @@ export default function PostDetails() {
       </div>
       <div className="description">
         <p>
-          Description:
-          {' '}
-          {listing.description}
+          {`Description: ${listing.description}`}
         </p>
         <br />
       </div>
@@ -89,16 +78,12 @@ export default function PostDetails() {
         <h2>Comments</h2>
         {listing.comments && listing.comments.map((c) => (
           <p>
-            {c.comment}
-            {' '}
-            commented by
-            {' '}
-            {c.name}
+            {`${c.comment} commented by ${c.name}`}
           </p>
         ))}
         <label htmlFor="comment">
           <span>Add comment:</span>
-          <textarea id="comment" rows="4" cols="50" placeholder="Type your comment here" onChange={(e) => setComment(e.target.value)} />
+          <textarea id="comment" rows="4" cols="50" placeholder="Type your comment here" onChange={(e) => setComment(e.target.value)} disabled={!user} />
         </label>
         {comment && <button type="submit" onClick={() => { onSubmit(); }}>Post</button>}
       </div>
