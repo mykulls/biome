@@ -103,12 +103,12 @@ export default function NewPost() {
         </label>
         <label htmlFor="state">
           State:&nbsp;
-          <select id="state" onChange={(e) => handleChange('state', e.target.value)}>
+          <select id="state" defaultValue="CA" onChange={(e) => handleChange('state', e.target.value)}>
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
             <option value="AZ">Arizona</option>
             <option value="AR">Arkansas</option>
-            <option value="CA" selected>California</option>
+            <option value="CA">California</option>
             <option value="CO">Colorado</option>
             <option value="CT">Connecticut</option>
             <option value="DE">Delaware</option>
