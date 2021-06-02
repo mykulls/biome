@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './NewPost.css';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import { origin, app } from '../exports';
 
 const user = app.currentUser;
@@ -32,6 +33,7 @@ export default function NewPost() {
     }
   }, []);
 
+  const history = useHistory();
   function handleSubmit(event) {
     if (!user) {
       alert('You must be signed in to post!');
@@ -69,7 +71,7 @@ export default function NewPost() {
             .catch((e) => {
               console.log(e.message);
             });
-          // route this to the post details page later
+          history.push(`/post/${res.data._id}`);
         })
         .catch((e) => {
           console.log(e.message);
