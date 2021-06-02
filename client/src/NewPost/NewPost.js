@@ -16,6 +16,7 @@ export default function NewPost() {
   });
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const [imgAmount, setImgAmount] = useState(false);
   const [images, setImages] = useState([]);
   const [userCred, setUser] = useState({});
 
@@ -48,6 +49,8 @@ export default function NewPost() {
       setError('Please input a valid zip code!');
     } else if (newListing.rent && (!/^\d+$/.test(newListing.rent))) {
       setError('Please input a valid rent price!');
+    } else if (!imgAmount) {
+      setError('Please upload up to a maximum of eight pictures!');
     } else {
       setError('');
       setSubmitting(true);
@@ -84,7 +87,14 @@ export default function NewPost() {
         setListing({ ...newListing, [key]: false });
       }
     } else if (key === 'images') {
-      setImages((i) => [...i, value[0]]);
+      if (value.length > 8) {
+        setImgAmount(false);
+      } else {
+        setImgAmount(true);
+        for (let x = 0; x < value.length; x += 1) {
+          setImages((i) => [...i, value[x]]);
+        }
+      }
     } else {
       setListing({ ...newListing, [key]: value });
     }
@@ -231,7 +241,7 @@ export default function NewPost() {
                 <option value={9}>9</option>
               </select>
             </label>
-            <input type="file" name="images" id="images" accept="image/*" onChange={(e) => handleChange('images', e.target.files)} />
+            <input type="file" name="images" id="images" accept="image/*" onChange={(e) => handleChange('images', e.target.files)} multiple />
           </div>
           <div className="column">
             <div className="checkboxes">
