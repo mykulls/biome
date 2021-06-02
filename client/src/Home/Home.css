@@ -1,29 +1,29 @@
 @media screen and (min-width: 320px) {
   .container {
-    width: 320px;
+    width: 312px;
   }
 }
 
 @media screen and (min-width: 640px) {
   .container {
-    width: 640px;
+    width: 632px;
   }
 }
 
 @media screen and (min-width: 960px) {
   .container {
-    width: 960px;
+    width: 952px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .container {
-    width: 1280px;
+    width: 1272px;
   }
 }
 
 .container {
   display: flex;
   flex-wrap: wrap;
-  margin: auto;
+  margin: 8px auto;
 }

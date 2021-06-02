@@ -5,11 +5,11 @@
 .card {
   display: flex;
   flex-direction: column;
-  margin: 16px;
+  margin: 12px;
   /* box-shadow: 0 0 10px #CCCCCC; */
   border-radius: 16px;
   box-sizing: border-box;
-  width: 288px;
+  width: 294px;
   height: 420px;
   padding: 16px;
   background: white;
@@ -17,14 +17,14 @@
 
 .photo {
   border-radius: 8px;
-  width: 256px;
+  width: 262px;
 }
 
 .text {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-top: 15px;
+  margin-top: 12px;
   height: 100%;
   font-size: 1.25rem;
 }
@@ -44,6 +44,7 @@
 .fav {
   border: 0;
   border-radius: 50%;
+  width: 1.75rem;
   padding: 0;
   font-size: 1.75rem;
   line-height: 1.75rem;
@@ -51,12 +52,12 @@
   color: grey;
 }
 
-.fav.saved {
-  color: #F2CD00;
-}
-
 .fav:hover {
   color: rgb(180, 180, 180);
+}
+
+.fav.saved {
+  color: #F2CD00;
 }
 
 .fav.saved:hover {
@@ -64,13 +65,13 @@
 }
 
 .card ul {
-  padding-left: 16px;
+  padding-left: 22px;
   font-size: 0.875rem;
   line-height: 160%;
 }
 
 .bottom {
-  padding-top: 6px;
+  margin-top: 4px;
   display: flex;
   align-items: center;
   justify-content: space-between;

@@ -31,7 +31,7 @@
   display: flex;
 }
 
-.navbar-buttons > button {
+.navbar-buttons>button {
   margin-left: .75em;
   border: 2px solid white;
   border-radius: 50vh;
@@ -43,7 +43,7 @@
   color: white;
 }
 
-.navbar-button:hover {
+.navbar-buttons>button:hover {
   background: white;
   color: #40916C;
 }
