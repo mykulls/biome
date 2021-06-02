@@ -256,7 +256,7 @@ export default function NewPost() {
             </div>
             <label htmlFor="description">
               <span>Description: &nbsp;</span>
-              <textarea id="description" rows="4" cols="50" onChange={(e) => handleChange('description', e.target.value)} />
+              <textarea id="description" rows="8" cols="50" onChange={(e) => handleChange('description', e.target.value)} />
             </label>
           </div>
         </div>

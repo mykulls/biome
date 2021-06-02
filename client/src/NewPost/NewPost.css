@@ -6,7 +6,7 @@
   padding: 20px;
   */
   margin: auto;
-  width: 75%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,6 +20,18 @@
 
 .checkboxes {
   line-height: normal;
+}
+
+input[type='file'] { 
+  font-family: 'Lato';
+}
+
+input[type='text'] { 
+  font-family: 'Lato';
+}
+
+textarea {
+  font-family: 'Lato';
 }
 
 input[type='checkbox'] {
@@ -48,7 +60,7 @@ input[type='checkbox'] {
   padding: .5em 1em;
   background-color: #40916C;
   font-size: 1em;
-  font-family: 'Montserrat';
+  font-family: 'Lato';
   font-weight: 600;
   color: white;
 }
