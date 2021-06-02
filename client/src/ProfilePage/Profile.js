@@ -6,11 +6,19 @@ import { app, origin } from '../exports';
 import Post from '../components/Post';
 
 function Profile() {
-  const { id } = useParams();
   const [listings, setListings] = useState([]);
   const [user, setUser] = useState({});
   const [savedListings, setSaved] = useState([]);
-
+  const { id } = useParams();
+  useEffect(() => {
+    axios.get(`${origin}/users/${id}`)
+      .then((res) => {
+        setUser(res.data);
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
+  }, [id]);
   useEffect(() => {
     if (user.posts) {
       user.posts.forEach((p) => {
@@ -36,16 +44,6 @@ function Profile() {
       });
     }
   }, [user]);
-
-  useEffect(() => {
-    axios.get(`${origin}/users/${id}`)
-      .then((res) => {
-        setUser(res.data);
-      })
-      .catch((e) => {
-        console.log(e.message);
-      });
-  }, [id]);
 
   return (
     <div className="container">
