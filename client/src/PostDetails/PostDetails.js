@@ -63,19 +63,32 @@ export default function PostDetails() {
 
   return (
     <div className="details-container">
-      <div className="details-top">
-        <div className="listing-info">
+      <div>
+        <div>
           <h1>{listing.address}</h1>
-          <br />
-          <div className="posted-by" />
-          <p>
-            {`Posted by: ${listing.user}`}
-          </p>
-          <br />
-          <div className="price" />
-          <div className="facts" />
+          <h3>{`${listing.city}, ${listing.state}`}</h3>
         </div>
-        <img alt="Listing" />
+        <img className="photo" src="https://i.imgur.com/dVXUsOg.jpg" alt="listing" />
+        <ul>
+          <li>{`${listing.people} people`}</li>
+          <li>
+            {listing.bedrooms === 1 ? '1 bedroom, ' : `${listing.bedrooms} bedroom, `}
+            {listing.bathrooms === 1 ? '1 bathroom' : `${listing.bathrooms} bathrooms`}
+          </li>
+          {(listing.kitchen || listing.laundry || listing.parking) && (
+            <li>
+              {listing.kitchen && 'kitchen'}
+              {listing.kitchen && (listing.laundry || listing.parking) && ', '}
+              {listing.laundry && 'laundry'}
+              {listing.laundry && listing.parking && ', '}
+              {listing.parking && 'onsite parking'}
+            </li>
+          )}
+          <li>{listing.distance > 0 ? `${listing.distance} mi from ${listing.school}` : `less than 1 mi from ${listing.school}`}</li>
+        </ul>
+        <div className="bottom">
+          <p>{`$${listing.rent} / month`}</p>
+        </div>
       </div>
       <div className="description">
         <p>
@@ -83,8 +96,20 @@ export default function PostDetails() {
         </p>
         <br />
       </div>
+      <p>
+        Posted by:
+        {' '}
+        {listing.user}
+      </p>
       <div className="comments">
         <h2>Comments</h2>
+        {listing.comments && listing.comments.map((c) => (
+          <div>
+            <div className="comment">{c.comment}</div>
+            <div className="name">{c.name}</div>
+            <br />
+          </div>
+        ))}
         <label htmlFor="comment">
           <span>Add comment:</span>
           <textarea
@@ -98,11 +123,14 @@ export default function PostDetails() {
         </label>
         {comment && <button type="submit" onClick={() => { onSubmit(); }}>Post</button>}
         {listing.comments && listing.comments.map((c) => (
-          <p key={c.id}>
-            {`${c.comment} commented by ${c.name} on 
+          <div key={c.id}>
+            <div className="name">
+              {`${c.name} on 
             ${new Date(c.createdAt).toLocaleDateString('en-us')} at 
             ${new Date(c.createdAt).toLocaleTimeString('en-us', { hour: '2-digit', minute: '2-digit' })}`}
-          </p>
+            </div>
+            <p className="comment">{c.comment}</p>
+          </div>
         ))}
       </div>
     </div>

@@ -1,16 +1,9 @@
-@media screen and (min-width: 1280px) {
-  .filter-form {
-    width: 1280px;
-  }
-}
-
 .filter-form {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  max-width: 1280px;
-  padding: 0 16px;
+  padding: 16px calc(16px - .5em) 0;
   margin: auto;
 }
 
@@ -29,6 +22,22 @@
 
 .input-l {
   width: 75px;
+}
+
+@media screen and (max-width: 1221px) {
+  .submit-container {
+    flex-grow: 0;
+  }
+}
+
+@media screen and (min-width: 1222px) {
+  .submit-container {
+    flex-grow: 1;
+  }
+}
+
+.submit-container {
+  text-align: right;
 }
 
 input, select {
