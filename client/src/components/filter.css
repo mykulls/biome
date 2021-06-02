@@ -7,7 +7,7 @@
   margin: auto;
 }
 
-.filter-form > * {
+.filter-form>* {
   margin: 2px .5em;
   font-size: 1em;
 }
@@ -25,22 +25,22 @@
 }
 
 @media screen and (max-width: 1221px) {
-  .submit-container {
+  .submit {
     flex-grow: 0;
   }
 }
 
 @media screen and (min-width: 1222px) {
-  .submit-container {
+  .submit {
     flex-grow: 1;
   }
 }
 
-.submit-container {
+.submit {
   text-align: right;
 }
 
-input, select {
+.filter-form>select, .filter-form>label>input, .submit>input {
   border: 0;
   border-radius: 50vh;
   padding: 6px;
@@ -49,11 +49,11 @@ input, select {
   text-align: center;
 }
 
-input[type=number]::-webkit-inner-spin-button {
+.filter-form>label>input[type=number]::-webkit-inner-spin-button {
   opacity: 1;
 }
 
-input[type=submit] {
+.submit>input[type=submit] {
   padding: 6px 1em;
   background: #A3C1AD;
   font-weight: bold;

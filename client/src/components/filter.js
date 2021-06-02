@@ -101,7 +101,7 @@ class Filter extends React.Component {
             min="1"
           />
         </label>
-        <div className="submit-container">
+        <div className="submit">
           <input type="submit" value="Apply" />
         </div>
       </form>
