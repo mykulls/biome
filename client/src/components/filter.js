@@ -33,7 +33,8 @@ class Filter extends React.Component {
     return (
       <form className="filter-form" onSubmit={this.handleSubmit}>
         <label htmlFor="school">
-          Filter by&emsp;School:&ensp;
+          <b>Filter by</b>
+&emsp;School:&ensp;
           <select
             id="school"
             name="school"
