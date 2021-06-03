@@ -89,11 +89,11 @@
 .bottom>button {
   border: 0;
   border-radius: 50vh;
-  padding: 4px .75em;
+  padding: .25em .75em;
   background: #A3C1AD;
   cursor: pointer;
   font-family: 'Lato';
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: bold;
   color: black;
 }

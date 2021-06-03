@@ -122,61 +122,57 @@ class Login extends Component {
         </div> */}
         {!this.state.signUp
           ? (
-            <div className="rectangle">
-              <form onSubmit={this.login}>
-                <h2>Login:</h2>
-                <br />
+            <div className="login-container">
+              <h1>Login</h1>
+              <form className="login-form" onSubmit={this.login}>
                 <label htmlFor="email">
-                  <span>Email:</span>
+                  <span>Email: &nbsp;</span>
                   <input type="text" name="email" id="email" onChange={this.enterAccount} />
                 </label>
                 <br />
                 <label htmlFor="password">
-                  <span>Password:</span>
+                  <span>Password: &nbsp;</span>
                   <input type="password" name="password" id="password" onChange={this.enterAccount} />
                 </label>
                 <br />
-                <br />
                 <input type="submit" value="Login" />
               </form>
-              <span>Don&apos;t have an account? Sign up:</span>
+              <span>Don&apos;t have an account? &nbsp;</span>
               <button type="button" onClick={this.toggleSignUp}>Sign Up</button>
             </div>
           )
           : (
-            <div className="rectangle2">
-              <form onSubmit={this.signUp}>
-                <h2>Sign Up:</h2>
-                <br />
+            <div className="login-container">
+              <h1>Sign Up</h1>
+              <form className="login-form" onSubmit={this.signUp}>
                 <label htmlFor="email">
-                  <span>Email:</span>
+                  <span>Email: &nbsp;</span>
                   <input type="text" name="email" id="email" onChange={this.enterAccount} />
                 </label>
                 <br />
                 <label htmlFor="firstName">
-                  <span>First Name:</span>
+                  <span>First Name: &nbsp;</span>
                   <input type="text" name="firstName" id="firstName" onChange={this.enterAccount} />
                 </label>
                 <br />
                 <label htmlFor="lastName">
-                  <span>Last Name:</span>
+                  <span>Last Name: &nbsp;</span>
                   <input type="text" name="lastName" id="lastName" onChange={this.enterAccount} />
                 </label>
                 <br />
                 <label htmlFor="password">
-                  <span>Password:</span>
+                  <span>Password: &nbsp;</span>
                   <input type="password" name="password" id="password" onChange={this.enterAccount} />
                 </label>
                 <br />
                 <label htmlFor="phoneNumber">
-                  <span>Phone Number:</span>
+                  <span>Phone Number: &nbsp;</span>
                   <input type="phoneNumber" name="phoneNumber" id="phoneNumber" onChange={this.enterAccount} />
                 </label>
                 <br />
-                <br />
                 <input type="submit" value="Sign Up" />
               </form>
-              <span>Have an account? Log in:</span>
+              <span>Have an account? &nbsp;</span>
               <button type="button" onClick={this.toggleSignUp}>Login</button>
             </div>
           )}
