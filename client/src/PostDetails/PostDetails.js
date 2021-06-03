@@ -61,12 +61,27 @@ export default function PostDetails() {
       });
   }
 
+  /*
+  function getImage(imageObject) {
+    return 'https://i.imgur.com/dVXUsOg.jpg';
+    axios.get(`${origin}/images/${imageObject.filename}`)
+      .then((res) => {
+        console.log(res);
+        return res;
+        // setImages((i) => [...i, res]);
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
+  }
+  */
+
   return (
     <div className="details-container">
       <div className="details-listing">
         <h1>{listing.address}</h1>
         <h3>{`${listing.city}, ${listing.state}`}</h3>
-        <img className="details-photo" src="https://i.imgur.com/dVXUsOg.jpg" alt="listing" />
+        <img className="details-photo" src={`${origin}/images/${listing.images[0].filename}`} alt="listing" />
         <ul>
           <li>{`${listing.people} people`}</li>
           <li>
