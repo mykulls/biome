@@ -168,6 +168,7 @@ router.get('/images/:filename', (req, res) => {
         success: false,
         message: 'No files available',
       });
+      return;
     }
 
     if (files[0].contentType === 'image/jpeg' || files[0].contentType === 'image/png') {
