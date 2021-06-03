@@ -44,7 +44,7 @@ connect.once('open', () => {
   });
 });
 
-const patchOptions = { new: true, upsert: true };
+const patchOptions = { new: true };
 
 router.get('/listings', (req, res) => {
   Listing.find({})
@@ -86,17 +86,39 @@ router.patch('/listingPhoto/:id', upload.array('files'), (req, res) => {
 
 router.delete('/listings/:id', (req, res) => {
   Listing.findByIdAndDelete(req.params.id)
-    .then((data) => res.json(data))
+    .then((data) => {
+      if (!data) {
+        return res.status(404).json({
+          error: 'Listing not found.',
+        });
+      }
+
+      return res.json(data);
+    })
     .catch((e) => {
       console.log(e.message);
+      return res.status(404).json({
+        error: 'Listing not found.',
+      });
     });
 });
 
 router.get('/listings/:id', (req, res) => {
   Listing.findById(req.params.id)
-    .then((data) => res.json(data))
+    .then((data) => {
+      if (!data) {
+        return res.status(404).json({
+          error: 'Listing not found.',
+        });
+      }
+
+      return res.json(data);
+    })
     .catch((e) => {
       console.log(e.message);
+      return res.status(404).json({
+        error: 'Listing not found.',
+      });
     });
 });
 
@@ -118,9 +140,20 @@ router.get('/users', (req, res) => {
 
 router.get('/users/:id', (req, res) => {
   User.findById(req.params.id)
-    .then((data) => res.json(data))
+    .then((data) => {
+      if (!data) {
+        return res.status(404).json({
+          error: 'User not found.',
+        });
+      }
+
+      return res.json(data);
+    })
     .catch((e) => {
       console.log(e.message);
+      return res.status(404).json({
+        error: 'User not found.',
+      });
     });
 });
 
@@ -147,14 +180,33 @@ router.post('/users', (req, res) => {
 
 router.delete('/users/:id', (req, res) => {
   User.findOneAndDelete({ _id: req.params.id })
+    .then((data) => {
+      if (!data) {
+        return res.status(404).json({
+          error: 'User not found.',
+        });
+      }
+
+      return res.json(data);
+    })
+    .catch((e) => {
+      console.log(e.message);
+      return res.status(404).json({
+        error: 'User not found.',
+      });
+    });
+});
+
+router.patch('/updateUser/:id', (req, res) => {
+  User.findByIdAndUpdate(req.params.id, req.body, patchOptions)
     .then((data) => res.json(data))
     .catch((e) => {
       console.log(e.message);
     });
 });
 
-router.patch('/updateUser/:id', (req, res) => {
-  User.findByIdAndUpdate(req.params.id, req.body, patchOptions)
+router.patch('/updateUsers', (req, res) => {
+  User.updateMany({}, req.body)
     .then((data) => res.json(data))
     .catch((e) => {
       console.log(e.message);
@@ -179,6 +231,19 @@ router.get('/images/:filename', (req, res) => {
         error: 'Not an image',
       });
     }
+  });
+});
+
+router.post('images/delete/:id', (req, res) => {
+  gfs.delete(new mongoose.Types.ObjectId(req.params.id), (error) => {
+    if (error) {
+      return res.status(404).json({ error });
+    }
+
+    return res.json({
+      success: true,
+      message: `Image with ID ${req.params.id} deleted`,
+    });
   });
 });
 
