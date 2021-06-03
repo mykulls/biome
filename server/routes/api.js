@@ -234,7 +234,7 @@ router.get('/images/:filename', (req, res) => {
   });
 });
 
-router.post('images/delete/:id', (req, res) => {
+router.delete('images/:id', (req, res) => {
   gfs.delete(new mongoose.Types.ObjectId(req.params.id), (error) => {
     if (error) {
       return res.status(404).json({ error });

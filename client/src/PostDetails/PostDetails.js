@@ -1,6 +1,6 @@
 /* eslint-disable no-alert */
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useHistory } from 'react-router-dom';
 import './PostDetails.css';
 import axios from 'axios';
 import mongoose from 'mongoose';
@@ -11,10 +11,13 @@ export default function PostDetails() {
 
   const user = app.currentUser;
   const { id } = useParams();
+  const history = useHistory();
   const [listing, setListing] = useState(null);
   const [comment, setComment] = useState('');
   const [userCred, setUser] = useState({});
   const [images, setImages] = useState([]);
+  const [confirmDelete, setConfirm] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     axios.get(`${origin}/listings/${id}`)
@@ -29,7 +32,11 @@ export default function PostDetails() {
         });
       })
       .catch((e) => {
-        console.log(e.message);
+        setError(
+          <div className="error">
+            <h1>{e.response.data.error}</h1>
+          </div>,
+        );
       });
   }, [id]);
 
@@ -99,6 +106,35 @@ export default function PostDetails() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listing, images]);
 
+  function deletePost() {
+    const removePostsObj = { $pull: { posts: id, savedPosts: id } };
+    axios.patch(`${origin}/updateUsers`, removePostsObj)
+      .then(() => {
+        listing.images.forEach((i) => {
+          axios.delete(`${origin}/images/${i.id}`)
+            .catch((e) => {
+              console.log(e.message);
+            });
+        });
+      })
+      .then(() => {
+        axios.delete(`${origin}/listings/${id}`)
+          .then(() => {
+            history.push('/');
+          })
+          .catch((e) => {
+            console.log(e.message);
+          });
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
+  }
+
+  if (error) {
+    return error;
+  }
+
   if (!listing || (listing && listing.images.length !== images.length)) return null;
 
   return (
@@ -131,15 +167,35 @@ export default function PostDetails() {
           {`${listing.description}`}
         </p>
         <p className="details-rent">{`$${listing.rent} / month`}</p>
-        <Link to={`/profile/${listing.userHash}`}>{`Posted by ${listing.user}`}</Link>
+        <p className="details-op">
+          Posted by&nbsp;
+          <Link to={`/profile/${listing.userHash}`}><b>{listing.user}</b></Link>
+        </p>
+        {!confirmDelete && userCred && app.currentUser.id === userCred._id && (
+          <button
+            type="button"
+            className="delete-button"
+            onClick={() => { setConfirm(true); }}
+          >
+            Delete Post
+          </button>
+        )}
+        {confirmDelete && (
+        <div className="delete-confirmation">
+          <p><strong>Are you sure you want to delete this post?</strong></p>
+          <button type="button" onClick={() => deletePost()}>Yes</button>
+          <button type="button" onClick={() => setConfirm(false)}>No</button>
+        </div>
+        )}
       </div>
+
       <div className="comments">
         <h2>Comments</h2>
         {listing.comments && listing.comments.map((c) => (
           <div key={c.id}>
             <div className="comment">
               <p className="name">
-                <Link to={`/profile/${c.userHash}`}>{`${c.name}`}</Link>
+                <Link to={`/profile/${c.userHash}`}><b>{c.name}</b></Link>
                 {` on ${new Date(c.createdAt).toLocaleDateString('en-us')} at 
             ${new Date(c.createdAt).toLocaleTimeString('en-us', { hour: '2-digit', minute: '2-digit' })}:`}
               </p>

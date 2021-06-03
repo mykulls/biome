@@ -4,10 +4,9 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { origin, app } from '../exports';
 
-const user = app.currentUser;
-
 export default function NewPost() {
   document.title = 'Biome | New Post';
+  const user = app.currentUser;
 
   //  const [user, setUser] = useState(); // for linking the user's id to a listing in mongo
   const [newListing, setListing] = useState({
@@ -33,7 +32,7 @@ export default function NewPost() {
           console.log(e.message);
         });
     }
-  }, []);
+  }, [user]);
 
   const history = useHistory();
   function handleSubmit(event) {
@@ -73,7 +72,11 @@ export default function NewPost() {
 
           axios.patch(`${origin}/listingPhoto/${res.data._id}`, formData)
             .then(() => {
-              history.push(`/post/${res.data._id}`);
+              const postObj = { $push: { posts: res.data._id } };
+              axios.patch(`${origin}/updateUser/${user.id}`, postObj)
+                .then(() => {
+                  history.push(`/post/${res.data._id}`);
+                });
             })
             .catch((e) => {
               console.log(e.message);
