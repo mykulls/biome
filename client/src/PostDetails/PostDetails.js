@@ -105,8 +105,8 @@ export default function PostDetails() {
             </div>
           </div>
         ))}
-        <div className="name">Post comment:</div>
         <label htmlFor="comment">
+          <div className="name">Post comment:</div>
           <textarea
             id="comment"
             rows="4"
