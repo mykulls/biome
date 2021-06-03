@@ -274,10 +274,10 @@ export default function NewPost() {
                 {/* possibly don't need this because it submits so fast anyways  */}
                 {submitting ? <span>Submitting...</span> : <span>Submit</span>}
               </button>
+              {error && <span>{error}</span>}
             </div>
           </div>
         </div>
-        {error && <span>{error}</span>}
       </form>
     </div>
   );

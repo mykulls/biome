@@ -16,13 +16,18 @@
 }
 
 .photo-container {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  border-radius: 8px;
+  width: 262px;
   height: 197px;
+  background: #A3C1AD;
+  overflow: hidden;
 }
 
 .photo {
-  width: 262px;
   height: 197px;
-  border-radius: 8px;  
 }
 
 .text {

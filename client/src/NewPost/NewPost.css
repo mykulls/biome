@@ -74,6 +74,7 @@ input[type='checkbox'] {
 
 .newpost-submit {
   margin-top: 8px;
+  margin-right: 1em;
   border: 0;
   border-radius: 50vh;
   outline: 0;
