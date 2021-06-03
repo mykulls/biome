@@ -48,6 +48,7 @@ function Profile() {
 
   // if user hasn't been fetched yet, don't load this page
   if (!user) return null;
+  document.title = 'Biome | Profile';
 
   return (
     <div className="container">

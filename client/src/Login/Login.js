@@ -36,6 +36,7 @@ class Login extends Component {
     this.signUp = this.signUp.bind(this);
     this.login = this.login.bind(this);
     this.history = this.props.history;
+    document.title = 'Biome | Login';
   }
 
   enterAccount(event) {
@@ -48,6 +49,11 @@ class Login extends Component {
   }
 
   toggleSignUp() {
+    if (this.state.signUp) {
+      document.title = 'Biome | Log In';
+    } else {
+      document.title = 'Biome | Sign Up';
+    }
     this.setState((state) => ({
       signUp: !state.signUp,
       user: {
