@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react';
 import './Home.css';
 import axios from 'axios';
 import Filter from '../components/filter';
-import Post from './Post';
-import { app, origin } from '../exports';
+import Post from '../components/Post';
+import { origin, app } from '../exports';
 
 export default function Home() {
   const [listings, setListings] = useState([]);

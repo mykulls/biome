@@ -1,7 +1,54 @@
-import React from 'react';
+/* eslint-disable max-len */
+import React, { useState, useEffect } from 'react';
 import './Profile.css';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import { app, origin } from '../exports';
+import Post from '../components/Post';
 
 function Profile() {
+  const [listings, setListings] = useState([]);
+  const [user, setUser] = useState(null);
+  const [savedListings, setSaved] = useState([]);
+  const { id } = useParams();
+  useEffect(() => {
+    axios.get(`${origin}/users/${id}`)
+      .then((res) => {
+        setUser(res.data);
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
+  }, [id]);
+  useEffect(() => {
+    if (user) {
+      user.posts.forEach((p) => {
+        axios.get(`${origin}/listings/${p}`)
+          .then((res) => {
+            setListings((old) => [...old, res.data]);
+          })
+          .catch((e) => {
+            console.log(e.message);
+          });
+      });
+
+      if (app.currentUser && app.currentUser.id === user._id && user.savedPosts.length) {
+        user.savedPosts.forEach((p) => {
+          axios.get(`${origin}/listings/${p}`)
+            .then((res) => {
+              setSaved((old) => [...old, res.data]);
+            })
+            .catch((e) => {
+              console.log(e.message);
+            });
+        });
+      }
+    }
+  }, [user]);
+
+  // if user hasn't been fetched yet, don't load this page
+  if (!user) return null;
+
   return (
     <div className="container">
       <div className="profile-header">
@@ -9,9 +56,9 @@ function Profile() {
           <img src="https://sahabatperubahan.com/wp-content/uploads/2021/03/placeholder-profile-sq.jpg" width="200" alt="" />
         </div>
         <div className="profile-nav-info">
-          <h3 className="user-name"> John Doe </h3>
+          <h3 className="user-name">{`${user.firstName} ${user.lastName}`}</h3>
           <div className="address">
-            <p className="state"> Los Angeles, </p>
+            <p className="state"> Los Angeles </p>
             <span className="city">California</span>
           </div>
         </div>
@@ -20,10 +67,10 @@ function Profile() {
         <div className="left-side">
           <div className="profile-side">
             <p className="mobile-no">
-              +0912341234
+              +12345
             </p>
             <p className="user-mail">
-              JohnDoe@gmail.com
+              {`${user.email}`}
             </p>
             <div className="user-bio">
               <h3> Bio </h3>
@@ -41,23 +88,15 @@ function Profile() {
               <li className="user-post active">
                 Posts
               </li>
-              <li className="user-review">
-                Reviews
-              </li>
             </ul>
           </div>
           <div className="profile-body">
-            <div className="profile-posts tab">
-              <h1> </h1>
-            </div>
-            <div className="profile-review tab">
-              <h1> </h1>
-            </div>
+            {listings.map((l) => (<Post listing={l} />))}
+            {app.currentUser && app.currentUser.id === user._id && savedListings.map((l) => (<Post listing={l} />))}
           </div>
         </div>
       </div>
     </div>
   );
 }
-
 export default Profile;

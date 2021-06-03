@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import './PostDetails.css';
 import axios from 'axios';
 import mongoose from 'mongoose';
@@ -40,11 +40,12 @@ export default function PostDetails() {
       return;
     }
     const name = `${userCred.firstName} ${userCred.lastName}`;
-
+    const userHash = app.currentUser.id;
     const commentObj = {
       $push: {
         comments: {
           id: new mongoose.Types.ObjectId(),
+          userHash,
           comment,
           name,
           createdAt: new Date(),
@@ -91,7 +92,7 @@ export default function PostDetails() {
           {`${listing.description}`}
         </p>
         <p className="details-rent">{`$${listing.rent} / month`}</p>
-        <p className="details-op">{`Posted by ${listing.user}`}</p>
+        <Link to={`/profile/${listing.userHash}`}>{`Posted by ${listing.user}`}</Link>
       </div>
       <div className="comments">
         <h2>Comments</h2>
@@ -99,8 +100,8 @@ export default function PostDetails() {
           <div key={c.id}>
             <div className="comment">
               <p className="name">
-                {`${c.name} on 
-            ${new Date(c.createdAt).toLocaleDateString('en-us')} at 
+                <Link to={`/profile/${c.userHash}`}>{`${c.name}`}</Link>
+                {` on ${new Date(c.createdAt).toLocaleDateString('en-us')} at 
             ${new Date(c.createdAt).toLocaleTimeString('en-us', { hour: '2-digit', minute: '2-digit' })}:`}
               </p>
               <p>{c.comment}</p>
