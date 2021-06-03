@@ -88,25 +88,20 @@ function Profile() {
           <div className="nav">
             <ul>
               <li className="user-post active">
-                <p>Posts</p>
+                Posts
               </li>
-
+              <li className="user-post">
+                Saved Posts
+              </li>
             </ul>
           </div>
           <div className="profile-body">
-            <div className="profile-posts tab">
-              <h1> </h1>
+            <div className="profile-body-left">
+              {listings && listings.map((l) => (<Post listing={l} />))}
             </div>
-              <li className="user-post active">
-                {app.currentUser && app.currentUser.id === user._id && (<p>Saved Posts</p>)}
-              </li>
-            </ul>
-          </div>
-          <div className="profile-body-left">
-            {listings && listings.map((l) => (<Post listing={l} />))}
-          </div>
-          <div className="profile-body-right">
-            {app.currentUser && app.currentUser.id === user._id && savedListings && savedListings.map((l) => (<Post listing={l} />))}
+            <div className="profile-body-right">
+              {app.currentUser && app.currentUser.id === user._id && savedListings && savedListings.map((l) => (<Post listing={l} />))}
+            </div>
           </div>
         </div>
       </div>
