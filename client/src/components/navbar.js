@@ -9,10 +9,12 @@ function Navbar({ user /* setUser */ }) {
   return (
     <div className="navbar">
       <div className="navbar-container">
-        <div className="navbar-logo">
-          <img src="../logo.svg" alt="logo" className="logo" />
-          <Link to="/"><h2>biome</h2></Link>
-        </div>
+        <Link to="/">
+          <div className="navbar-logo">
+            <img src="../logo.svg" alt="logo" className="logo" />
+            <h2>biome</h2>
+          </div>
+        </Link>
         <div className="navbar-buttons">
           <button type="button">
             <Link to="/new-post">New Post</Link>
