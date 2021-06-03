@@ -157,4 +157,24 @@ router.patch('/updateUser/:id', (req, res) => {
     });
 });
 
+router.get('/images/:filename', (req, res) => {
+  gfs.find({ filename: req.params.filename }).toArray((err, files) => {
+    if (!files[0] || files.length === 0) {
+      res.status(200).json({
+        success: false,
+        message: 'No files available',
+      });
+    }
+
+    if (files[0].contentType === 'image/jpeg' || files[0].contentType === 'image/png') {
+      // render image to browser
+      gfs.openDownloadStreamByName(req.params.filename).pipe(res);
+    } else {
+      res.status(404).json({
+        error: 'Not an image',
+      });
+    }
+  });
+});
+
 module.exports = router;

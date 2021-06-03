@@ -8,7 +8,7 @@ import { origin, app } from '../exports';
 export default function PostDetails() {
   const user = app.currentUser;
   const { id } = useParams();
-  const [listing, setListing] = useState({});
+  const [listing, setListing] = useState(null);
   const [comment, setComment] = useState('');
   const [userCred, setUser] = useState({});
 
@@ -61,12 +61,14 @@ export default function PostDetails() {
       });
   }
 
+  if (!listing) return null;
+
   return (
     <div className="details-container">
       <div className="details-listing">
         <h1>{listing.address}</h1>
         <h3>{`${listing.city}, ${listing.state}`}</h3>
-        <img className="details-photo" src="https://i.imgur.com/dVXUsOg.jpg" alt="listing" />
+        <img className="details-photo" src={`${origin}/images/${listing.images[0].filename}`} alt="listing" />
         <ul>
           <li>{`${listing.people} people`}</li>
           <li>
