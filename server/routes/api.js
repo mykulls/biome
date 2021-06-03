@@ -184,7 +184,7 @@ router.get('/image/:filename', (req, res, next) => {
     });
   });
   */
-  router.route('/image/:filename')
+  router.route('/images/:filename')
   .get((req, res, next) => {
     gfs.find({ filename: req.params.filename }).toArray((err, files) => {
       if (!files[0] || files.length === 0) {
