@@ -28,6 +28,7 @@ class Login extends Component {
         phoneNumber: '',
       },
       signUp: false,
+      error: '',
     };
     this.enterAccount = this.enterAccount.bind(this);
     this.toggleSignUp = this.toggleSignUp.bind(this);
@@ -46,7 +47,17 @@ class Login extends Component {
   }
 
   toggleSignUp() {
-    this.setState((state) => ({ signUp: !state.signUp }));
+    this.setState((state) => ({
+      signUp: !state.signUp,
+      user: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        phoneNumber: '',
+      },
+      error: '',
+    }));
   }
 
   login(event) {
@@ -59,7 +70,7 @@ class Login extends Component {
         this.history.push('/');
       })
       .catch((e) => {
-        alert(e.response.data.error);
+        this.setState({ error: `Error logging in: ${e.error}` });
       });
   }
 
@@ -68,9 +79,9 @@ class Login extends Component {
     const { user } = this.state;
     if (!user.email.length || !user.password.length
        || !user.firstName.length || !user.lastName.length || !user.phoneNumber.length) {
-      alert('You must have at least 1 character in your first name, last name, email, password, and phone number.');
+      this.setState({ error: 'You must have at least 1 character in your first name, last name, email, password, and phone number.' });
     } else if (!validatePN(user.phoneNumber)) {
-      alert('You must have a valid phone number.');
+      this.setState({ error: 'You must have a valid phone number.' });
     } else {
       // registers user
       app.emailPasswordAuth.registerUser(user.email, user.password)
@@ -92,18 +103,15 @@ class Login extends Component {
                   this.history.push('/');
                 })
                 .catch((e) => {
-                  alert("Couldn't sign up!");
-                  console.log(e.message);
+                  this.setState({ error: e.response.data.error });
                 });
             })
             .catch((e) => {
-              alert("Couldn't sign up!");
-              console.log(e.message);
+              this.setState({ error: `Error signing up: ${e.error}` });
             });
         })
         .catch((e) => {
-          alert("Couldn't sign up!");
-          console.log(e.message);
+          this.setState({ error: `Error signing up: ${e.error}` });
         });
     }
   }
@@ -126,16 +134,17 @@ class Login extends Component {
               <form className="login-form" onSubmit={this.login}>
                 <label htmlFor="email">
                   <span>Email: &nbsp;</span>
-                  <input type="text" name="email" id="email" onChange={this.enterAccount} />
+                  <input type="text" name="email" id="email" onChange={this.enterAccount} value={this.state.user.email} />
                 </label>
                 <br />
                 <label htmlFor="password">
                   <span>Password: &nbsp;</span>
-                  <input type="password" name="password" id="password" onChange={this.enterAccount} />
+                  <input type="password" name="password" id="password" onChange={this.enterAccount} value={this.state.user.password} />
                 </label>
                 <br />
                 <input type="submit" value="Login" />
               </form>
+              {this.state.error && <div className="error">{this.state.error}</div>}
               <span>Don&apos;t have an account? &nbsp;</span>
               <button type="button" onClick={this.toggleSignUp}>Sign Up</button>
             </div>
@@ -146,31 +155,32 @@ class Login extends Component {
               <form className="login-form" onSubmit={this.signUp}>
                 <label htmlFor="email">
                   <span>Email: &nbsp;</span>
-                  <input type="text" name="email" id="email" onChange={this.enterAccount} />
+                  <input type="text" name="email" id="email" onChange={this.enterAccount} value={this.state.user.email} />
                 </label>
                 <br />
                 <label htmlFor="firstName">
                   <span>First Name: &nbsp;</span>
-                  <input type="text" name="firstName" id="firstName" onChange={this.enterAccount} />
+                  <input type="text" name="firstName" id="firstName" onChange={this.enterAccount} value={this.state.user.firstName} />
                 </label>
                 <br />
                 <label htmlFor="lastName">
                   <span>Last Name: &nbsp;</span>
-                  <input type="text" name="lastName" id="lastName" onChange={this.enterAccount} />
+                  <input type="text" name="lastName" id="lastName" onChange={this.enterAccount} value={this.state.user.lastName} />
                 </label>
                 <br />
                 <label htmlFor="password">
                   <span>Password: &nbsp;</span>
-                  <input type="password" name="password" id="password" onChange={this.enterAccount} />
+                  <input type="password" name="password" id="password" onChange={this.enterAccount} value={this.state.user.password} />
                 </label>
                 <br />
                 <label htmlFor="phoneNumber">
                   <span>Phone Number: &nbsp;</span>
-                  <input type="phoneNumber" name="phoneNumber" id="phoneNumber" onChange={this.enterAccount} />
+                  <input type="phoneNumber" name="phoneNumber" id="phoneNumber" onChange={this.enterAccount} value={this.state.user.phoneNumber} />
                 </label>
                 <br />
                 <input type="submit" value="Sign Up" />
               </form>
+              {this.state.error && <div className="error">{this.state.error}</div>}
               <span>Have an account? &nbsp;</span>
               <button type="button" onClick={this.toggleSignUp}>Login</button>
             </div>

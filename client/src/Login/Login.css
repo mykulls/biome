@@ -46,3 +46,8 @@
 .login-form input[type=submit]:hover, .login-container button:hover {
   background: #85A38F;
 }
+
+.login-container .error {
+  margin-top: 14px;
+  margin-bottom: 8px;
+}

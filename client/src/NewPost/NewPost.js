@@ -35,11 +35,12 @@ export default function NewPost() {
 
   const history = useHistory();
   function handleSubmit(event) {
+    event.preventDefault(); // prevents reloading after every submit
+
     if (!user) {
-      alert('You must be signed in to post!');
+      setError('You must be signed in to post!');
       return;
     }
-    event.preventDefault(); // prevents reloading after every submit
 
     if (!newListing.address || !newListing.city || !newListing.state
       || !newListing.zip || !newListing.distance || !newListing.school
@@ -77,7 +78,7 @@ export default function NewPost() {
         })
         .catch((e) => {
           setSubmitting(false);
-          alert(e.response.data.error);
+          setError(e.response.data.error);
         });
     }
   }
