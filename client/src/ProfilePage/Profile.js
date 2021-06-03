@@ -21,20 +21,15 @@ function Profile() {
       <div className="main-bd">
         <div className="left-side">
           <div className="profile-side">
+            <h1> Personal Information </h1>
+            <h2> Phone Number </h2>
             <p className="mobile-no">
               +0912341234
             </p>
+            <h2> Email </h2>
             <p className="user-mail">
               JohnDoe@gmail.com
             </p>
-            <div className="user-bio">
-              <h3> Bio </h3>
-              <p className="bio"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
-            </div>
-            <h3> Rating </h3>
-            <div className="user-rating">
-              <h3 className="rating"> 4.5 </h3>
-            </div>
           </div>
         </div>
         <div className="right-side">
@@ -43,16 +38,10 @@ function Profile() {
               <li className="user-post active">
                 Posts
               </li>
-              <li className="user-review">
-                Reviews
-              </li>
             </ul>
           </div>
           <div className="profile-body">
             <div className="profile-posts tab">
-              <h1> </h1>
-            </div>
-            <div className="profile-review tab">
               <h1> </h1>
             </div>
           </div>
