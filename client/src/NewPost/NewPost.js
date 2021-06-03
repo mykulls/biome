@@ -7,6 +7,8 @@ import { origin, app } from '../exports';
 const user = app.currentUser;
 
 export default function NewPost() {
+  document.title = 'Biome | New Post';
+
   //  const [user, setUser] = useState(); // for linking the user's id to a listing in mongo
   const [newListing, setListing] = useState({
     state: 'CA',
@@ -68,13 +70,14 @@ export default function NewPost() {
           images.forEach((img) => {
             formData.append('files', img);
           });
-          console.log(images);
 
           axios.patch(`${origin}/listingPhoto/${res.data._id}`, formData)
+            .then(() => {
+              history.push(`/post/${res.data._id}`);
+            })
             .catch((e) => {
               console.log(e.message);
             });
-          history.push(`/post/${res.data._id}`);
         })
         .catch((e) => {
           setSubmitting(false);
