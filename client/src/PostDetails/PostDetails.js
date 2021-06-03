@@ -1,5 +1,6 @@
+/* eslint-disable no-alert */
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import './PostDetails.css';
 import axios from 'axios';
 import mongoose from 'mongoose';
@@ -13,11 +14,19 @@ export default function PostDetails() {
   const [listing, setListing] = useState(null);
   const [comment, setComment] = useState('');
   const [userCred, setUser] = useState({});
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
     axios.get(`${origin}/listings/${id}`)
       .then((res) => {
         setListing(res.data);
+        res.data.images.forEach((i, index) => {
+          setImages((old) => [...old, (
+            <div key={i.filename} className={index ? 'mySlides' : 'mySlides show'}>
+              <img className="details-photo" src={`${origin}/images/${i.filename}`} alt="listing-img" />
+            </div>
+          )]);
+        });
       })
       .catch((e) => {
         console.log(e.message);
@@ -42,11 +51,12 @@ export default function PostDetails() {
       return;
     }
     const name = `${userCred.firstName} ${userCred.lastName}`;
-
+    const userHash = app.currentUser.id;
     const commentObj = {
       $push: {
         comments: {
           id: new mongoose.Types.ObjectId(),
+          userHash,
           comment,
           name,
           createdAt: new Date(),
@@ -63,204 +73,42 @@ export default function PostDetails() {
       });
   }
 
-  let slideIndex = 0;
-
-  function showSlides() {
-    let i;
-    const slides = document.getElementsByClassName('mySlides');
-    slideIndex += 1;
-    if (slideIndex > slides.length) {
-      slideIndex = 1;
+  useEffect(() => {
+    if (listing && listing.images.length === images.length) {
+      let slideIndex = 1;
+      const interval = setInterval(() => {
+        const slides = document.getElementsByClassName('mySlides');
+        if (slides.length > 1) {
+          slides[slideIndex].classList.add('fade', 'show');
+          if (slideIndex === 0) {
+            slides[slides.length - 1].remove('show');
+          } else {
+            slides[slideIndex - 1].classList.remove('show');
+          }
+          if (slideIndex === slides.length - 1) {
+            slideIndex = 0;
+          } else {
+            slideIndex += 1;
+          }
+        }
+      }, 5000);
+      return () => clearInterval(interval);
     }
-    for (i = 0; i < slides.length; i += 1) {
-      if (i === slideIndex - 1) {
-        slides[i].style.display = 'block';
-      } else {
-        slides[i].style.display = 'none';
-      }
-    }
-    setTimeout(showSlides, 5000); // Change image every 5 seconds
-  }
 
-  showSlides();
+    return null;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [listing, images]);
 
-  function ImageElements() {
-    switch (listing.images.length) {
-      case 2:
-        return (
-          <div className="slideshow-container">
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[0].filename}`} alt="listing-img" />
-            </div>
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[1].filename}`} alt="listing-img" />
-            </div>
-          </div>
-        );
-      case 3:
-        return (
-          <div className="slideshow-container">
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[0].filename}`} alt="listing-img" />
-            </div>
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[1].filename}`} alt="listing-img" />
-            </div>
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[2].filename}`} alt="listing-img" />
-            </div>
-          </div>
-        );
-      case 4:
-        return (
-          <div className="slideshow-container">
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[0].filename}`} alt="listing-img" />
-            </div>
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[1].filename}`} alt="listing-img" />
-            </div>
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[2].filename}`} alt="listing-img" />
-            </div>
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[3].filename}`} alt="listing-img" />
-            </div>
-          </div>
-        );
-      case 5:
-        return (
-          <div className="slideshow-container">
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[0].filename}`} alt="listing-img" />
-            </div>
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[1].filename}`} alt="listing-img" />
-            </div>
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[2].filename}`} alt="listing-img" />
-            </div>
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[3].filename}`} alt="listing-img" />
-            </div>
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[4].filename}`} alt="listing-img" />
-            </div>
-          </div>
-        );
-      case 6:
-        return (
-          <div className="slideshow-container">
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[0].filename}`} alt="listing-img" />
-            </div>
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[1].filename}`} alt="listing-img" />
-            </div>
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[2].filename}`} alt="listing-img" />
-            </div>
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[3].filename}`} alt="listing-img" />
-            </div>
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[4].filename}`} alt="listing-img" />
-            </div>
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[5].filename}`} alt="listing-img" />
-            </div>
-          </div>
-        );
-      case 7:
-        return (
-          <div className="slideshow-container">
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[0].filename}`} alt="listing-img" />
-            </div>
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[1].filename}`} alt="listing-img" />
-            </div>
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[2].filename}`} alt="listing-img" />
-            </div>
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[3].filename}`} alt="listing-img" />
-            </div>
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[4].filename}`} alt="listing-img" />
-            </div>
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[5].filename}`} alt="listing-img" />
-            </div>
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[6].filename}`} alt="listing-img" />
-            </div>
-          </div>
-        );
-      case 8:
-        return (
-          <div className="slideshow-container">
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[0].filename}`} alt="listing-img" />
-            </div>
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[1].filename}`} alt="listing-img" />
-            </div>
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[2].filename}`} alt="listing-img" />
-            </div>
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[3].filename}`} alt="listing-img" />
-            </div>
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[4].filename}`} alt="listing-img" />
-            </div>
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[5].filename}`} alt="listing-img" />
-            </div>
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[6].filename}`} alt="listing-img" />
-            </div>
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[7].filename}`} alt="listing-img" />
-            </div>
-          </div>
-        );
-      default:
-        return (
-          <div className="slideshow-container">
-            <div className="mySlides fade">
-              <img className="details-photo" src={`${origin}/images/${listing.images[0].filename}`} alt="listing-img" />
-            </div>
-          </div>
-        );
-    }
-  }
-
-  if (!listing) return null;
+  if (!listing || (listing && listing.images.length !== images.length)) return null;
 
   return (
     <div className="details-container">
       <div className="details-listing">
         <h1>{listing.address}</h1>
         <h3>{`${listing.city}, ${listing.state}`}</h3>
-        {/* <img className="details-photo" src={`${origin}/images/${listing.images[0].filename}`}
-        alt="listing" /> */}
-        {/* <div className="slideshow-container">
-          <div className="mySlides fade">
-            <img className="details-photo" src={`${origin}/images/${listing.images[0].filename}`}
-            alt="listing_img" />
-          </div>
-          <div className="mySlides fade">
-            <img className="details-photo" src={`${origin}/images/${listing.images[1].filename}`}
-            alt="listing_img" />
-          </div>
-          <div className="mySlides fade">
-            <img className="details-photo" src={`${origin}/images/${listing.images[2].filename}`}
-            alt="listing_img" />
-          </div>
-        </div> */}
-        <ImageElements />
+        <div className="slideshow-container">
+          {images}
+        </div>
         <ul>
           <li>{`${listing.people} people`}</li>
           <li>
@@ -283,10 +131,7 @@ export default function PostDetails() {
           {`${listing.description}`}
         </p>
         <p className="details-rent">{`$${listing.rent} / month`}</p>
-        <p className="details-op">
-          Posted by&nbsp;
-          <b>{listing.user}</b>
-        </p>
+        <Link to={`/profile/${listing.userHash}`}>{`Posted by ${listing.user}`}</Link>
       </div>
       <div className="comments">
         <h2>Comments</h2>
@@ -294,9 +139,9 @@ export default function PostDetails() {
           <div key={c.id}>
             <div className="comment">
               <p className="name">
-                <b>{c.name}</b>
+                <Link to={`/profile/${c.userHash}`}>{`${c.name}`}</Link>
                 {` on ${new Date(c.createdAt).toLocaleDateString('en-us')} at 
-                ${new Date(c.createdAt).toLocaleTimeString('en-us', { hour: '2-digit', minute: '2-digit' })}:`}
+            ${new Date(c.createdAt).toLocaleTimeString('en-us', { hour: '2-digit', minute: '2-digit' })}:`}
               </p>
               <p>{c.comment}</p>
             </div>

@@ -21,7 +21,7 @@ function Navbar({ user /* setUser */ }) {
           </button>
           {user ? (
             <button type="button">
-              <Link to="/profile">Account</Link>
+              <Link to={`/profile/${user.id}`}>Account</Link>
             </button>
           ) : null}
           {user ? (

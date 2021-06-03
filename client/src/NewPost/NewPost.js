@@ -78,6 +78,13 @@ export default function NewPost() {
             .catch((e) => {
               console.log(e.message);
             });
+          const newPost = { $push: { posts: res.data._id } };
+          axios.patch(`${origin}/updateUser/${app.currentUser.id}`, newPost)
+            .then(() => {
+            })
+            .catch((e) => {
+              console.log(e.message);
+            });
         })
         .catch((e) => {
           setSubmitting(false);
@@ -88,6 +95,7 @@ export default function NewPost() {
 
   function handleChange(key, value) {
     newListing.user = (`${userCred.firstName} ${userCred.lastName}`);
+    newListing.userHash = (`${app.currentUser.id}`);
     setError('');
     if (key === 'kitchen' || key === 'parking' || key === 'laundry') {
       if (document.getElementById(key).checked) {
