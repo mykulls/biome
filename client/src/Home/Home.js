@@ -10,6 +10,7 @@ import { app, origin } from '../exports';
 export default function Home() {
   const [listings, setListings] = useState([]);
   const [filter, setFilter] = useState({
+    address: '',
     people: '',
     bedrooms: '',
     bathrooms: '',
@@ -52,9 +53,10 @@ export default function Home() {
 
   return (
     <div className="home">
-      <Filter setFilter={setFilter} />
+      <Filter filter={filter} setFilter={setFilter} />
       <div className="container">
-        {listings.filter((listing) => (filter.people === '' || listing.people == filter.people)
+        {listings.filter((listing) => (filter.address === '' || listing.address.includes(filter.address))
+                                   && (filter.people === '' || listing.people == filter.people)
                                    && (filter.bedrooms === '' || listing.bedrooms == filter.bedrooms)
                                    && (filter.bathrooms === '' || listing.bathrooms == filter.bathrooms)
                                    && (filter.distance === '' || listing.distance <= filter.distance)
