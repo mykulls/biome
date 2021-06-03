@@ -28,8 +28,8 @@ export default function Post({ listing, saved, setSaved }) {
       <div className="text">
         <div className="top">
           <div className="location">
-            <h3>{listing.address}</h3>
-            <h4>{`${listing.city}, ${listing.state}`}</h4>
+            <h5>{listing.address}</h5>
+            <h6>{`${listing.city}, ${listing.state}`}</h6>
           </div>
           {app.currentUser && setSaved && (
           <button
@@ -37,7 +37,7 @@ export default function Post({ listing, saved, setSaved }) {
             className={saved ? 'fav saved' : 'fav'}
             onClick={() => { setSave(); }}
           >
-            ★
+            ❤
           </button>
           )}
         </div>
@@ -63,9 +63,6 @@ export default function Post({ listing, saved, setSaved }) {
           <button type="button">
             <Link to={`/post/${listing._id}`}>Details</Link>
           </button>
-          {/* <div className="date">
-                        <p>Posted May 15</p>
-                    </div> */}
         </div>
       </div>
     </div>
