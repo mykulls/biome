@@ -7,6 +7,8 @@ import { origin, app } from '../exports';
 const user = app.currentUser;
 
 export default function NewPost() {
+  document.title = 'Biome | New Post';
+
   //  const [user, setUser] = useState(); // for linking the user's id to a listing in mongo
   const [newListing, setListing] = useState({
     state: 'CA',

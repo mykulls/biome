@@ -2,6 +2,8 @@ import React from 'react';
 import './Profile.css';
 
 function Profile() {
+  document.title = 'Biome | Profile';
+
   return (
     <div className="container">
       <div className="profile-header">

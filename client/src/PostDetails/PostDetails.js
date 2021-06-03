@@ -6,6 +6,8 @@ import mongoose from 'mongoose';
 import { origin, app } from '../exports';
 
 export default function PostDetails() {
+  document.title = 'Biome | Post Details';
+
   const user = app.currentUser;
   const { id } = useParams();
   const [listing, setListing] = useState(null);

@@ -8,6 +8,8 @@ import Post from './Post';
 import { app, origin } from '../exports';
 
 export default function Home() {
+  document.title = 'Biome';
+
   const [listings, setListings] = useState([]);
   const [filter, setFilter] = useState({
     people: '',
