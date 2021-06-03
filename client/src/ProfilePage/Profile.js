@@ -69,11 +69,14 @@ function Profile() {
       <div className="main-bd">
         <div className="left-side">
           <div className="profile-side">
+            <h1> Personal Information </h1>
+            <h2> Phone Number </h2>
             <p className="mobile-no">
               Phone Number:
               {' '}
               {`${user.phoneNumber}`}
             </p>
+            <h2> Email </h2>
             <p className="user-mail">
               Email:
               {' '}
@@ -87,6 +90,13 @@ function Profile() {
               <li className="user-post active">
                 <p>Posts</p>
               </li>
+
+            </ul>
+          </div>
+          <div className="profile-body">
+            <div className="profile-posts tab">
+              <h1> </h1>
+            </div>
               <li className="user-post active">
                 {app.currentUser && app.currentUser.id === user._id && (<p>Saved Posts</p>)}
               </li>
