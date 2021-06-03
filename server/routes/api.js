@@ -156,53 +156,25 @@ router.patch('/updateUser/:id', (req, res) => {
       console.log(e.message);
     });
 });
-/*
-router.get('/image/:filename', (req, res, next) => {
-    console.log('fetching image');
-    // res.send("https://i.imgur.com/dVXUsOg.jpg");
-    gfs.find({ filename: req.params.filename })
-    .toArray((err, images) => {
-      if (!images[0] || images.length === 0){
-        console.log('no files available');
-        return res.status(200).json({
-          success: false,
-          message: 'No files available',
-        });
-      }
-      if (images[0].contentType === 'image/jpeg' || images[0].contentType === 'image/png') {
-        // render image to browser
-        gfs.openDownloadStreamByName(req.params.filename).pipe(res);
-      } else {
-        console.log('not an image');
-        res.status(404).json({
-          err: 'Not an image',
-        });
-      }
-    })
-    .catch((e) => {
-      console.log(e.message);
-    });
-  });
-  */
-  router.route('/image/:filename')
-  .get((req, res, next) => {
-    gfs.find({ filename: req.params.filename }).toArray((err, files) => {
-      if (!files[0] || files.length === 0) {
-        return res.status(200).json({
-          success: false,
-          message: 'No files available',
-        });
-      }
 
-      if (files[0].contentType === 'image/jpeg' || files[0].contentType === 'image/png' || files[0].contentType === 'image/svg+xml') {
-        // render image to browser
-        gfs.openDownloadStreamByName(req.params.filename).pipe(res);
-      } else {
-        res.status(404).json({
-            err: 'Not an image',
-        });
-      }
-    });
+router.get('/images/:filename', (req, res) => {
+  gfs.find({ filename: req.params.filename }).toArray((err, files) => {
+    if (!files[0] || files.length === 0) {
+      res.status(200).json({
+        success: false,
+        message: 'No files available',
+      });
+    }
+
+    if (files[0].contentType === 'image/jpeg' || files[0].contentType === 'image/png') {
+      // render image to browser
+      gfs.openDownloadStreamByName(req.params.filename).pipe(res);
+    } else {
+      res.status(404).json({
+        error: 'Not an image',
+      });
+    }
   });
+});
 
 module.exports = router;

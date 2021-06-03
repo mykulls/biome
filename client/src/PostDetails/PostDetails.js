@@ -8,7 +8,7 @@ import { origin, app } from '../exports';
 export default function PostDetails() {
   const user = app.currentUser;
   const { id } = useParams();
-  const [listing, setListing] = useState({});
+  const [listing, setListing] = useState(null);
   const [comment, setComment] = useState('');
   const [userCred, setUser] = useState({});
 
@@ -61,20 +61,7 @@ export default function PostDetails() {
       });
   }
 
-  /*
-  function getImage(imageObject) {
-    return 'https://i.imgur.com/dVXUsOg.jpg';
-    axios.get(`${origin}/images/${imageObject.filename}`)
-      .then((res) => {
-        console.log(res);
-        return res;
-        // setImages((i) => [...i, res]);
-      })
-      .catch((e) => {
-        console.log(e.message);
-      });
-  }
-  */
+  if (!listing) return null;
 
   return (
     <div className="details-container">
