@@ -111,6 +111,7 @@ export default function PostDetails() {
     axios.patch(`${origin}/updateUsers`, removePostsObj)
       .then(() => {
         listing.images.forEach((i) => {
+          console.log(i.id);
           axios.delete(`${origin}/images/${i.id}`)
             .catch((e) => {
               console.log(e.message);
@@ -171,7 +172,7 @@ export default function PostDetails() {
           Posted by&nbsp;
           <Link to={`/profile/${listing.userHash}`}><b>{listing.user}</b></Link>
         </p>
-        {!confirmDelete && userCred && app.currentUser.id === userCred._id && (
+        {!confirmDelete && app.currentUser && app.currentUser.id === listing.userHash && (
           <button
             type="button"
             className="delete-button"
