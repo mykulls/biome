@@ -63,12 +63,14 @@ router.post('/listings', (req, res) => {
         console.log(e.message);
       });
   } else {
+    const missing = [];
     Object.keys(Listing.schema.obj).forEach((key) => {
-      if (!(key in body)) {
-        res.json({
-          error: `The ${key} field is empty`,
-        });
+      if (!(key in body) && Listing.schema.obj[key].required) {
+        missing.push(key);
       }
+    });
+    res.status(400).json({
+      error: `The following field(s) are missing: ${missing.join(', ')}`,
     });
   }
 });
@@ -131,12 +133,14 @@ router.post('/users', (req, res) => {
         console.log(e.message);
       });
   } else {
+    const missing = [];
     Object.keys(User.schema.obj).forEach((key) => {
       if (!(key in body)) {
-        res.json({
-          error: `The ${key} field is empty`,
-        });
+        missing.push(key);
       }
+    });
+    res.status(400).json({
+      error: `The following field(s) are missing: ${missing.join(', ')}`,
     });
   }
 });
@@ -160,7 +164,7 @@ router.patch('/updateUser/:id', (req, res) => {
 router.get('/images/:filename', (req, res) => {
   gfs.find({ filename: req.params.filename }).toArray((err, files) => {
     if (!files[0] || files.length === 0) {
-      res.status(200).json({
+      res.status(404).json({
         success: false,
         message: 'No files available',
       });

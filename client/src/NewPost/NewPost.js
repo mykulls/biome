@@ -76,7 +76,8 @@ export default function NewPost() {
           history.push(`/post/${res.data._id}`);
         })
         .catch((e) => {
-          console.log(e.message);
+          setSubmitting(false);
+          alert(e.response.data.error);
         });
     }
   }
