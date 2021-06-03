@@ -76,6 +76,13 @@ export default function NewPost() {
             .catch((e) => {
               console.log(e.message);
             });
+          const newPost = { $push: { posts: res.data._id } };
+          axios.patch(`${origin}/updateUser/${app.currentUser.id}`, newPost)
+            .then(() => {
+            })
+            .catch((e) => {
+              console.log(e.message);
+            });
         })
         .catch((e) => {
           setSubmitting(false);

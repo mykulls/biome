@@ -59,7 +59,21 @@
     margin-right: 5px; 
 
 }
-
+.profile-body-center
+{
+    float: center;
+    margin-left:200px;
+}
+.profile-body-left
+{
+    float: left;
+    margin-left: 95px;
+}
+.profile-body-right
+{
+    float: right;
+    margin-right: 55px;
+}
 
 .main-bd 
 {

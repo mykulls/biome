@@ -4,6 +4,7 @@
   width: 100%;
   height: 64px;
   background: #40916C;
+  z-index: 1000;
 }
 
 .navbar-container {
