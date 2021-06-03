@@ -56,6 +56,16 @@
 .submit>input[type=submit] {
   padding: 6px 1em;
   background: #A3C1AD;
+  font-family: 'Lato';
   font-weight: bold;
   color: black;
+  cursor: pointer;
+}
+
+.submit>input[type=submit]:hover {
+  background: #9BB9A5;
+}
+
+.submit>input[type=submit]:active {
+  background: #85A38F;
 }

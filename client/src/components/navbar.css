@@ -47,3 +47,8 @@
   background: white;
   color: #40916C;
 }
+
+.navbar-buttons>button:active {
+  border-color: #E1E1E1;
+  background: #E1E1E1;
+}

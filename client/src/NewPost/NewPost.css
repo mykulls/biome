@@ -1,5 +1,10 @@
 .postmaker {
-  font-size: 20px;
+  /* font-size: 20px;
+  
+  width: 500px;
+  border: 5px solid rgb(177, 177, 177);
+  padding: 20px;
+  
   margin: auto;
   margin-top: 16px;
   width: 90%;
@@ -9,63 +14,98 @@
   align-self: center;
   padding: 20px;
   background: #FFFFFF;
-  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25); */
+  margin: 24px 16px;
   border-radius: 16px;
+  padding: 24px;
+  background: white;
 }
 
-.checkboxes {
-  line-height: normal;
+.postmaker>h1 {
+  margin-bottom: 8px;
+  font-family: 'Montserrat';
 }
 
-input[type='file'] { 
+.postmaker>* {
   font-family: 'Lato';
 }
 
-input[type='text'] { 
-  font-family: 'Lato';
-}
-
-textarea {
-  font-family: 'Lato';
-}
-
-select {
-  font-family: 'Lato';
-}
-
-input[type='checkbox'] {
-  width:15px;
-  height:15px;
-  background:white;
-  border-radius:5px;
-  border:2px solid #40916C;
+.row {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .column {
-  line-height: 250%;
-  float: left;
+  display: flex;
+  flex-direction: column;
   width: 50%;
+  min-width: 320px;
 }
 
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
+.column>* {
+  margin: 8px 0;
+}
+
+.column>label>input, .column>label>select {
+  border: 2px solid gray;
+  border-radius: 50vh;
+  padding: 6px;
+  font-size: 1em;
+  outline: 0;
+}
+
+input, select, textarea {
+  font-family: 'Lato';
+  font-size: 1em;
+}
+
+.checkboxes {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkboxes>label {
+  display: flex;
+  align-items: center;
+  margin: 4px 0;
+}
+
+input[type='checkbox'] {
+  margin-right: 4px;
+  border-radius: 50vh;
+  width: 2em;
+  height: 2em;
+}
+
+.column>label>textarea {
+  margin-top: 8px;
+  border: 2px solid gray;
+  border-radius: 16px;
+  padding: 12px;
+  width: 100%;
+  font-size: 1em;
+  outline: 0;
+  resize: none;
 }
 
 .newpost-submit {
-  border: 2px solid white;
+  margin-top: 8px;
+  border: 0;
   border-radius: 50vh;
+  outline: 0;
+  text-align: center;
   padding: .5em 1em;
-  background-color: #40916C;
-  font-size: 1em;
+  background: #A3C1AD;
+  cursor: pointer;
   font-family: 'Lato';
-  font-weight: 600;
-  color: white;
+  font-size: 1.17em;
+  font-weight: bold;
 }
 
 .newpost-submit:hover {
-  border: 2px solid #40916C;
-  background-color: white;
-  color: #40916C;
+  background: #9BB9A5;
+}
+
+.newpost-submit:active {
+  background: #85A38F;
 }

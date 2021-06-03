@@ -107,18 +107,17 @@ export default function NewPost() {
   return (
     <div className="new-post">
       <form className="postmaker" onSubmit={handleSubmit}>
+        <h1>New Post</h1>
         <div className="row">
           <div className="column">
             <label htmlFor="address">
               <span>Street Address: &nbsp;</span>
               <input type="text" id="address" onChange={(e) => handleChange('address', e.target.value)} />
             </label>
-            <br />
             <label htmlFor="city">
               <span>City: &nbsp;</span>
               <input type="text" id="city" onChange={(e) => handleChange('city', e.target.value)} />
             </label>
-            <br />
             <label htmlFor="state">
               <span>State: &nbsp;</span>
               <select id="state" defaultValue="CA" onChange={(e) => handleChange('state', e.target.value)}>
@@ -175,17 +174,10 @@ export default function NewPost() {
                 <option value="WY">Wyoming</option>
               </select>
             </label>
-            <br />
             <label htmlFor="zipcode">
               <span>Zip Code: &nbsp;</span>
               <input type="text" id="zipcode" onChange={(e) => handleChange('zip', e.target.value)} />
             </label>
-            <br />
-            <label htmlFor="distance">
-              <span>Distance from campus: &nbsp;</span>
-              <input type="text" id="distance" onChange={(e) => handleChange('distance', e.target.value)} />
-            </label>
-            <br />
             <label htmlFor="school">
               <span>School: &nbsp;</span>
               <select id="school" onChange={(e) => handleChange('school', e.target.value)}>
@@ -193,14 +185,12 @@ export default function NewPost() {
                 <option value="USC">USC</option>
               </select>
             </label>
-            <br />
-            <label htmlFor="rent">
-              <span>Rent ($ per month): $&nbsp;</span>
-              <input type="text" id="rent" onChange={(e) => handleChange('rent', e.target.value)} />
-            </label>
-            <br />
+            <div>
+              <span>Upload pictures: &nbsp;</span>
+              <input type="file" name="images" id="images" accept="image/*" onChange={(e) => handleChange('images', e.target.files)} multiple />
+            </div>
             <label htmlFor="details">
-              <span>People:&nbsp;</span>
+              <span>People: &nbsp;</span>
               <select id="people" onChange={(e) => handleChange('people', e.target.value)}>
                 <option value={1}>1</option>
                 <option value={2}>2</option>
@@ -212,7 +202,7 @@ export default function NewPost() {
                 <option value={8}>8</option>
                 <option value={9}>9</option>
               </select>
-              <span>&emsp;Bedrooms:&nbsp;</span>
+              <span>&emsp;Bedrooms: &nbsp;</span>
               <select id="bedrooms" onChange={(e) => handleChange('bedrooms', e.target.value)}>
                 <option value={1}>1</option>
                 <option value={2}>2</option>
@@ -224,7 +214,7 @@ export default function NewPost() {
                 <option value={8}>8</option>
                 <option value={9}>9</option>
               </select>
-              <span>&emsp;Bathrooms:&nbsp;</span>
+              <span>&emsp;Bathrooms: &nbsp;</span>
               <select id="bathrooms" name="bathrooms" onChange={(e) => handleChange('bathrooms', e.target.value)}>
                 <option value={1}>1</option>
                 <option value={1.5}>1.5</option>
@@ -245,7 +235,15 @@ export default function NewPost() {
                 <option value={9}>9</option>
               </select>
             </label>
-            <input type="file" name="images" id="images" accept="image/*" onChange={(e) => handleChange('images', e.target.files)} multiple />
+            <label htmlFor="distance">
+              <span>Distance from campus: &nbsp;</span>
+              <input type="text" id="distance" onChange={(e) => handleChange('distance', e.target.value)} />
+            </label>
+            <label htmlFor="rent">
+              <span>Price: &nbsp;$&nbsp;</span>
+              <input type="text" id="rent" onChange={(e) => handleChange('rent', e.target.value)} />
+              <span>&nbsp;/ month</span>
+            </label>
           </div>
           <div className="column">
             <div className="checkboxes">
@@ -253,27 +251,27 @@ export default function NewPost() {
                 <input type="checkbox" id="kitchen" onChange={(e) => handleChange('kitchen', e.target.value)} />
                 <span>&nbsp;Kitchen</span>
               </label>
-              <br />
               <label htmlFor="laundry">
                 <input type="checkbox" id="laundry" onChange={(e) => handleChange('laundry', e.target.value)} />
                 <span>&nbsp;Laundry</span>
               </label>
-              <br />
               <label htmlFor="parking">
                 <input type="checkbox" id="parking" onChange={(e) => handleChange('parking', e.target.value)} />
                 <span>&nbsp;Parking</span>
               </label>
             </div>
             <label htmlFor="description">
-              <span>Description: &nbsp;</span>
+              <p>Description:</p>
               <textarea id="description" rows="8" cols="50" onChange={(e) => handleChange('description', e.target.value)} />
             </label>
+            <div>
+              <button className="newpost-submit" type="submit">
+                {/* possibly don't need this because it submits so fast anyways  */}
+                {submitting ? <span>Submitting...</span> : <span>Submit</span>}
+              </button>
+            </div>
           </div>
         </div>
-        <button className="newpost-submit" type="submit">
-          {/* possibly don't need this because it submits so fast anyways  */}
-          {submitting ? <span>Submitting...</span> : <span>Submit</span>}
-        </button>
         {error && <span>{error}</span>}
       </form>
     </div>

@@ -55,6 +55,7 @@ class Filter extends React.Component {
             onChange={this.handleChange}
             className="input-s"
             min="1"
+            max="9"
           />
         </label>
         <label htmlFor="bedrooms">
@@ -66,6 +67,7 @@ class Filter extends React.Component {
             onChange={this.handleChange}
             className="input-s"
             min="1"
+            max="9"
           />
         </label>
         <label htmlFor="bathrooms">
@@ -75,8 +77,10 @@ class Filter extends React.Component {
             type="number"
             value={this.state.bathrooms}
             onChange={this.handleChange}
-            className="input-s"
+            className="input-m"
             min="1"
+            max="9"
+            step="0.5"
           />
         </label>
         <label htmlFor="distance">
