@@ -80,3 +80,24 @@
   outline: 0;
   resize: none;
 }
+
+.comments>button {
+  border: 1px solid #A3C1AD;
+  padding: 6px 1em;
+  background: #A3C1AD;
+  font-family: 'Lato';
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+  border-radius: 50vh;
+}
+
+.comments>button:hover {
+  border: 1px solid #9BB9A5;
+  background: #9BB9A5;
+}
+
+.comments>button:active {
+  border: 1px solid #85A38F;
+  background: #85A38F;
+}

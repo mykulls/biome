@@ -35,11 +35,12 @@ export default function NewPost() {
 
   const history = useHistory();
   function handleSubmit(event) {
+    event.preventDefault(); // prevents reloading after every submit
+
     if (!user) {
-      alert('You must be signed in to post!');
+      setError('You must be signed in to post!');
       return;
     }
-    event.preventDefault(); // prevents reloading after every submit
 
     if (!newListing.address || !newListing.city || !newListing.state
       || !newListing.zip || !newListing.distance || !newListing.school
@@ -67,17 +68,18 @@ export default function NewPost() {
           images.forEach((img) => {
             formData.append('files', img);
           });
-          console.log(images);
 
           axios.patch(`${origin}/listingPhoto/${res.data._id}`, formData)
+            .then(() => {
+              history.push(`/post/${res.data._id}`);
+            })
             .catch((e) => {
               console.log(e.message);
             });
-          history.push(`/post/${res.data._id}`);
         })
         .catch((e) => {
           setSubmitting(false);
-          alert(e.response.data.error);
+          setError(e.response.data.error);
         });
     }
   }

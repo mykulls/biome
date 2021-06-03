@@ -24,7 +24,7 @@ export default function Post({ listing, saved, setSaved }) {
 
   return (
     <div className="card">
-      <img className="photo" src="https://i.imgur.com/dVXUsOg.jpg" alt="Post" />
+      <img className="photo" src={`${origin}/images/${listing.images[0].filename}`} alt="Post" />
       <div className="text">
         <div className="top">
           <div className="location">

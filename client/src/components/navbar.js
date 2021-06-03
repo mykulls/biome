@@ -10,7 +10,7 @@ function Navbar({ user /* setUser */ }) {
     <div className="navbar">
       <div className="navbar-container">
         <div className="navbar-logo">
-          {/* <img src="../logo.svg" alt="logo" className="logo" /> */}
+          <img src="../logo.svg" alt="logo" className="logo" />
           <Link to="/"><h2>biome</h2></Link>
         </div>
         <div className="navbar-buttons">

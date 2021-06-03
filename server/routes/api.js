@@ -135,7 +135,7 @@ router.post('/users', (req, res) => {
   } else {
     const missing = [];
     Object.keys(User.schema.obj).forEach((key) => {
-      if (!(key in body)) {
+      if (!(key in body) && User.schema.obj[key].required) {
         missing.push(key);
       }
     });
