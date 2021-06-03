@@ -61,7 +61,7 @@ export default function Home() {
                                    && (filter.bathrooms === '' || listing.bathrooms == filter.bathrooms)
                                    && (filter.distance === '' || listing.distance <= filter.distance)
                                    && (filter.price === '' || listing.rent <= filter.price)
-                                   && (filter.school === '' || listing.school === filter.school)).map((l) => (
+                                   && (filter.school === '' || listing.school === filter.school)).reverse().map((l) => (
                                      // eslint-disable-next-line max-len
                                      <Post key={l._id} listing={l} saved={savedPosts.includes(l._id)} setSaved={setSaved} />
         ))}
