@@ -68,13 +68,14 @@ export default function NewPost() {
           images.forEach((img) => {
             formData.append('files', img);
           });
-          console.log(images);
 
           axios.patch(`${origin}/listingPhoto/${res.data._id}`, formData)
+            .then(() => {
+              history.push(`/post/${res.data._id}`);
+            })
             .catch((e) => {
               console.log(e.message);
             });
-          history.push(`/post/${res.data._id}`);
         })
         .catch((e) => {
           setSubmitting(false);
