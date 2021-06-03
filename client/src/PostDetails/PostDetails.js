@@ -65,6 +65,180 @@ export default function PostDetails() {
       });
   }
 
+  let slideIndex = 0;
+
+  function showSlides() {
+    let i;
+    const slides = document.getElementsByClassName('mySlides');
+    slideIndex += 1;
+    if (slideIndex > slides.length) {
+      slideIndex = 1;
+    }
+    for (i = 0; i < slides.length; i += 1) {
+      if (i === slideIndex - 1) {
+        slides[i].style.display = 'block';
+      } else {
+        slides[i].style.display = 'none';
+      }
+    }
+    setTimeout(showSlides, 5000); // Change image every 5 seconds
+  }
+
+  showSlides();
+
+  function ImageElements() {
+    switch (listing.images.length) {
+      case 2:
+        return (
+          <div className="slideshow-container">
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[0].filename}`} alt="listing-img" />
+            </div>
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[1].filename}`} alt="listing-img" />
+            </div>
+          </div>
+        );
+      case 3:
+        return (
+          <div className="slideshow-container">
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[0].filename}`} alt="listing-img" />
+            </div>
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[1].filename}`} alt="listing-img" />
+            </div>
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[2].filename}`} alt="listing-img" />
+            </div>
+          </div>
+        );
+      case 4:
+        return (
+          <div className="slideshow-container">
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[0].filename}`} alt="listing-img" />
+            </div>
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[1].filename}`} alt="listing-img" />
+            </div>
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[2].filename}`} alt="listing-img" />
+            </div>
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[3].filename}`} alt="listing-img" />
+            </div>
+          </div>
+        );
+      case 5:
+        return (
+          <div className="slideshow-container">
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[0].filename}`} alt="listing-img" />
+            </div>
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[1].filename}`} alt="listing-img" />
+            </div>
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[2].filename}`} alt="listing-img" />
+            </div>
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[3].filename}`} alt="listing-img" />
+            </div>
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[4].filename}`} alt="listing-img" />
+            </div>
+          </div>
+        );
+      case 6:
+        return (
+          <div className="slideshow-container">
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[0].filename}`} alt="listing-img" />
+            </div>
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[1].filename}`} alt="listing-img" />
+            </div>
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[2].filename}`} alt="listing-img" />
+            </div>
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[3].filename}`} alt="listing-img" />
+            </div>
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[4].filename}`} alt="listing-img" />
+            </div>
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[5].filename}`} alt="listing-img" />
+            </div>
+          </div>
+        );
+      case 7:
+        return (
+          <div className="slideshow-container">
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[0].filename}`} alt="listing-img" />
+            </div>
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[1].filename}`} alt="listing-img" />
+            </div>
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[2].filename}`} alt="listing-img" />
+            </div>
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[3].filename}`} alt="listing-img" />
+            </div>
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[4].filename}`} alt="listing-img" />
+            </div>
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[5].filename}`} alt="listing-img" />
+            </div>
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[6].filename}`} alt="listing-img" />
+            </div>
+          </div>
+        );
+      case 8:
+        return (
+          <div className="slideshow-container">
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[0].filename}`} alt="listing-img" />
+            </div>
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[1].filename}`} alt="listing-img" />
+            </div>
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[2].filename}`} alt="listing-img" />
+            </div>
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[3].filename}`} alt="listing-img" />
+            </div>
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[4].filename}`} alt="listing-img" />
+            </div>
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[5].filename}`} alt="listing-img" />
+            </div>
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[6].filename}`} alt="listing-img" />
+            </div>
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[7].filename}`} alt="listing-img" />
+            </div>
+          </div>
+        );
+      default:
+        return (
+          <div className="slideshow-container">
+            <div className="mySlides fade">
+              <img className="details-photo" src={`${origin}/images/${listing.images[0].filename}`} alt="listing-img" />
+            </div>
+          </div>
+        );
+    }
+  }
+
   if (!listing) return null;
 
   return (
@@ -72,7 +246,23 @@ export default function PostDetails() {
       <div className="details-listing">
         <h1>{listing.address}</h1>
         <h3>{`${listing.city}, ${listing.state}`}</h3>
-        <img className="details-photo" src={`${origin}/images/${listing.images[0].filename}`} alt="listing" />
+        {/* <img className="details-photo" src={`${origin}/images/${listing.images[0].filename}`}
+        alt="listing" /> */}
+        {/* <div className="slideshow-container">
+          <div className="mySlides fade">
+            <img className="details-photo" src={`${origin}/images/${listing.images[0].filename}`}
+            alt="listing_img" />
+          </div>
+          <div className="mySlides fade">
+            <img className="details-photo" src={`${origin}/images/${listing.images[1].filename}`}
+            alt="listing_img" />
+          </div>
+          <div className="mySlides fade">
+            <img className="details-photo" src={`${origin}/images/${listing.images[2].filename}`}
+            alt="listing_img" />
+          </div>
+        </div> */}
+        <ImageElements />
         <ul>
           <li>{`${listing.people} people`}</li>
           <li>
