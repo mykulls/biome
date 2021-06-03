@@ -15,9 +15,14 @@
   background: white;
 }
 
+.photo-container {
+  height: 197px;
+}
+
 .photo {
-  border-radius: 8px;
   width: 262px;
+  height: 197px;
+  border-radius: 8px;  
 }
 
 .text {
