@@ -47,7 +47,7 @@
 }
 
 .column>label>input, .column>label>select {
-  border: 2px solid gray;
+  border: 1px solid gray;
   border-radius: 50vh;
   padding: 6px;
   font-size: 1em;
@@ -79,7 +79,7 @@ input[type='checkbox'] {
 
 .column>label>textarea {
   margin-top: 8px;
-  border: 2px solid gray;
+  border: 1px solid gray;
   border-radius: 16px;
   padding: 12px;
   width: 100%;

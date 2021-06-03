@@ -41,7 +41,7 @@
 }
 
 .filter-form>label>select, .filter-form>label>input, .submit>input {
-  border: 0;
+  border: 1px solid gray;
   border-radius: 50vh;
   padding: 6px;
   font-size: 1em;
@@ -54,6 +54,7 @@
 }
 
 .submit>input[type=submit] {
+  border: 1px solid #A3C1AD;
   padding: 6px 1em;
   background: #A3C1AD;
   font-family: 'Lato';
@@ -63,9 +64,11 @@
 }
 
 .submit>input[type=submit]:hover {
+  border: 1px solid #9BB9A5;
   background: #9BB9A5;
 }
 
 .submit>input[type=submit]:active {
+  border: 1px solid #85A38F;
   background: #85A38F;
 }
