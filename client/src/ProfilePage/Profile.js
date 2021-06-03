@@ -25,7 +25,9 @@ function Profile() {
       user.posts.forEach((p) => {
         axios.get(`${origin}/listings/${p}`)
           .then((res) => {
-            setListings((old) => [...old, res.data]);
+            if (res.data) {
+              setListings((old) => [...old, res.data]);
+            }
           })
           .catch((e) => {
             console.log(e.message);
