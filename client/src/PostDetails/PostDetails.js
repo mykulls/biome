@@ -91,7 +91,10 @@ export default function PostDetails() {
           {`${listing.description}`}
         </p>
         <p className="details-rent">{`$${listing.rent} / month`}</p>
-        <p className="details-op">{`Posted by ${listing.user}`}</p>
+        <p className="details-op">
+          Posted by&nbsp;
+          <b>{listing.user}</b>
+        </p>
       </div>
       <div className="comments">
         <h2>Comments</h2>
@@ -99,9 +102,9 @@ export default function PostDetails() {
           <div key={c.id}>
             <div className="comment">
               <p className="name">
-                {`${c.name} on 
-            ${new Date(c.createdAt).toLocaleDateString('en-us')} at 
-            ${new Date(c.createdAt).toLocaleTimeString('en-us', { hour: '2-digit', minute: '2-digit' })}:`}
+                <b>{c.name}</b>
+                {` on ${new Date(c.createdAt).toLocaleDateString('en-us')} at 
+                ${new Date(c.createdAt).toLocaleTimeString('en-us', { hour: '2-digit', minute: '2-digit' })}:`}
               </p>
               <p>{c.comment}</p>
             </div>
