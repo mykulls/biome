@@ -8,7 +8,7 @@ import Post from '../components/Post';
 
 function Profile() {
   const [listings, setListings] = useState([]);
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const [savedListings, setSaved] = useState([]);
   const { id } = useParams();
   useEffect(() => {
@@ -21,7 +21,7 @@ function Profile() {
       });
   }, [id]);
   useEffect(() => {
-    if (user.posts) {
+    if (user) {
       user.posts.forEach((p) => {
         axios.get(`${origin}/listings/${p}`)
           .then((res) => {
@@ -31,20 +31,23 @@ function Profile() {
             console.log(e.message);
           });
       });
-    }
 
-    if (app.currentUser && app.currentUser.id === user._id && user.savedPosts.length) {
-      user.savedPosts.forEach((p) => {
-        axios.get(`${origin}/listings/${p}`)
-          .then((res) => {
-            setSaved((old) => [...old, res.data]);
-          })
-          .catch((e) => {
-            console.log(e.message);
-          });
-      });
+      if (app.currentUser && app.currentUser.id === user._id && user.savedPosts.length) {
+        user.savedPosts.forEach((p) => {
+          axios.get(`${origin}/listings/${p}`)
+            .then((res) => {
+              setSaved((old) => [...old, res.data]);
+            })
+            .catch((e) => {
+              console.log(e.message);
+            });
+        });
+      }
     }
   }, [user]);
+
+  // if user hasn't been fetched yet, don't load this page
+  if (!user) return null;
 
   return (
     <div className="container">
@@ -88,8 +91,8 @@ function Profile() {
             </ul>
           </div>
           <div className="profile-body">
-            {app.currentUser && listings.map((l) => (<Post listing={l} />))}
-            {app.currentUser && app.currentUser.id === user && savedListings.map((l) => (<Post listing={l} />))}
+            {listings.map((l) => (<Post listing={l} />))}
+            {app.currentUser && app.currentUser.id === user._id && savedListings.map((l) => (<Post listing={l} />))}
           </div>
         </div>
       </div>
