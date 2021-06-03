@@ -59,8 +59,7 @@ class Login extends Component {
         this.history.push('/');
       })
       .catch((e) => {
-        alert("Couldn't sign in!");
-        console.log(e.message);
+        alert(e.response.data.error);
       });
   }
 
