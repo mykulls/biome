@@ -88,7 +88,7 @@ export default function PostDetails() {
         if (slides.length > 1) {
           slides[slideIndex].classList.add('fade', 'show');
           if (slideIndex === 0) {
-            slides[slides.length - 1].remove('show');
+            slides[slides.length - 1].classList.remove('show');
           } else {
             slides[slideIndex - 1].classList.remove('show');
           }
@@ -111,7 +111,6 @@ export default function PostDetails() {
     axios.patch(`${origin}/updateUsers`, removePostsObj)
       .then(() => {
         listing.images.forEach((i) => {
-          console.log(i.id);
           axios.delete(`${origin}/images/${i.id}`)
             .catch((e) => {
               console.log(e.message);
@@ -142,12 +141,12 @@ export default function PostDetails() {
     <div className="details-container">
       <div className="details-listing">
         <h1>{listing.address}</h1>
-        <h3>{`${listing.city}, ${listing.state}`}</h3>
+        <h3>{`${listing.city}, ${listing.state} ${listing.zip}`}</h3>
         <div className="slideshow-container">
           {images}
         </div>
         <ul>
-          <li>{`${listing.people} people`}</li>
+          <li>{listing.people === 1 ? '1 person' : `${listing.people} people`}</li>
           <li>
             {listing.bedrooms === 1 ? '1 bedroom, ' : `${listing.bedrooms} bedroom, `}
             {listing.bathrooms === 1 ? '1 bathroom' : `${listing.bathrooms} bathrooms`}

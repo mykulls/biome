@@ -25,15 +25,15 @@ export default function Home() {
     axios.get(`${origin}/listings`)
       .then((res) => {
         setListings(res.data.sort((a, b) => {
-          // sort alphabetically by school, A-Z
-          if (a.school < b.school) {
+          // sort by date posted, newest first
+          if (a.createdAt > b.createdAt) {
             return -1;
           }
-          if (a.school > b.school) {
+          if (a.createdAt < b.createdAt) {
             return 1;
           }
 
-          // names must be equal
+          // dates must be equal
           return 0;
         }));
       })
@@ -61,7 +61,7 @@ export default function Home() {
                                    && (filter.bathrooms === '' || listing.bathrooms == filter.bathrooms)
                                    && (filter.distance === '' || listing.distance <= filter.distance)
                                    && (filter.price === '' || listing.rent <= filter.price)
-                                   && (filter.school === '' || listing.school === filter.school)).reverse().map((l) => (
+                                   && (filter.school === '' || listing.school === filter.school)).map((l) => (
                                      // eslint-disable-next-line max-len
                                      <Post key={l._id} listing={l} saved={savedPosts.includes(l._id)} setSaved={setSaved} />
         ))}

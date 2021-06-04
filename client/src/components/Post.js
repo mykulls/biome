@@ -31,7 +31,7 @@ export default function Post({ listing, saved, setSaved }) {
         <div className="top">
           <div className="location">
             <h5>{listing.address}</h5>
-            <h6>{`${listing.city}, ${listing.state}`}</h6>
+            <h6>{`${listing.city}, ${listing.state} ${listing.zip}`}</h6>
           </div>
           {app.currentUser && setSaved && (
           <button
@@ -44,7 +44,7 @@ export default function Post({ listing, saved, setSaved }) {
           )}
         </div>
         <ul>
-          <li>{`${listing.people} people`}</li>
+          <li>{listing.people === 1 ? '1 person' : `${listing.people} people`}</li>
           <li>
             {listing.bedrooms === 1 ? '1 bedroom, ' : `${listing.bedrooms} bedrooms, `}
             {listing.bathrooms === 1 ? '1 bathroom' : `${listing.bathrooms} bathrooms`}
