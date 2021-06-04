@@ -72,24 +72,29 @@ function Profile() {
         </div>
         <div className="profile-nav-info">
           <h1 className="user-name">{`${user.firstName} ${user.lastName}`}</h1>
-          <p>
-            Phone Number: &nbsp;
+          <div className="box-container">
+            <p>Phone Number: &nbsp;</p>
             <div className="info-box">{user.phoneNumber}</div>
-          </p>
-          <p>
-            Email: &nbsp;
+          </div>
+          <div className="box-container">
+            <p>Email: &nbsp;</p>
             <div className="info-box">{user.email}</div>
-          </p>
+          </div>
         </div>
       </div>
       <h2>{`${user.firstName}'s Posts`}</h2>
       <div className="post-container">
         {listings && listings.map((l) => (<Post key={`post${l._id}`} listing={l} />))}
       </div>
-      <h2>Saved Posts</h2>
-      <div className="post-container">
-        {app.currentUser && app.currentUser.id === user._id && savedListings && savedListings.map((l) => (<Post key={`saved${l._id}`} listing={l} />))}
+
+      {app.currentUser && app.currentUser.id === user._id && (
+      <div>
+        <h2>Saved Posts</h2>
+        <div className="post-container">
+          {savedListings.map((l) => (<Post key={`saved${l._id}`} listing={l} />))}
+        </div>
       </div>
+      )}
     </div>
   );
 }

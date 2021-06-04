@@ -6,6 +6,10 @@
   text-align: center;
 }
 
+.profile-container {
+  margin-bottom: 20px;
+}
+
 .profile-header {
   display: flex;
   align-items: center;
@@ -26,7 +30,7 @@
   padding-bottom: 8px;
 }
 
-.profile-nav-info p {
+.profile-nav-info .box-container {
   display: flex;
   align-items: center;
   margin-top: 12px;
