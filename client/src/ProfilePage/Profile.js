@@ -71,48 +71,24 @@ function Profile() {
           <img src="https://sahabatperubahan.com/wp-content/uploads/2021/03/placeholder-profile-sq.jpg" width="200" alt="" />
         </div>
         <div className="profile-nav-info">
-          <h3 className="user-name">{`${user.firstName} ${user.lastName}`}</h3>
-          <div className="address">
-            <p className="state"> Los Angeles </p>
-            <span className="city">California</span>
-          </div>
+          <h1 className="user-name">{`${user.firstName} ${user.lastName}`}</h1>
+          <p>
+            Phone Number: &nbsp;
+            <div className="info-box">{user.phoneNumber}</div>
+          </p>
+          <p>
+            Email: &nbsp;
+            <div className="info-box">{user.email}</div>
+          </p>
         </div>
       </div>
-      <div className="main-bd">
-        <div className="left-side">
-          <div className="profile-side">
-            <h1> Personal Information </h1>
-            <h2> Phone Number </h2>
-            <p className="mobile-no">
-              {user.phoneNumber}
-            </p>
-            <h2> Email </h2>
-            <p className="user-mail">
-              {user.email}
-            </p>
-          </div>
-        </div>
-        <div className="right-side">
-          <div className="nav">
-            <ul>
-              <li className="user-post active">
-                Posts
-              </li>
-              <li className="user-post active">
-                {app.currentUser && app.currentUser.id === user._id && (<p>Saved Posts</p>)}
-              </li>
-            </ul>
-          </div>
-          <div className="profile-body">
-            <div className="profile-body-left">
-              {listings && listings.map((l) => (<Post key={`post${l._id}`} listing={l} />))}
-            </div>
-            <div className="profile-body-right">
-              {app.currentUser && app.currentUser.id === user._id && savedListings
-              && savedListings.map((l) => (<Post key={`saved${l._id}`} listing={l} />))}
-            </div>
-          </div>
-        </div>
+      <h2>{`${user.firstName}'s Posts`}</h2>
+      <div className="post-container">
+        {listings && listings.map((l) => (<Post key={`post${l._id}`} listing={l} />))}
+      </div>
+      <h2>Saved Posts</h2>
+      <div className="post-container">
+        {app.currentUser && app.currentUser.id === user._id && savedListings && savedListings.map((l) => (<Post key={`saved${l._id}`} listing={l} />))}
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
- .error {
+.error {
   margin: 24px 12px 16px 16px;
   border-radius: 16px;
   padding: 24px;
@@ -6,166 +6,69 @@
   text-align: center;
 }
 
-.profile-header
-{
-    background: #fff; 
-    width: 1314px; 
-    display: flex;
-    height: 190px; 
-    position: relative; 
-    box-shadow: 0px 3px 4px rgba(0,0,0,.2);
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin: 24px 16px;
+  border-radius: 16px;
+  padding: 24px;
+  background: white;
 }
 
-.profile-img 
-{
-    z-index: 1;
-    float: left; 
-    width: 340px; 
-    height: 200px; 
+.profile-header img {
+  margin-right: 24px;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
 }
 
-.profile-img img 
-{
-    border-radius: 50%; 
-    width: 230px; 
-    height: 230px;
-    object-fit: contain;
-    border: 4px solid #fff; 
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, .2);
-    position: absolute; 
-    left: 50px; 
-    top: 20px; 
-    z-index: 5; 
-    background: #fff;
-
+.profile-header h2 {
+  padding-bottom: 8px;
 }
 
-.profile-nav-info 
-{
-    float: left; 
-    flex-direction: column;
-    justify-content: center;
-    padding-top: 60px; 
+.profile-nav-info p {
+  display: flex;
+  align-items: center;
+  margin-top: 12px;
 }
 
-.profile-nav-info h3
-{
-    font-variant: small-caps; 
-    font-size: 2rem; 
-    font-family: sans-serif; 
-    font-weight: bold; 
+.info-box {
+  border: 1px solid gray;
+  border-radius: 50vh;
+  padding: .75em;
 }
 
-.profile-nav-info .address
-{
-    display: flex; 
-    font-weight: bold; 
-    color: grey; 
-
+.profile-container h2 {
+  padding-top: 12px;
+  text-align: center;
 }
 
-.profile-nav-info .address p
-{
-    margin-right: 5px; 
-
+@media screen and (min-width: 320px) {
+  .post-container {
+    width: 318px;
+  }
 }
 
-.profile-body-center
-{
-    float: center;
-    margin-left:200px;
-}
-.profile-body-left
-{
-    float: left;
-    margin-left: 95px;
-}
-.profile-body-right
-{
-    float: right;
-    margin-right: 55px;
+@media screen and (min-width: 640px) {
+  .post-container {
+    width: 636px;
+  }
 }
 
-.main-bd 
-{
-    width: 100%; 
-    display: flex; 
-    padding-right: 15px;
+@media screen and (min-width: 960px) {
+  .post-container {
+    width: 954px;
+  }
 }
 
-.profile-side 
-{
-    width: 400px; 
-    height: 400px;
-    background: #fff; 
-    box-shadow: 0px 3px 5px rgba(0,0,0,.2);
-    padding: 90px 30px 20px;
-    font-family: sans-serif; 
-    margin-left: 10px; 
+@media screen and (min-width: 1280px) {
+  .post-container {
+    width: 1272px;
+  }
 }
 
-.profile-container h1
-{
-    color: white; 
-    background: #40916C;
-    border: 0;
-    box-shadow: 0px 2px 4px 0px;
-    align-content: center;
-    font-size: 1.2rem; 
-    margin-bottom: 30px;
-    padding-left: 10px;
-    border-radius: 10px 10px 10px 10px;
-}
-
-.profile-container h2
-{
-    color: #40916C;
-    font-size: 15px;
-    letter-spacing: 0.75px;
-    text-transform: uppercase;
-    margin-top: 20px;
-    margin-left: 15px;
-}
-
-.profile-container p.mobile-no, p.user-mail
-{
-    border: 0;
-    border-bottom: 1px solid #40916C;
-    width: 80%;
-    font-family: 'montserrat';
-    font-size: 15px;
-    padding: 7px 0;
-    margin-left: 15px;
-}
-
-.nav 
-{
-    width: 100%; 
-    display: flex;
-    z-index: -1;
-}
-
-.nav ul
-{
-    display: flex; 
-    justify-content: center; 
-    list-style-type: none;
-    height: 40px; 
-    background: #fff;
-    box-shadow: 0px 2px 5px rgba(0,0,0,.3);
-}
-
-.nav ul li 
-{
-    position:relative;
-    padding: 10px; 
-    width: 27rem; 
-    cursor: pointer;
-    text-align: center; 
-    transition: all .2s ease-in-out; 
-}
-
-.nav ul li.active
-{
-    box-shadow: 0px -3px 0px green inset;
+.post-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
 }
