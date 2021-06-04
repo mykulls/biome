@@ -277,7 +277,6 @@ export default function NewPost() {
             </label>
             <div>
               <button className="newpost-submit" type="submit">
-                {/* possibly don't need this because it submits so fast anyways  */}
                 {submitting ? <span>Submitting...</span> : <span>Submit</span>}
               </button>
               {error && <span>{error}</span>}
