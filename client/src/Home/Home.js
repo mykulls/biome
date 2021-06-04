@@ -4,10 +4,12 @@ import React, { useState, useEffect } from 'react';
 import './Home.css';
 import axios from 'axios';
 import Filter from '../components/filter';
-import Post from './Post';
-import { app, origin } from '../exports';
+import Post from '../components/Post';
+import { origin, app } from '../exports';
 
 export default function Home() {
+  document.title = 'Biome';
+
   const [listings, setListings] = useState([]);
   const [filter, setFilter] = useState({
     people: '',
@@ -59,7 +61,7 @@ export default function Home() {
                                    && (filter.bathrooms === '' || listing.bathrooms == filter.bathrooms)
                                    && (filter.distance === '' || listing.distance <= filter.distance)
                                    && (filter.price === '' || listing.rent <= filter.price)
-                                   && (filter.school === '' || listing.school === filter.school)).map((l) => (
+                                   && (filter.school === '' || listing.school === filter.school)).reverse().map((l) => (
                                      // eslint-disable-next-line max-len
                                      <Post key={l._id} listing={l} saved={savedPosts.includes(l._id)} setSaved={setSaved} />
         ))}

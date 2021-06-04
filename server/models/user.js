@@ -22,6 +22,10 @@ const UserSchema = new Schema({
     type: String,
     required: 'Last name required',
   },
+  phoneNumber: {
+    type: String,
+    required: 'Phone number required',
+  },
   posts: { type: Array },
   savedPosts: { type: Array },
 });

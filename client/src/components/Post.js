@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 import React from 'react';
 import './Post.css';
 import PropTypes from 'prop-types';
@@ -25,12 +24,14 @@ export default function Post({ listing, saved, setSaved }) {
 
   return (
     <div className="card">
-      <img className="photo" src="https://i.imgur.com/dVXUsOg.jpg" alt="Post" />
+      <div className="photo-container">
+        <img className="photo" src={`${origin}/images/${listing.images[0].filename}`} alt="Post" />
+      </div>
       <div className="text">
         <div className="top">
           <div className="location">
-            <h3>{listing.address}</h3>
-            <h4>{`${listing.city}, ${listing.state}`}</h4>
+            <h5>{listing.address}</h5>
+            <h6>{`${listing.city}, ${listing.state}`}</h6>
           </div>
           {app.currentUser && setSaved && (
           <button
@@ -38,14 +39,14 @@ export default function Post({ listing, saved, setSaved }) {
             className={saved ? 'fav saved' : 'fav'}
             onClick={() => { setSave(); }}
           >
-            ★
+            ❤
           </button>
           )}
         </div>
         <ul>
           <li>{`${listing.people} people`}</li>
           <li>
-            {listing.bedrooms === 1 ? '1 bedroom, ' : `${listing.bedrooms} bedroom, `}
+            {listing.bedrooms === 1 ? '1 bedroom, ' : `${listing.bedrooms} bedrooms, `}
             {listing.bathrooms === 1 ? '1 bathroom' : `${listing.bathrooms} bathrooms`}
           </li>
           {(listing.kitchen || listing.laundry || listing.parking) && (
@@ -62,18 +63,8 @@ export default function Post({ listing, saved, setSaved }) {
         <div className="bottom">
           <p>{`$${listing.rent} / month`}</p>
           <button type="button">
-            <Link
-              to={{
-                pathname: `/post/${listing._id}`,
-                listing,
-              }}
-            >
-              Details
-            </Link>
+            <Link to={`/post/${listing._id}`}>Details</Link>
           </button>
-          {/* <div className="date">
-                        <p>Posted May 15</p>
-                    </div> */}
         </div>
       </div>
     </div>

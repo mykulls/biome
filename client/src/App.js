@@ -41,7 +41,7 @@ export default function App() {
           <Route path="/new-post">
             <NewPost />
           </Route>
-          <Route path="/profile">
+          <Route path="/profile/:id">
             <Profile />
           </Route>
           <Route path="/login">

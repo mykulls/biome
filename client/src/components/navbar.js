@@ -9,14 +9,21 @@ function Navbar({ user /* setUser */ }) {
   return (
     <div className="navbar">
       <div className="navbar-container">
-        <div className="navbar-logo">
-          <img src="../logo.svg" alt="logo" className="logo" />
-          <Link to="/"><h2>BruinHomes</h2></Link>
-        </div>
-        <div>
+        <Link to="/">
+          <div className="navbar-logo">
+            <img src="../logo.svg" alt="logo" className="logo" />
+            <h2>biome</h2>
+          </div>
+        </Link>
+        <div className="navbar-buttons">
           <button type="button">
             <Link to="/new-post">New Post</Link>
           </button>
+          {user ? (
+            <button type="button">
+              <Link to={`/profile/${user.id}`}>Account</Link>
+            </button>
+          ) : null}
           {user ? (
             <button
               type="button"
@@ -40,8 +47,12 @@ function Navbar({ user /* setUser */ }) {
 }
 
 Navbar.propTypes = {
-  user: PropTypes.object.isRequired,
+  user: PropTypes.object,
   // setUser: PropTypes.func.isRequired,
+};
+
+Navbar.defaultProps = {
+  user: null,
 };
 
 export default Navbar;

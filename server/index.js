@@ -1,7 +1,5 @@
-/* eslint-disable */
 const express = require('express');
 const mongoose = require('mongoose');
-const path = require('path');
 const routes = require('./routes/api');
 require('dotenv').config();
 

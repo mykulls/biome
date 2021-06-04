@@ -1,63 +1,101 @@
-import React from 'react';
+/* eslint-disable max-len */
+import React, { useState, useEffect } from 'react';
 import './Profile.css';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import { app, origin } from '../exports';
+import Post from '../components/Post';
 
 function Profile() {
+  document.title = 'Biome | Profile';
+
+  const [listings, setListings] = useState([]);
+  const [user, setUser] = useState(null);
+  const [savedListings, setSaved] = useState([]);
+  const [error, setError] = useState(null);
+  const { id } = useParams();
+
+  useEffect(() => {
+    axios.get(`${origin}/users/${id}`)
+      .then((res) => {
+        setUser(res.data);
+      })
+      .catch((e) => {
+        setError(
+          <div className="profile-error">
+            <h1>{e.response.data.error}</h1>
+          </div>,
+        );
+      });
+  }, [id]);
+
+  useEffect(() => {
+    if (user) {
+      user.posts.forEach((p) => {
+        axios.get(`${origin}/listings/${p}`)
+          .then((res) => {
+            if (res.data) {
+              setListings((old) => [...old, res.data]);
+            }
+          })
+          .catch((e) => {
+            console.log(e.message);
+          });
+      });
+
+      if (app.currentUser && app.currentUser.id === user._id && user.savedPosts.length) {
+        user.savedPosts.forEach((p) => {
+          axios.get(`${origin}/listings/${p}`)
+            .then((res) => {
+              setSaved((old) => [...old, res.data]);
+            })
+            .catch((e) => {
+              console.log(e.message);
+            });
+        });
+      }
+    }
+  }, [user]);
+
+  if (error) {
+    return error;
+  }
+
+  // if user hasn't been fetched yet, don't load this page
+  if (!user) return null;
+
   return (
-    <div className="container">
+    <div className="profile-container">
       <div className="profile-header">
         <div className="profile-img">
-          <img src="https://sahabatperubahan.com/wp-content/uploads/2021/03/placeholder-profile-sq.jpg" width="200" alt="" />
+          <img src="https://i.imgur.com/uGGqlru.png" width="200" alt="pfp" />
         </div>
         <div className="profile-nav-info">
-          <h3 className="user-name"> John Doe </h3>
-          <div className="address">
-            <p className="state"> Los Angeles, </p>
-            <span className="city">California</span>
+          <h1 className="user-name">{`${user.firstName} ${user.lastName}`}</h1>
+          <div className="box-container">
+            <p>Phone Number: &nbsp;</p>
+            <div className="info-box">{user.phoneNumber}</div>
+          </div>
+          <div className="box-container">
+            <p>Email: &nbsp;</p>
+            <div className="info-box">{user.email}</div>
           </div>
         </div>
       </div>
-      <div className="main-bd">
-        <div className="left-side">
-          <div className="profile-side">
-            <p className="mobile-no">
-              +0912341234
-            </p>
-            <p className="user-mail">
-              JohnDoe@gmail.com
-            </p>
-            <div className="user-bio">
-              <h3> Bio </h3>
-              <p className="bio"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
-            </div>
-            <h3> Rating </h3>
-            <div className="user-rating">
-              <h3 className="rating"> 4.5 </h3>
-            </div>
-          </div>
-        </div>
-        <div className="right-side">
-          <div className="nav">
-            <ul>
-              <li className="user-post active">
-                Posts
-              </li>
-              <li className="user-review">
-                Reviews
-              </li>
-            </ul>
-          </div>
-          <div className="profile-body">
-            <div className="profile-posts tab">
-              <h1> </h1>
-            </div>
-            <div className="profile-review tab">
-              <h1> </h1>
-            </div>
-          </div>
+      <h2>{`${user.firstName}'s Posts`}</h2>
+      <div className="post-container">
+        {listings && listings.map((l) => (<Post key={`post${l._id}`} listing={l} />))}
+      </div>
+
+      {app.currentUser && app.currentUser.id === user._id && (
+      <div>
+        <h2>Saved Posts</h2>
+        <div className="post-container">
+          {savedListings.map((l) => (<Post key={`saved${l._id}`} listing={l} />))}
         </div>
       </div>
+      )}
     </div>
   );
 }
-
 export default Profile;

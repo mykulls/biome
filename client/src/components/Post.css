@@ -1,0 +1,119 @@
+* {
+  margin: 0;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  margin: 12px;
+  /* box-shadow: 0 0 10px #CCCCCC; */
+  border-radius: 16px;
+  box-sizing: border-box;
+  width: 294px;
+  height: 420px;
+  padding: 16px;
+  background: white;
+}
+
+.photo-container {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  border-radius: 8px;
+  width: 262px;
+  height: 197px;
+  background: #A3C1AD;
+  overflow: hidden;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 16px;
+  height: 100%;
+  font-size: 1.25rem;
+}
+
+.top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.top h5 {
+  width: 234px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.top h6 {
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+.fav {
+  border: 0;
+  border-radius: 50%;
+  width: 1.75rem;
+  padding: 0;
+  font-size: 1.75rem;
+  line-height: 1.75rem;
+  text-align: center;
+  color: #C2C2C2;
+  background: none;
+  outline: 0;
+}
+
+.fav:hover {
+  color: #B4B4B4;
+}
+
+.fav.saved {
+  color: #FE2712;
+}
+
+.fav.saved:hover {
+  color: #E71401;
+}
+
+.card ul {
+  padding-left: 22px;
+  font-size: 0.875rem;
+  line-height: 160%;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.bottom>button {
+  border: 0;
+  border-radius: 50vh;
+  padding: .25em .75em;
+  background: #A3C1AD;
+  cursor: pointer;
+  font-family: 'Lato';
+  font-size: 1rem;
+  font-weight: bold;
+  color: black;
+}
+
+.bottom>button:hover {
+  background: #9BB9A5;
+}
+
+.bottom>button:active {
+  background: #85A38F;
+}
