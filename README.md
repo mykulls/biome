@@ -10,7 +10,7 @@ To update all dependencies, you can use `npm run update`.
 
 Run on a local server with `npm run dev`, which will start the development server at the port specified by `REACT_APP_PORT` in client/.env and a Node server at the port specified by `PORT` in server/.env.
 
-You'll need two create these two .env files yourself if you want to run with your own data. Also, you'll need to create a [Mongo](https://www.mongodb.com/) account, as well as create a project, in which you'll create a [Mongo Atlas Cluster](https://docs.atlas.mongodb.com/getting-started/) with 2 collections named `listings` and `users`. You'll also need to set up a [Mongo Realm App](https://docs.mongodb.com/realm/get-started/create-realm-app/) to utilize user authentication.
+You'll need two create these two .env files yourself if you want to run with your own data. Also, you'll need to create a [Mongo](https://www.mongodb.com/) account, as well as create a project, in which you'll create a [Mongo Atlas Cluster](https://docs.atlas.mongodb.com/getting-started/) with a database that contains 2 collections named `listings` and `users`. You'll also need to set up a [Mongo Realm App](https://docs.mongodb.com/realm/get-started/create-realm-app/) to utilize user authentication.
 
 The .env file in the client directory should be of the format:
 ```
@@ -21,7 +21,7 @@ where `REACT_APP_PORT` is a port of your choice that the Node server (not your R
 
 The .env file in the server directory should be of the format:
 ```
-DB="mongodb+srv://admin:<password>@<cluster-id>.mongodb.net/<collection-name>?retryWrites=true&w=majority"
+DB="mongodb+srv://admin:<password>@<cluster-id>.mongodb.net/<database-name>?retryWrites=true&w=majority"
 PORT="3001"
 ```
 where `PORT` is the same port as the client/.env `REACT_APP_PORT`, since this is the port the Node server is running on, and `DB` is the link to connect to your Mongo Atlas Cluster (linked above).
