@@ -22,7 +22,7 @@ function Profile() {
       })
       .catch((e) => {
         setError(
-          <div className="error">
+          <div className="profile-error">
             <h1>{e.response.data.error}</h1>
           </div>,
         );

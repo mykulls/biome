@@ -33,7 +33,7 @@ export default function PostDetails() {
       })
       .catch((e) => {
         setError(
-          <div className="error">
+          <div className="details-error">
             <h1>{e.response.data.error}</h1>
           </div>,
         );
