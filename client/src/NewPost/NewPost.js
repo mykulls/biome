@@ -100,10 +100,10 @@ export default function NewPost() {
         setListing({ ...newListing, [e.target.name]: false });
       }
     } else if (e.target.name === 'images') {
-      setImages([]);
       if (e.target.files.length > 8) {
         setImgAmount(false);
       } else {
+        setImages([]);
         setImgAmount(true);
         for (let x = 0; x < e.target.files.length; x += 1) {
           setImages((i) => [...i, e.target.files[x]]);
