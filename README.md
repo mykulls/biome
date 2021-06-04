@@ -1,4 +1,4 @@
-# cs35l-project
+# Biome - A Housing Web App
 
 Clone the repository to your local device. Then, to install all necessary dependencies/any new dependencies since the last commit, you can use `npm run install-all`.
 
