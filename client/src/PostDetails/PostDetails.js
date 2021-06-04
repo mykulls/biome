@@ -146,7 +146,7 @@ export default function PostDetails() {
           {images}
         </div>
         <ul>
-          <li>{`${listing.people} people`}</li>
+          <li>{listing.people === 1 ? '1 person' : `${listing.people} people`}</li>
           <li>
             {listing.bedrooms === 1 ? '1 bedroom, ' : `${listing.bedrooms} bedroom, `}
             {listing.bathrooms === 1 ? '1 bathroom' : `${listing.bathrooms} bathrooms`}
