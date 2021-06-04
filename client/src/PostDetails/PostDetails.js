@@ -88,7 +88,7 @@ export default function PostDetails() {
         if (slides.length > 1) {
           slides[slideIndex].classList.add('fade', 'show');
           if (slideIndex === 0) {
-            slides[slides.length - 1].remove('show');
+            slides[slides.length - 1].classList.remove('show');
           } else {
             slides[slideIndex - 1].classList.remove('show');
           }
@@ -111,7 +111,6 @@ export default function PostDetails() {
     axios.patch(`${origin}/updateUsers`, removePostsObj)
       .then(() => {
         listing.images.forEach((i) => {
-          console.log(i.id);
           axios.delete(`${origin}/images/${i.id}`)
             .catch((e) => {
               console.log(e.message);
