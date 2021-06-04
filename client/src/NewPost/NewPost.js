@@ -103,6 +103,7 @@ export default function NewPost() {
       if (e.target.files.length > 8) {
         setImgAmount(false);
       } else {
+        setImages([]);
         setImgAmount(true);
         for (let x = 0; x < e.target.files.length; x += 1) {
           setImages((i) => [...i, e.target.files[x]]);
@@ -276,7 +277,6 @@ export default function NewPost() {
             </label>
             <div>
               <button className="newpost-submit" type="submit">
-                {/* possibly don't need this because it submits so fast anyways  */}
                 {submitting ? <span>Submitting...</span> : <span>Submit</span>}
               </button>
               {error && <span>{error}</span>}
