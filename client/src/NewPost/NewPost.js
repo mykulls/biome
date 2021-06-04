@@ -247,6 +247,7 @@ export default function NewPost() {
             <label htmlFor="distance">
               <span>Distance from campus: &nbsp;</span>
               <input type="text" id="distance" name="distance" onChange={handleChange} />
+              <span>&nbsp; miles</span>
             </label>
             <label htmlFor="rent">
               <span>Price: &nbsp;$&nbsp;</span>

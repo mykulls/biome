@@ -142,7 +142,7 @@ export default function PostDetails() {
     <div className="details-container">
       <div className="details-listing">
         <h1>{listing.address}</h1>
-        <h3>{`${listing.city}, ${listing.state}`}</h3>
+        <h3>{`${listing.city}, ${listing.state} ${listing.zip}`}</h3>
         <div className="slideshow-container">
           {images}
         </div>
