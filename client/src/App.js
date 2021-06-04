@@ -19,19 +19,6 @@ export default function App() {
 
   return (
     <Router>
-      {/* header goes here */}
-      {/* header links should look something like this:
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-        </ul> */}
       <NavBar user={user} />
       <div className="route-container">
         <Switch>
