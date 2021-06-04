@@ -84,15 +84,11 @@ function Profile() {
             <h1> Personal Information </h1>
             <h2> Phone Number </h2>
             <p className="mobile-no">
-              Phone Number:
-              {' '}
-              {`${user.phoneNumber}`}
+              {user.phoneNumber}
             </p>
             <h2> Email </h2>
             <p className="user-mail">
-              Email:
-              {' '}
-              {`${user.email}`}
+              {user.email}
             </p>
           </div>
         </div>
@@ -109,10 +105,11 @@ function Profile() {
           </div>
           <div className="profile-body">
             <div className="profile-body-left">
-              {listings && listings.map((l) => (<Post listing={l} />))}
+              {listings && listings.map((l) => (<Post key={`post${l._id}`} listing={l} />))}
             </div>
             <div className="profile-body-right">
-              {app.currentUser && app.currentUser.id === user._id && savedListings && savedListings.map((l) => (<Post listing={l} />))}
+              {app.currentUser && app.currentUser.id === user._id && savedListings
+              && savedListings.map((l) => (<Post key={`saved${l._id}`} listing={l} />))}
             </div>
           </div>
         </div>
