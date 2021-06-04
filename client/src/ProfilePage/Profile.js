@@ -68,7 +68,7 @@ function Profile() {
     <div className="profile-container">
       <div className="profile-header">
         <div className="profile-img">
-          <img src="https://sahabatperubahan.com/wp-content/uploads/2021/03/placeholder-profile-sq.jpg" width="200" alt="" />
+          <img src="https://i.imgur.com/uGGqlru.png" width="200" alt="pfp" />
         </div>
         <div className="profile-nav-info">
           <h1 className="user-name">{`${user.firstName} ${user.lastName}`}</h1>
