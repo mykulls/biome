@@ -49,6 +49,7 @@ export default function NewPost() {
       || !newListing.people || !newListing.bedrooms || !newListing.bathrooms
       || !newListing.description) {
       setError('Please fill in all required fields');
+      console.log(newListing);
     } else if (newListing.zip && (newListing.zip.length !== 5 || !/^\d+$/.test(newListing.zip))) {
       setError('Please input a valid zip code!');
     } else if (newListing.distance && (!/^\d+$/.test(newListing.distance))) {
@@ -63,8 +64,6 @@ export default function NewPost() {
 
       axios.post(`${origin}/listings`, newListing)
         .then((res) => {
-          setSubmitting(false);
-
           const formData = new FormData();
           images.forEach((img) => {
             formData.append('files', img);
@@ -75,6 +74,7 @@ export default function NewPost() {
               const postObj = { $push: { posts: res.data._id } };
               axios.patch(`${origin}/updateUser/${user.id}`, postObj)
                 .then(() => {
+                  setSubmitting(false);
                   history.push(`/post/${res.data._id}`);
                 });
             })
@@ -89,27 +89,27 @@ export default function NewPost() {
     }
   }
 
-  function handleChange(key, value) {
+  function handleChange(e) {
     newListing.user = (`${userCred.firstName} ${userCred.lastName}`);
     newListing.userHash = (`${app.currentUser.id}`);
     setError('');
-    if (key === 'kitchen' || key === 'parking' || key === 'laundry') {
-      if (document.getElementById(key).checked) {
-        setListing({ ...newListing, [key]: true });
+    if (e.target.name === 'kitchen' || e.target.name === 'parking' || e.target.name === 'laundry') {
+      if (document.getElementById(e.target.name).checked) {
+        setListing({ ...newListing, [e.target.name]: true });
       } else {
-        setListing({ ...newListing, [key]: false });
+        setListing({ ...newListing, [e.target.name]: false });
       }
-    } else if (key === 'images') {
-      if (value.length > 8) {
+    } else if (e.target.name === 'images') {
+      if (e.target.files.length > 8) {
         setImgAmount(false);
       } else {
         setImgAmount(true);
-        for (let x = 0; x < value.length; x += 1) {
-          setImages((i) => [...i, value[x]]);
+        for (let x = 0; x < e.target.files.length; x += 1) {
+          setImages((i) => [...i, e.target.files[x]]);
         }
       }
     } else {
-      setListing({ ...newListing, [key]: value });
+      setListing({ ...newListing, [e.target.name]: e.target.value });
     }
   }
 
@@ -121,15 +121,15 @@ export default function NewPost() {
           <div className="column">
             <label htmlFor="address">
               <span>Street Address: &nbsp;</span>
-              <input type="text" id="address" onChange={(e) => handleChange('address', e.target.value)} />
+              <input type="text" id="address" name="address" onChange={handleChange} />
             </label>
             <label htmlFor="city">
               <span>City: &nbsp;</span>
-              <input type="text" id="city" onChange={(e) => handleChange('city', e.target.value)} />
+              <input type="text" id="city" name="city" onChange={handleChange} />
             </label>
             <label htmlFor="state">
               <span>State: &nbsp;</span>
-              <select id="state" defaultValue="CA" onChange={(e) => handleChange('state', e.target.value)}>
+              <select id="state" name="state" defaultValue="CA" onChange={handleChange}>
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
                 <option value="AZ">Arizona</option>
@@ -183,24 +183,24 @@ export default function NewPost() {
                 <option value="WY">Wyoming</option>
               </select>
             </label>
-            <label htmlFor="zipcode">
+            <label htmlFor="zip">
               <span>Zip Code: &nbsp;</span>
-              <input type="text" id="zipcode" onChange={(e) => handleChange('zip', e.target.value)} />
+              <input type="text" name="zip" id="zip" onChange={handleChange} />
             </label>
             <label htmlFor="school">
               <span>School: &nbsp;</span>
-              <select id="school" onChange={(e) => handleChange('school', e.target.value)}>
+              <select id="school" name="school" onChange={handleChange}>
                 <option value="UCLA">UCLA</option>
                 <option value="USC">USC</option>
               </select>
             </label>
             <div>
               <span>Upload pictures: &nbsp;</span>
-              <input type="file" name="images" id="images" accept="image/*" onChange={(e) => handleChange('images', e.target.files)} multiple />
+              <input type="file" name="images" id="images" accept="image/*" onChange={handleChange} multiple />
             </div>
             <label htmlFor="details">
               <span>People: &nbsp;</span>
-              <select id="people" onChange={(e) => handleChange('people', e.target.value)}>
+              <select id="people" name="people" onChange={handleChange}>
                 <option value={1}>1</option>
                 <option value={2}>2</option>
                 <option value={3}>3</option>
@@ -212,7 +212,7 @@ export default function NewPost() {
                 <option value={9}>9</option>
               </select>
               <span>&emsp;Bedrooms: &nbsp;</span>
-              <select id="bedrooms" onChange={(e) => handleChange('bedrooms', e.target.value)}>
+              <select id="bedrooms" name="bedrooms" onChange={handleChange}>
                 <option value={1}>1</option>
                 <option value={2}>2</option>
                 <option value={3}>3</option>
@@ -224,7 +224,7 @@ export default function NewPost() {
                 <option value={9}>9</option>
               </select>
               <span>&emsp;Bathrooms: &nbsp;</span>
-              <select id="bathrooms" name="bathrooms" onChange={(e) => handleChange('bathrooms', e.target.value)}>
+              <select id="bathrooms" name="bathrooms" onChange={handleChange}>
                 <option value={1}>1</option>
                 <option value={1.5}>1.5</option>
                 <option value={2}>2</option>
@@ -246,32 +246,32 @@ export default function NewPost() {
             </label>
             <label htmlFor="distance">
               <span>Distance from campus: &nbsp;</span>
-              <input type="text" id="distance" onChange={(e) => handleChange('distance', e.target.value)} />
+              <input type="text" id="distance" name="distance" onChange={handleChange} />
             </label>
             <label htmlFor="rent">
               <span>Price: &nbsp;$&nbsp;</span>
-              <input type="text" id="rent" onChange={(e) => handleChange('rent', e.target.value)} />
+              <input type="text" id="rent" name="rent" onChange={handleChange} />
               <span>&nbsp;/ month</span>
             </label>
           </div>
           <div className="column">
             <div className="checkboxes">
               <label htmlFor="kitchen">
-                <input type="checkbox" id="kitchen" onChange={(e) => handleChange('kitchen', e.target.value)} />
+                <input type="checkbox" id="kitchen" name="kitchen" onChange={handleChange} />
                 <span>&nbsp;Kitchen</span>
               </label>
               <label htmlFor="laundry">
-                <input type="checkbox" id="laundry" onChange={(e) => handleChange('laundry', e.target.value)} />
+                <input type="checkbox" id="laundry" name="laundry" onChange={handleChange} />
                 <span>&nbsp;Laundry</span>
               </label>
               <label htmlFor="parking">
-                <input type="checkbox" id="parking" onChange={(e) => handleChange('parking', e.target.value)} />
+                <input type="checkbox" id="parking" name="parking" onChange={handleChange} />
                 <span>&nbsp;Parking</span>
               </label>
             </div>
             <label htmlFor="description">
               <p>Description:</p>
-              <textarea id="description" rows="8" cols="50" onChange={(e) => handleChange('description', e.target.value)} />
+              <textarea id="description" name="description" rows="8" cols="50" onChange={handleChange} />
             </label>
             <div>
               <button className="newpost-submit" type="submit">

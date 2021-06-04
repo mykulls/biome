@@ -46,7 +46,7 @@ export default function Post({ listing, saved, setSaved }) {
         <ul>
           <li>{`${listing.people} people`}</li>
           <li>
-            {listing.bedrooms === 1 ? '1 bedroom, ' : `${listing.bedrooms} bedroom, `}
+            {listing.bedrooms === 1 ? '1 bedroom, ' : `${listing.bedrooms} bedrooms, `}
             {listing.bathrooms === 1 ? '1 bathroom' : `${listing.bathrooms} bathrooms`}
           </li>
           {(listing.kitchen || listing.laundry || listing.parking) && (
