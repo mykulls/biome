@@ -9,7 +9,7 @@
 .profile-header
 {
     background: #fff; 
-    width: 100%; 
+    width: 1314px; 
     display: flex;
     height: 190px; 
     position: relative; 
@@ -18,6 +18,7 @@
 
 .profile-img 
 {
+    z-index: 1;
     float: left; 
     width: 340px; 
     height: 200px; 
@@ -142,12 +143,10 @@
     width: 100%; 
     display: flex;
     z-index: -1;
-    position: fixed;
 }
 
 .nav ul
 {
-    position: relative;
     display: flex; 
     justify-content: center; 
     list-style-type: none;

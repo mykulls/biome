@@ -102,8 +102,8 @@ function Profile() {
               <li className="user-post active">
                 Posts
               </li>
-              <li className="user-post">
-                Saved Posts
+              <li className="user-post active">
+                {app.currentUser && app.currentUser.id === user._id && (<p>Saved Posts</p>)}
               </li>
             </ul>
           </div>
