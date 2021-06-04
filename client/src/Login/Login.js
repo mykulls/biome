@@ -1,5 +1,3 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable react/destructuring-assignment */
 import './Login.css';
 import React, { Component } from 'react';
 import axios from 'axios';
@@ -131,9 +129,6 @@ class Login extends Component {
 
     return (
       <div className="Login">
-        {/* <div className="rectangle3">
-          <text>CS35L Project Login Page</text>
-        </div> */}
         {!this.state.signUp
           ? (
             <div className="login-container">

@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-function Navbar({ user /* setUser */ }) {
+function Navbar({ user }) {
   return (
     <div className="navbar">
       <div className="navbar-container">

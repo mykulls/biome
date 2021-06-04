@@ -1,6 +1,4 @@
-/* eslint-disable eqeqeq */
 import React, { useState, useEffect } from 'react';
-// import logo from './logo.svg';
 import './Home.css';
 import axios from 'axios';
 import Filter from '../components/filter';
@@ -49,7 +47,6 @@ export default function Home() {
           console.log(e.message);
         });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -62,7 +59,6 @@ export default function Home() {
                                    && (filter.distance === '' || listing.distance <= filter.distance)
                                    && (filter.price === '' || listing.rent <= filter.price)
                                    && (filter.school === '' || listing.school === filter.school)).map((l) => (
-                                     // eslint-disable-next-line max-len
                                      <Post key={l._id} listing={l} saved={savedPosts.includes(l._id)} setSaved={setSaved} />
         ))}
       </div>

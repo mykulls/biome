@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import './filter.css';
 import PropTypes from 'prop-types';

@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useHistory } from 'react-router-dom';
 import './PostDetails.css';
@@ -103,7 +102,6 @@ export default function PostDetails() {
     }
 
     return null;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listing, images]);
 
   function deletePost() {

@@ -34,7 +34,6 @@ const upload = multer({ storage });
 
 const connect = mongoose.createConnection(url, { useNewUrlParser: true, useUnifiedTopology: true });
 
-// eslint-disable-next-line no-unused-vars
 let gfs;
 
 connect.once('open', () => {
