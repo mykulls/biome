@@ -1,6 +1,6 @@
 # <img src="https://user-images.githubusercontent.com/69874869/120747704-5ab78280-c4b6-11eb-8caa-5a084e6bc675.png" alt="biome" width="200" />
 
-Biome is a web app for all your LA housing needs! Built using the MERN stack for the CS 35L final project at UCLA.
+Biome is a web app for all your LA housing needs! Built using the MERN stack for the CS 35L final project at UCLA. Check out the deployed app here: https://biome-cs35l.netlify.app/.
 
 ## Running locally
 
